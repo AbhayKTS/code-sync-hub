@@ -103,7 +103,7 @@ export default function ContactSection() {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-manga text-lg border-3 border-manga-border shadow-manga hover:shadow-manga-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-manga text-lg border-2 border-manga-border shadow-manga hover:shadow-manga-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70"
               >
                 {isSubmitting ? (
                   'Sending...'
