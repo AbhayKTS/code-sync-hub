@@ -68,7 +68,7 @@
 
   /* Comic speech bubble */
   .speech-bubble {
-    @apply relative bg-white rounded-2xl px-4 py-2 border-3 border-manga-border shadow-manga;
+    @apply relative bg-white rounded-2xl px-4 py-2 border-2 border-manga-border shadow-manga;
   }
   
   .speech-bubble::after {
