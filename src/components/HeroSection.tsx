@@ -53,7 +53,7 @@ export default function HeroSection() {
               href="#projects"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-body font-bold border-3 border-manga-border shadow-manga hover:shadow-manga-lg transition-shadow"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-body font-bold border-2 border-manga-border shadow-manga hover:shadow-manga-lg transition-shadow"
             >
               View My Work
             </motion.a>
@@ -61,7 +61,7 @@ export default function HeroSection() {
               href="#contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-body font-bold border-3 border-manga-border shadow-manga hover:shadow-manga-lg transition-shadow"
+              className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-body font-bold border-2 border-manga-border shadow-manga hover:shadow-manga-lg transition-shadow"
             >
               Contact Me
             </motion.a>
