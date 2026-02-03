@@ -20,7 +20,7 @@ export default function Navigation() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl"
     >
-      <div className="glass-card px-6 py-3 flex items-center justify-between border-2 border-manga-border shadow-manga">
+      <div className="glass-card px-6 py-3 flex items-center justify-center gap-8 border-2 border-manga-border shadow-manga">
         <a href="#hero" className="font-manga text-2xl text-primary tracking-wide">
           ABHAY
         </a>
