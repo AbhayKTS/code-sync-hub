@@ -259,43 +259,54 @@ export function SkillCard({ name, level = 1, maxLevel = 10, description, icon, r
   };
 
   return (
-    <SystemPanel variant="skill" className="p-4">
-      <div className="flex items-start gap-3">
-        {/* Icon */}
-        <div className="w-12 h-12 bg-black/50 border border-primary/40 flex items-center justify-center flex-shrink-0">
-          {icon || <span className="font-manga text-primary text-xl">技</span>}
-        </div>
-        
-        {/* Info */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h5 className="font-manga text-parchment tracking-wide truncate">{name}</h5>
-            {rank && (
-              <span className={`text-xs font-manga px-1.5 py-0.5 border ${rankColors[rank]}`}>
-                {rank}
-              </span>
-            )}
+    <div className="level-up-container relative">
+      {/* Level Up text */}
+      <span className="level-up-text">LEVEL UP!</span>
+      
+      {/* Sparkles */}
+      <span className="level-up-sparkle" style={{ left: '20%' }} />
+      <span className="level-up-sparkle" style={{ left: '40%' }} />
+      <span className="level-up-sparkle" style={{ left: '60%' }} />
+      <span className="level-up-sparkle" style={{ left: '80%' }} />
+      
+      <SystemPanel variant="skill" className="p-4">
+        <div className="flex items-start gap-3">
+          {/* Icon */}
+          <div className="w-12 h-12 bg-black/50 border border-primary/40 flex items-center justify-center flex-shrink-0">
+            {icon || <span className="font-manga text-primary text-xl">技</span>}
           </div>
           
-          {description && (
-            <p className="text-parchment/60 text-xs font-body line-clamp-2 mb-2">{description}</p>
-          )}
-          
-          {/* Level bar */}
-          <div className="flex items-center gap-2">
-            <div className="flex-1 h-1.5 bg-black/50 border border-primary/30">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-primary to-primary/50"
-                initial={{ width: 0 }}
-                animate={{ width: `${(level / maxLevel) * 100}%` }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              />
+          {/* Info */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <h5 className="font-manga text-parchment tracking-wide truncate">{name}</h5>
+              {rank && (
+                <span className={`text-xs font-manga px-1.5 py-0.5 border ${rankColors[rank]}`}>
+                  {rank}
+                </span>
+              )}
             </div>
-            <span className="text-[10px] text-primary font-manga">Lv.{level}</span>
+            
+            {description && (
+              <p className="text-parchment/60 text-xs font-body line-clamp-2 mb-2">{description}</p>
+            )}
+            
+            {/* Level bar */}
+            <div className="flex items-center gap-2">
+              <div className="flex-1 h-1.5 bg-black/50 border border-primary/30">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-primary to-primary/50"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${(level / maxLevel) * 100}%` }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                />
+              </div>
+              <span className="text-[10px] text-primary font-manga">Lv.{level}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </SystemPanel>
+      </SystemPanel>
+    </div>
   );
 }
 
