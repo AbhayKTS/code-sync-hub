@@ -9,6 +9,7 @@ import ParallaxBackground from '@/components/ParallaxBackground';
 import SystemMenu from '@/components/SystemMenu';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { usePageNavigation } from '@/hooks/usePageNavigation';
 
 // Custom page-flip easing
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -134,6 +135,9 @@ function PageSection({
 }
 
 function App() {
+  // Enable keyboard (A/D, arrows) and swipe navigation between sections
+  usePageNavigation();
+
   return (
     <div className="min-h-screen bg-parchment overflow-x-hidden relative ink-flow-bg">
       {/* Canvas parallax background - paper scraps, ink droplets, speedlines */}
