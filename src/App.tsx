@@ -5,6 +5,7 @@ import ExperienceSection from '@/components/ExperienceSection';
 import ContactSection from '@/components/ContactSection';
 import Navigation from '@/components/Navigation';
 import SpeedLines from '@/components/SpeedLines';
+import ParallaxBackground from '@/components/ParallaxBackground';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -134,6 +135,9 @@ function PageSection({
 function App() {
   return (
     <div className="min-h-screen bg-parchment overflow-x-hidden relative ink-flow-bg">
+      {/* Canvas parallax background - paper scraps, ink droplets, speedlines */}
+      <ParallaxBackground />
+      
       {/* Ink texture background */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-[0.02]"
