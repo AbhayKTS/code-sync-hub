@@ -192,12 +192,13 @@ export default function AboutSection() {
                 { name: "Code Review", desc: "Piercing gaze that finds all bugs", icon: "eye" },
                 { name: "Debug Mastery", desc: "Console.log no jutsu activated", icon: "search" },
                 { name: "Deploy Arts", desc: "One-click production release", icon: "rocket" },
-              ].map((technique) => (
+              ].map((technique, index) => (
                 <motion.div
                   key={technique.name}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-ink-black bg-parchment-light p-4 cursor-pointer hover:bg-aged-gold/20 transition-colors"
+                  className="manhwa-card p-4 cursor-pointer"
+                  style={{ transform: `rotate(${index === 1 ? 0.5 : index === 0 ? -0.8 : 1.2}deg)` }}
                 >
                   <div className="text-2xl mb-2 font-cinzel text-blood-red">[{technique.icon}]</div>
                   <h4 className="font-cinzel font-bold text-ink-black">{technique.name}</h4>
