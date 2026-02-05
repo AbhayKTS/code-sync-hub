@@ -57,44 +57,60 @@
 }
 
 @layer components {
-  /* Enhanced manga panel - dramatic borders */
+  /* Murim panel - sharp ink borders, no rounded corners */
   .manga-panel {
-    @apply bg-card rounded-xl border-[3px] border-manga-border relative overflow-hidden;
-    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--pastel-cream)) 100%);
+    @apply bg-card relative overflow-hidden;
+    border: 3px solid hsl(var(--ink-black));
+    background: linear-gradient(180deg, hsl(var(--parchment)) 0%, hsl(var(--parchment-dark)) 100%);
     box-shadow: 
-      5px 5px 0px hsl(var(--manga-border)),
-      inset 0 0 30px rgba(255, 255, 255, 0.5);
+      4px 4px 0px hsl(var(--ink-black)),
+      8px 8px 15px rgba(0, 0, 0, 0.2);
   }
 
   .manga-panel-lg {
     @apply manga-panel;
+    border-width: 4px;
     box-shadow: 
-      8px 8px 0px hsl(var(--manga-border)),
-      inset 0 0 40px rgba(255, 255, 255, 0.6);
+      6px 6px 0px hsl(var(--ink-black)),
+      12px 12px 20px rgba(0, 0, 0, 0.25);
   }
 
-  /* Action panel - for dramatic moments */
-  .action-panel {
-    @apply relative overflow-hidden rounded-xl;
-    background: linear-gradient(135deg, hsl(var(--pastel-yellow)) 0%, hsl(var(--pastel-peach)) 100%);
-    border: 4px solid hsl(var(--manga-border));
+  /* System HUD panel - like murim system interface */
+  .system-panel {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(20,15,10,0.95) 100%);
+    border: 2px solid hsl(var(--blood-red));
     box-shadow: 
-      8px 8px 0px hsl(var(--manga-border)),
-      0 0 60px rgba(255, 200, 0, 0.3);
+      0 0 20px rgba(180, 50, 50, 0.3),
+      inset 0 0 30px rgba(0,0,0,0.5);
   }
 
-  /* Enhanced glassmorphism */
+  .system-panel::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(180, 50, 50, 0.03) 2px,
+      rgba(180, 50, 50, 0.03) 4px
+    );
+  }
+
+  /* Glass card - dark murim style */
   .glass-card {
-    @apply backdrop-blur-lg bg-white/80 border-2 border-white/60 rounded-2xl;
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    @apply backdrop-blur-md;
+    background: linear-gradient(135deg, rgba(243, 234, 215, 0.95) 0%, rgba(230, 220, 200, 0.9) 100%);
+    border: 2px solid hsl(var(--ink-black));
+    box-shadow: 4px 4px 0px hsl(var(--ink-black));
   }
 
-  /* Comic speech bubble - enhanced */
+  /* Speech bubble - sharp corners, ink style */
   .speech-bubble {
-    @apply relative bg-white rounded-3xl px-6 py-4 border-[3px] border-manga-border;
-    box-shadow: 5px 5px 0px hsl(var(--manga-border));
+    @apply relative px-6 py-4;
+    background: hsl(var(--parchment));
+    border: 3px solid hsl(var(--ink-black));
+    box-shadow: 4px 4px 0px hsl(var(--ink-black));
   }
   
   .speech-bubble::after {
@@ -102,7 +118,7 @@
     @apply absolute -bottom-4 left-8 w-0 h-0;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-top: 16px solid hsl(var(--manga-border));
+    border-top: 16px solid hsl(var(--ink-black));
   }
 
   .speech-bubble::before {
@@ -110,146 +126,139 @@
     @apply absolute -bottom-2 left-9 w-0 h-0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 14px solid white;
+    border-top: 13px solid hsl(var(--parchment));
     z-index: 1;
   }
 
-  /* Shout bubble - for emphasis */
-  .shout-bubble {
-    @apply relative bg-white px-6 py-4 border-[3px] border-manga-border;
-    clip-path: polygon(
-      5% 0%, 15% 5%, 25% 0%, 35% 3%, 45% 0%, 55% 4%, 65% 0%, 75% 5%, 85% 0%, 95% 3%, 100% 10%,
-      97% 20%, 100% 30%, 98% 40%, 100% 50%, 97% 60%, 100% 70%, 98% 80%, 100% 90%,
-      95% 97%, 85% 95%, 75% 100%, 65% 96%, 55% 100%, 45% 97%, 35% 100%, 25% 96%, 15% 100%, 5% 97%, 0% 90%,
-      3% 80%, 0% 70%, 2% 60%, 0% 50%, 3% 40%, 0% 30%, 2% 20%, 0% 10%
-    );
-    box-shadow: 4px 4px 0px hsl(var(--manga-border));
+  /* Vertical panel separator - comic panel divider */
+  .panel-divider {
+    @apply w-px;
+    background: hsl(var(--ink-black));
+    box-shadow: 1px 0 0 rgba(0,0,0,0.2);
   }
 
-  /* Dramatic speed lines */
-  .speed-lines-radial {
-    @apply absolute inset-0 pointer-events-none overflow-hidden;
-    background: conic-gradient(
-      from 0deg at 50% 50%,
-      transparent 0deg,
-      rgba(0, 0, 0, 0.03) 2deg,
-      transparent 4deg
-    );
-    background-size: 100% 100%;
+  .panel-divider-thick {
+    @apply w-1;
+    background: hsl(var(--ink-black));
   }
 
-  /* Action lines - horizontal burst */
-  .action-lines {
-    @apply absolute inset-0 pointer-events-none overflow-hidden;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 15px,
-      rgba(0, 0, 0, 0.04) 15px,
-      rgba(0, 0, 0, 0.04) 16px
-    );
-  }
-
-  /* Focus lines - concentration effect */
-  .focus-lines {
-    @apply absolute inset-0 pointer-events-none;
-    background: 
-      radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.02) 60%, transparent 70%),
-      repeating-conic-gradient(
-        from 0deg at 50% 50%,
-        transparent 0deg,
-        rgba(0, 0, 0, 0.015) 0.5deg,
-        transparent 1deg
-      );
-  }
-
-  /* Panel gutter */
+  /* Panel gutter - parchment background */
   .panel-gutter {
-    @apply bg-pastel-cream p-4 md:p-8;
+    @apply p-4 md:p-8;
+    background: hsl(var(--parchment));
   }
 
-  /* Enhanced skill tag */
+  /* System tag - rectangular, no pills */
   .skill-tag {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border-[3px] border-manga-border transition-all;
-    box-shadow: 4px 4px 0px hsl(var(--manga-border));
+    @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-bold transition-all;
+    background: hsl(var(--parchment-dark));
+    border: 2px solid hsl(var(--ink-black));
+    box-shadow: 3px 3px 0px hsl(var(--ink-black));
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .skill-tag:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 6px 6px 0px hsl(var(--manga-border));
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0px hsl(var(--ink-black));
+    background: hsl(var(--blood-red));
+    color: hsl(var(--parchment));
   }
 
-  /* Chapter title */
-  .chapter-title {
-    @apply font-manga text-6xl md:text-8xl relative inline-block;
-    text-shadow: 
-      4px 4px 0px hsl(var(--primary)),
-      8px 8px 0px hsl(var(--manga-border));
+  /* Murim rank badge */
+  .rank-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 font-manga text-sm;
+    background: linear-gradient(135deg, hsl(var(--blood-red)) 0%, hsl(0 60% 35%) 100%);
+    border: 2px solid hsl(var(--ink-black));
+    color: hsl(var(--parchment));
+    box-shadow: 2px 2px 0px hsl(var(--ink-black));
   }
 
-  /* Manga button */
+  /* Manga button - sharp, dramatic */
   .manga-btn {
-    @apply relative inline-flex items-center gap-2 px-8 py-4 font-manga text-lg rounded-xl border-[3px] border-manga-border transition-all overflow-hidden;
-    box-shadow: 6px 6px 0px hsl(var(--manga-border));
+    @apply relative inline-flex items-center gap-2 px-8 py-4 font-manga text-lg transition-all overflow-hidden;
+    border: 3px solid hsl(var(--ink-black));
+    box-shadow: 5px 5px 0px hsl(var(--ink-black));
   }
 
   .manga-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 8px 8px 0px hsl(var(--manga-border));
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px hsl(var(--ink-black));
   }
 
   .manga-btn:active {
-    transform: translateY(2px);
-    box-shadow: 3px 3px 0px hsl(var(--manga-border));
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px hsl(var(--ink-black));
   }
 
-  /* Power level badge */
-  .power-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-manga border-2 border-manga-border;
-    background: linear-gradient(135deg, hsl(var(--action-gold)) 0%, hsl(var(--pastel-peach)) 100%);
-    box-shadow: 3px 3px 0px hsl(var(--manga-border));
-  }
-
-  /* Glowing text effect */
-  .glow-text {
-    text-shadow: 
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
-  }
-
-  /* Dramatic border accent */
-  .border-accent-corner::before,
-  .border-accent-corner::after {
-    content: '';
-    @apply absolute w-6 h-6 border-4 border-primary;
-  }
-
-  .border-accent-corner::before {
-    @apply top-0 left-0 border-r-0 border-b-0;
-  }
-
-  .border-accent-corner::after {
-    @apply bottom-0 right-0 border-l-0 border-t-0;
-  }
-
-  /* Halftone pattern overlay */
-  .halftone {
+  /* Ink texture overlay */
+  .ink-texture {
     @apply relative;
   }
 
-  .halftone::after {
+  .ink-texture::after {
     content: '';
-    @apply absolute inset-0 pointer-events-none opacity-10;
-    background-image: radial-gradient(circle, hsl(var(--manga-border)) 1px, transparent 1px);
-    background-size: 6px 6px;
+    @apply absolute inset-0 pointer-events-none opacity-5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
 
-  /* Ink splatter decoration */
-  .ink-splatter {
-    @apply absolute w-16 h-16 opacity-20;
-    background: radial-gradient(ellipse at center, hsl(var(--manga-border)) 0%, transparent 70%);
-    filter: blur(1px);
+  /* Brush stroke decoration */
+  .brush-stroke {
+    @apply relative;
+  }
+
+  .brush-stroke::before {
+    content: '';
+    @apply absolute -bottom-2 left-0 right-0 h-1;
+    background: linear-gradient(90deg, transparent, hsl(var(--ink-black)), hsl(var(--ink-black)), transparent);
+    opacity: 0.8;
+  }
+
+  /* Chapter number style */
+  .chapter-number {
+    @apply font-manga text-8xl;
+    color: transparent;
+    -webkit-text-stroke: 2px hsl(var(--blood-red));
+    opacity: 0.3;
+  }
+
+  /* Martial arts scroll border */
+  .scroll-border {
+    @apply relative;
+    border: 4px solid hsl(var(--ink-black));
+    background: linear-gradient(180deg, 
+      hsl(var(--parchment)) 0%, 
+      hsl(var(--parchment-dark)) 5%,
+      hsl(var(--parchment)) 10%,
+      hsl(var(--parchment)) 90%,
+      hsl(var(--parchment-dark)) 95%,
+      hsl(var(--parchment)) 100%
+    );
+  }
+
+  /* Dramatic ink shadow */
+  .ink-shadow {
+    box-shadow: 
+      5px 5px 0px hsl(var(--ink-black)),
+      10px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .ink-shadow-lg {
+    box-shadow: 
+      8px 8px 0px hsl(var(--ink-black)),
+      16px 16px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Blood accent line */
+  .blood-accent {
+    @apply relative;
+  }
+
+  .blood-accent::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1;
+    background: linear-gradient(90deg, hsl(var(--blood-red)), transparent);
   }
 }
 
