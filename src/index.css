@@ -582,6 +582,81 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   CHAPTER HEADERS - Manhwa Title Style
+   ═══════════════════════════════════════════════════════════ */
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.chapter-number {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: hsl(var(--steel-gray));
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.chapter-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-black));
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.chapter-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--blood-red)) 20%,
+    hsl(var(--blood-red)) 80%,
+    transparent 100%
+  );
+}
+
+/* Chapter header with decorative elements */
+.chapter-header-decorated {
+  position: relative;
+  padding: 1rem 0;
+}
+
+.chapter-header-decorated::before,
+.chapter-header-decorated::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5rem;
+  color: hsl(var(--blood-red));
+  opacity: 0.6;
+}
+
+.chapter-header-decorated::before {
+  left: calc(50% - 100px);
+}
+
+.chapter-header-decorated::after {
+  right: calc(50% - 100px);
+}
+
 @layer components {
   /* Murim panel - sharp ink borders, no rounded corners */
   .manga-panel {
