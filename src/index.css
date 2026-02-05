@@ -42,6 +42,13 @@
     /* Ink styling */
     --ink-border: 0 0% 8%;
     --ink-shadow: 0 0% 15%;
+    
+    /* Murim Aura Colors - subtle, non-neon */
+    --qi-blue: 210 40% 55%;
+    --qi-blue-soft: 210 30% 70%;
+    --blood-aura: 0 60% 40%;
+    --blood-aura-soft: 0 45% 50%;
+    --ink-flow: 0 0% 20%;
   }
 
   * {
@@ -292,6 +299,287 @@
 .section-page:hover .page-corner {
   opacity: 1;
   transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MURIM AURA EFFECTS
+   Subtle energy effects inspired by cultivation manhwa
+   ═══════════════════════════════════════════════════════════ */
+
+/* Qi Aura - Faint blue glow for skill tags and important elements */
+.qi-aura {
+  position: relative;
+}
+
+.qi-aura::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    hsla(var(--qi-blue), 0.15) 0%,
+    transparent 50%,
+    hsla(var(--qi-blue-soft), 0.1) 100%
+  );
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.qi-aura:hover::before {
+  opacity: 1;
+}
+
+/* Subtle pulsing qi aura - very soft */
+.qi-aura-pulse {
+  position: relative;
+}
+
+.qi-aura-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(
+    ellipse at center,
+    hsla(var(--qi-blue), 0.08) 0%,
+    transparent 70%
+  );
+  animation: qiPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes qiPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* Blood Energy Aura - Red pulse behind character */
+.blood-aura {
+  position: relative;
+}
+
+.blood-aura::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    hsla(var(--blood-aura), 0.12) 0%,
+    hsla(var(--blood-aura-soft), 0.06) 40%,
+    transparent 70%
+  );
+  animation: bloodPulse 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes bloodPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Flowing Ink Lines - Subtle background animation */
+.ink-flow-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.ink-flow-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: 
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      hsla(var(--ink-flow), 0.03) 25%,
+      hsla(var(--ink-flow), 0.05) 50%,
+      hsla(var(--ink-flow), 0.03) 75%,
+      transparent 100%
+    );
+  animation: inkFlow 15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes inkFlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Vertical ink strokes animation */
+.ink-strokes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.03;
+}
+
+.ink-stroke {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    hsl(var(--ink-black)) 20%,
+    hsl(var(--ink-black)) 80%,
+    transparent 100%
+  );
+  animation: inkStrokeFall 8s linear infinite;
+}
+
+@keyframes inkStrokeFall {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Soft energy ripple effect */
+.energy-ripple {
+  position: relative;
+}
+
+.energy-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 1px solid hsla(var(--qi-blue), 0.2);
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  animation: energyRipple 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes energyRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Aura glow for tags - very subtle */
+.tag-aura {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tag-aura::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: hsla(var(--qi-blue-soft), 0.15);
+  filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.tag-aura:hover::before {
+  opacity: 1;
+}
+
+/* Character power aura - layered effect */
+.character-aura {
+  position: relative;
+}
+
+.character-aura::before,
+.character-aura::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.character-aura::before {
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(
+    ellipse at center,
+    hsla(var(--blood-aura), 0.1) 0%,
+    transparent 60%
+  );
+  animation: characterAura1 4s ease-in-out infinite;
+}
+
+.character-aura::after {
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(
+    ellipse at center,
+    hsla(var(--blood-aura-soft), 0.05) 0%,
+    transparent 50%
+  );
+  animation: characterAura2 5s ease-in-out infinite 0.5s;
+}
+
+@keyframes characterAura1 {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes characterAura2 {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
 }
 
 @layer components {
