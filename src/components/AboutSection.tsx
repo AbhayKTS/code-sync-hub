@@ -107,10 +107,9 @@ export default function AboutSection() {
                     <SkillCard
                       name={skill.name}
                       level={skill.level}
+                      maxLevel={skill.maxLevel}
                       description={skill.description}
-                      rank={skill.rank as "S" | "A" | "B" | "C"}
-                      isExpanded={expandedSkill === index}
-                      onClick={() => handleSkillClick(index)}
+                      rank={skill.rank}
                     />
                   </motion.div>
                 ))}
@@ -150,7 +149,7 @@ export default function AboutSection() {
           transition={{ delay: 0.6 }}
           className="mt-8"
         >
-          <SystemPanel title="BONUS TECHNIQUES" interactive>
+          <SystemPanel title="BONUS TECHNIQUES">
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { name: "Code Review", desc: "Piercing gaze that finds all bugs", icon: "eye" },
@@ -160,8 +159,8 @@ export default function AboutSection() {
                 <motion.div
                   key={technique.name}
                   whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
                   className="border-2 border-ink-black bg-parchment-light p-4 cursor-pointer hover:bg-aged-gold/20 transition-colors"
-                  onClick={playSound}
                 >
                   <div className="text-2xl mb-2 font-cinzel text-blood-red">[{technique.icon}]</div>
                   <h4 className="font-cinzel font-bold text-ink-black">{technique.name}</h4>
