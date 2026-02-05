@@ -1,6 +1,34 @@
 import { motion } from "framer-motion";
 import { SystemPanel, SkillCard, StatDisplay, SystemTag } from "./SystemPanel";
 
+// Page-flip easing
+const pageFlipEase = [0.33, 1, 0.68, 1] as const;
+
+// Stagger variants for grid items
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const panelVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: pageFlipEase,
+    },
+  },
+};
+
 const skills = [
   { name: "React/TypeScript", level: 9, maxLevel: 10, description: "Mastery of modern frontend architecture", rank: "S" as const },
   { name: "Node.js/Python", level: 9, maxLevel: 10, description: "Backend cultivation complete", rank: "S" as const },
@@ -31,6 +59,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: pageFlipEase }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-ink-black mb-4 tracking-wider">
@@ -39,13 +68,14 @@ export default function AboutSection() {
           <div className="w-32 h-1 bg-blood-red mx-auto" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
+        <motion.div 
+          className="grid lg:grid-cols-2 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
+          <motion.div variants={panelVariants}>
             <SystemPanel title="CULTIVATOR INFO" className="h-full">
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4 mb-6">
@@ -55,7 +85,7 @@ export default function AboutSection() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.1 * index }}
+                      transition={{ delay: 0.1 * index, duration: 0.4, ease: pageFlipEase }}
                     >
                       <StatDisplay label={stat.label} value={stat.value} />
                     </motion.div>
@@ -88,12 +118,7 @@ export default function AboutSection() {
             </SystemPanel>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
+          <motion.div variants={panelVariants}>
             <SystemPanel title="MARTIAL TECHNIQUES" className="h-full">
               <div className="space-y-3">
                 {skills.map((skill, index) => (
@@ -140,13 +165,13 @@ export default function AboutSection() {
               </motion.div>
             </SystemPanel>
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.5, ease: pageFlipEase }}
           className="mt-8"
         >
           <SystemPanel title="BONUS TECHNIQUES">
