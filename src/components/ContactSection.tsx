@@ -2,6 +2,47 @@ import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Twitter, Send, Scroll } from 'lucide-react';
 import { useState } from 'react';
 
+// Page-flip easing for manhwa aesthetic
+const pageFlipEase = [0.33, 1, 0.68, 1] as const;
+
+// Stagger variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const panelLeftVariants = {
+  hidden: { opacity: 0, x: -60, rotateY: 8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    rotateY: 0,
+    transition: {
+      duration: 0.6,
+      ease: pageFlipEase,
+    },
+  },
+};
+
+const panelRightVariants = {
+  hidden: { opacity: 0, x: 60, rotateY: -8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    rotateY: 0,
+    transition: {
+      duration: 0.6,
+      ease: pageFlipEase,
+    },
+  },
+};
+
 const socialLinks = [
   { icon: Github, href: 'https://github.com/AbhayKTS', label: 'GitHub' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
@@ -53,13 +94,18 @@ export default function ContactSection() {
           <p className="font-body text-muted-foreground mt-4 text-lg">Send a message via carrier pigeon (or email)</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <motion.div 
+          className="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
           {/* Contact form - murim scroll style */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            variants={panelLeftVariants}
             className="manga-panel-lg p-8 relative"
+            style={{ perspective: '1000px' }}
           >
             {/* Corner decorations */}
             <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-foreground/40" />
@@ -151,11 +197,9 @@ export default function ContactSection() {
 
           {/* Social links and info */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            variants={panelRightVariants}
             className="space-y-6"
+            style={{ perspective: '1000px' }}
           >
             {/* Social icons - system panel */}
             <div className="system-panel p-6">
@@ -234,7 +278,7 @@ export default function ContactSection() {
               ))}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
