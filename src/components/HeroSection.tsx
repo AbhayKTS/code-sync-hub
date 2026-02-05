@@ -3,6 +3,7 @@ import { ChevronDown, Sword, Shield, Zap, Target, Flame } from 'lucide-react';
 import KnightCharacter from './KnightCharacter';
 import { SystemPanel, SystemTag, StatDisplay } from './SystemPanel';
 import ChapterHeader from './ChapterHeader';
+import MangaSFX from './MangaSFX';
 
 // Custom page-flip easing for manhwa aesthetic
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -179,6 +180,14 @@ export default function HeroSection() {
             style={{
               background: 'radial-gradient(ellipse at center, rgba(180,50,50,0.2) 0%, transparent 70%)'
             }}
+          />
+
+          {/* Manga SFX - Warrior Entrance */}
+          <MangaSFX 
+            text="SWOOSH" 
+            type="swoosh" 
+            className="absolute top-4 -left-8 z-20"
+            delay={0.6}
           />
 
           <KnightCharacter />
