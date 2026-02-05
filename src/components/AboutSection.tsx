@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { SystemPanel, SkillCard, StatDisplay, SystemTag } from "./SystemPanel";
 import ChapterHeader from './ChapterHeader';
 import MangaSFX from './MangaSFX';
+import MurimTooltip from './MurimTooltip';
 
 // Page-flip easing
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -106,10 +107,34 @@ export default function AboutSection() {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  <SystemTag>Frontend Master</SystemTag>
-                  <SystemTag variant="active">Backend Adept</SystemTag>
-                  <SystemTag variant="legendary">Cloud Architect</SystemTag>
-                  <SystemTag>System Designer</SystemTag>
+                  <MurimTooltip 
+                    content="You have achieved mastery over the frontend realm. React, Vue, and Angular bow before your presence."
+                    title="[Frontend Master]"
+                    rank="A"
+                  >
+                    <SystemTag>Frontend Master</SystemTag>
+                  </MurimTooltip>
+                  <MurimTooltip 
+                    content="Server-side cultivation has reached the Adept stage. APIs and databases respond to your commands."
+                    title="[Backend Adept]"
+                    rank="B"
+                  >
+                    <SystemTag variant="active">Backend Adept</SystemTag>
+                  </MurimTooltip>
+                  <MurimTooltip 
+                    content="A legendary achievement! You have transcended mortal infrastructure and now command the clouds themselves."
+                    title="[Cloud Architect]"
+                    rank="S"
+                  >
+                    <SystemTag variant="legendary">Cloud Architect</SystemTag>
+                  </MurimTooltip>
+                  <MurimTooltip 
+                    content="You see the patterns that connect all systems. Your architectural insights guide entire development clans."
+                    title="[System Designer]"
+                    rank="A"
+                  >
+                    <SystemTag>System Designer</SystemTag>
+                  </MurimTooltip>
                 </div>
 
                 <div className="content-box border-l-4 border-blood-red p-4 mt-4">
