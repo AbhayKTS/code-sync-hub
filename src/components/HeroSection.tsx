@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Sword, Shield } from 'lucide-react';
+import { ChevronDown, Sword, Shield, Zap, Target, Flame } from 'lucide-react';
 import KnightCharacter from './KnightCharacter';
+import { SystemPanel, SystemTag, StatDisplay } from './SystemPanel';
 
 export default function HeroSection() {
   return (
@@ -94,15 +95,16 @@ export default function HeroSection() {
               </motion.span>
             </motion.h1>
             
+            {/* System Tags - Sharp black-bordered */}
             <motion.div 
               className="flex flex-wrap gap-3 mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              <span className="skill-tag">Frontend Engineer</span>
-              <span className="skill-tag">AI Builder</span>
-              <span className="skill-tag">Designer</span>
+              <SystemTag icon={<Zap size={12} />}>Frontend Engineer</SystemTag>
+              <SystemTag icon={<Target size={12} />} variant="active">AI Builder</SystemTag>
+              <SystemTag icon={<Flame size={12} />}>Designer</SystemTag>
             </motion.div>
 
             <motion.div 
@@ -159,15 +161,41 @@ export default function HeroSection() {
 
           <KnightCharacter />
 
-          {/* Power level indicator - System HUD style */}
+          {/* Power level indicator - Interactive System HUD */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.5 }}
-            className="absolute top-8 right-0 system-panel px-4 py-2"
+            className="absolute top-8 right-0"
           >
-            <div className="text-primary font-manga text-xs tracking-widest">POWER</div>
-            <div className="text-parchment font-manga text-xl">∞</div>
+            <SystemPanel variant="stat" className="px-4 py-3 min-w-[100px]">
+              <StatDisplay label="POWER" value="∞" />
+            </SystemPanel>
+          </motion.div>
+
+          {/* Additional floating stat cards */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.7 }}
+            className="absolute top-24 left-0"
+          >
+            <SystemPanel variant="stat" className="px-3 py-2">
+              <div className="text-[10px] text-primary/70 font-manga tracking-widest">LEVEL</div>
+              <div className="text-parchment font-manga text-lg" style={{ textShadow: '0 0 8px rgba(180,50,50,0.5)' }}>99</div>
+            </SystemPanel>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.9 }}
+            className="absolute bottom-16 right-4"
+          >
+            <SystemPanel variant="stat" className="px-3 py-2">
+              <div className="text-[10px] text-primary/70 font-manga tracking-widest">RANK</div>
+              <div className="text-yellow-400 font-manga text-lg" style={{ textShadow: '0 0 8px rgba(234,179,8,0.5)' }}>S</div>
+            </SystemPanel>
           </motion.div>
         </motion.div>
       </div>
