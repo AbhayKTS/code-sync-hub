@@ -222,21 +222,27 @@ export default function AboutSection() {
           <SystemPanel title="BONUS TECHNIQUES">
             <div className="grid md:grid-cols-3 gap-4">
               {[
-                { name: "Code Review", desc: "Piercing gaze that finds all bugs", icon: "eye" },
-                { name: "Debug Mastery", desc: "Console.log no jutsu activated", icon: "search" },
-                { name: "Deploy Arts", desc: "One-click production release", icon: "rocket" },
+                { name: "Code Review", desc: "Piercing gaze that finds all bugs", icon: "eye", rank: "A" as const, tooltip: "Your eyes have been trained to see through deception. No bug can hide from your reviewing gaze." },
+                { name: "Debug Mastery", desc: "Console.log no jutsu activated", icon: "search", rank: "S" as const, tooltip: "The ancient art of Console-jutsu. Stack traces bow before your debugging prowess." },
+                { name: "Deploy Arts", desc: "One-click production release", icon: "rocket", rank: "A" as const, tooltip: "With a single keystroke, your code ascends to the heavenly production servers." },
               ].map((technique, index) => (
-                <motion.div
+                <MurimTooltip 
                   key={technique.name}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="manhwa-card p-4 cursor-pointer"
-                  style={{ transform: `rotate(${index === 1 ? 0.5 : index === 0 ? -0.8 : 1.2}deg)` }}
+                  content={technique.tooltip}
+                  title={`[${technique.name}]`}
+                  rank={technique.rank}
                 >
-                  <div className="text-2xl mb-2 font-cinzel text-blood-red">[{technique.icon}]</div>
-                  <h4 className="font-cinzel font-bold text-ink-black">{technique.name}</h4>
-                  <p className="font-crimson text-sm text-steel-gray">{technique.desc}</p>
-                </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="manhwa-card p-4 cursor-pointer"
+                    style={{ transform: `rotate(${index === 1 ? 0.5 : index === 0 ? -0.8 : 1.2}deg)` }}
+                  >
+                    <div className="text-2xl mb-2 font-cinzel text-blood-red">[{technique.icon}]</div>
+                    <h4 className="font-cinzel font-bold text-ink-black">{technique.name}</h4>
+                    <p className="font-crimson text-sm text-steel-gray">{technique.desc}</p>
+                  </motion.div>
+                </MurimTooltip>
               ))}
             </div>
           </SystemPanel>
