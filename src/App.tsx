@@ -6,6 +6,7 @@ import ContactSection from '@/components/ContactSection';
 import Navigation from '@/components/Navigation';
 import SpeedLines from '@/components/SpeedLines';
 import ParallaxBackground from '@/components/ParallaxBackground';
+import SystemMenu from '@/components/SystemMenu';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -226,6 +227,9 @@ function App() {
           </motion.div>
         </div>
       </footer>
+      
+      {/* Floating System Menu with navigation controls */}
+      <SystemMenu />
     </div>
   );
 }
