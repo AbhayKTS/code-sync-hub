@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Sword, Shield, Zap, Target, Flame } from 'lucide-react';
 import KnightCharacter from './KnightCharacter';
 import { SystemPanel, SystemTag, StatDisplay } from './SystemPanel';
+import ChapterHeader from './ChapterHeader';
 
 // Custom page-flip easing for manhwa aesthetic
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -61,6 +62,11 @@ export default function HeroSection() {
         transition={{ duration: 1, delay: 0.7 }}
         className="absolute bottom-32 right-0 left-1/2 h-0.5 bg-gradient-to-l from-transparent via-primary/30 to-primary/10 origin-right"
       />
+
+      {/* Chapter Header */}
+      <div className="absolute top-28 left-0 right-0 z-20">
+        <ChapterHeader number="CHAPTER 01" title="THE PROTAGONIST" />
+      </div>
 
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left side - Text content - MURIM SCROLL PANEL */}
