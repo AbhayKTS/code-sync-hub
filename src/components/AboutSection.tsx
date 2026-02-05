@@ -1,19 +1,20 @@
 import { motion } from 'framer-motion';
-import { Code, Palette, Brain, Sword, Shield, Scroll, Star, Target } from 'lucide-react';
+import { Code, Palette, Brain, Sword, Shield, Scroll, Star, Target, Zap } from 'lucide-react';
+import { SystemPanel, SystemTag, SkillCard, StatDisplay } from './SystemPanel';
 
 const skills = [
-  { name: 'React', icon: Code },
-  { name: 'TypeScript', icon: Sword },
-  { name: 'Tailwind CSS', icon: Palette },
-  { name: 'Next.js', icon: Shield },
-  { name: 'AI/ML', icon: Brain },
-  { name: 'Node.js', icon: Scroll },
+  { name: 'React', icon: Code, level: 9, rank: 'S' as const, description: 'Component architecture mastery' },
+  { name: 'TypeScript', icon: Sword, level: 8, rank: 'A' as const, description: 'Type-safe development' },
+  { name: 'Tailwind CSS', icon: Palette, level: 9, rank: 'S' as const, description: 'Rapid UI styling' },
+  { name: 'Next.js', icon: Shield, level: 7, rank: 'A' as const, description: 'Full-stack React framework' },
+  { name: 'AI/ML', icon: Brain, level: 6, rank: 'B' as const, description: 'Machine learning integration' },
+  { name: 'Node.js', icon: Scroll, level: 7, rank: 'A' as const, description: 'Server-side JavaScript' },
 ];
 
 const stats = [
-  { label: 'Years Training', value: '3+' },
-  { label: 'Techniques', value: '20+' },
-  { label: 'Power Level', value: '∞' },
+  { label: 'Years Training', value: '3+', icon: <Zap size={16} /> },
+  { label: 'Techniques', value: '20+', icon: <Sword size={16} /> },
+  { label: 'Power Level', value: '∞', icon: <Star size={16} /> },
 ];
 
 export default function AboutSection() {
@@ -88,16 +89,119 @@ export default function AboutSection() {
                   <h3 className="font-manga text-3xl md:text-4xl text-foreground tracking-wider">ABHAY</h3>
                   <p className="font-body text-muted-foreground italic text-lg">武林小弟子 • Young Disciple</p>
                   <div className="flex gap-2 mt-2">
-                    <span className="skill-tag-sm">ACTIVE</span>
-                    <span className="skill-tag-sm bg-primary text-primary-foreground">ELITE</span>
+                    <SystemTag variant="active">ACTIVE</SystemTag>
+                    <SystemTag variant="legendary">ELITE</SystemTag>
                   </div>
                 </div>
               </div>
 
-              {/* Character stats */}
-              <div className="space-y-4 font-body text-foreground">
-                <div className="flex items-center gap-3 p-3 bg-parchment/50 border-2 border-foreground/20">
-                  <Target className="text-primary" size={24} />
+              {/* Character stats - System HUD style */}
+              <div className="space-y-3 mb-6">
+                <SystemPanel variant="stat" className="p-3">
+                  <div className="flex items-center gap-3">
+                    <Target className="text-primary" size={20} />
+                    <div className="flex-1">
+                      <span className="font-manga text-parchment/70 text-xs tracking-wide">CLASS</span>
+                      <p className="font-body text-parchment text-sm">Frontend Engineer</p>
+                    </div>
+                  </div>
+                </SystemPanel>
+                <SystemPanel variant="stat" className="p-3">
+                  <div className="flex items-center gap-3">
+                    <Sword className="text-primary" size={20} />
+                    <div className="flex-1">
+                      <span className="font-manga text-parchment/70 text-xs tracking-wide">SPECIAL TECHNIQUE</span>
+                      <p className="font-body text-parchment text-sm">Turning ideas into interactive experiences</p>
+                    </div>
+                  </div>
+                </SystemPanel>
+              </div>
+
+              {/* Stats row - Interactive HUD cards */}
+              <div className="grid grid-cols-3 gap-3 mt-6">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + index * 0.1 }}
+                  >
+                    <SystemPanel variant="stat" className="p-3 text-center">
+                      <div className="text-primary mb-1">{stat.icon}</div>
+                      <p className="font-manga text-2xl text-parchment" style={{ textShadow: '0 0 10px rgba(180,50,50,0.5)' }}>
+                        {stat.value}
+                      </p>
+                      <p className="font-body text-xs text-parchment/60">{stat.label}</p>
+                    </SystemPanel>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Chapter number - ink style */}
+            <div className="absolute bottom-4 right-6 chapter-number">
+              貳
+            </div>
+          </motion.div>
+
+          {/* Skills panel - Interactive System Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="lg:col-span-2 space-y-4"
+          >
+            {/* Skills Header */}
+            <SystemPanel title="MARTIAL ARTS MASTERED" subtitle="SKILLS" className="p-4 mb-4">
+              <p className="text-parchment/60 text-xs font-body">Click to view details</p>
+            </SystemPanel>
+
+            {/* Skill Cards */}
+            <div className="space-y-3">
+              {skills.slice(0, 4).map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                >
+                  <SkillCard
+                    name={skill.name}
+                    level={skill.level}
+                    maxLevel={10}
+                    description={skill.description}
+                    icon={<skill.icon size={20} className="text-primary" />}
+                    rank={skill.rank}
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Additional skills as tags */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.9 }}
+            >
+              <SystemPanel variant="stat" className="p-4">
+                <p className="font-manga text-xs text-parchment/70 mb-3 tracking-wider">BONUS TECHNIQUES</p>
+                <div className="flex flex-wrap gap-2">
+                  {['JavaScript', 'HTML5', 'CSS3', 'Git', 'Figma', 'REST APIs'].map((skill) => (
+                    <SystemTag key={skill}>{skill}</SystemTag>
+                  ))}
+                </div>
+              </SystemPanel>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
                   <div>
                     <span className="font-manga text-primary tracking-wide">Class:</span>
                     <span className="ml-2">Frontend Engineer</span>
