@@ -97,7 +97,7 @@ export default function AboutSection() {
                   ))}
                 </div>
 
-                <div className="border-2 border-ink-black bg-parchment-light p-4">
+                <div className="content-box p-4">
                   <p className="font-crimson text-lg text-ink-black leading-relaxed">
                     A wandering cultivator who has walked the path of code for many cycles. 
                     Specializing in the ancient arts of full-stack development, I forge 
@@ -112,7 +112,7 @@ export default function AboutSection() {
                   <SystemTag>System Designer</SystemTag>
                 </div>
 
-                <div className="border-l-4 border-blood-red bg-ink-black/5 p-4 mt-4">
+                <div className="content-box border-l-4 border-blood-red p-4 mt-4">
                   <p className="font-crimson italic text-steel-gray">
                     "The code that flows from my fingers is not mere logic - it is the crystallization 
                     of countless battles fought in the realm of silicon and light."
