@@ -109,8 +109,7 @@ export default function ProjectsSection() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              whileHover={{ y: -8, transition: { duration: 0.3, ease: pageFlipEase } }}
-              className="manga-panel group relative overflow-hidden"
+              className="manhwa-card group relative"
               style={{ perspective: '1000px' }}
             >
               {/* Rank badge */}
