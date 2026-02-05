@@ -83,6 +83,7 @@
     box-shadow: 
       0 0 20px rgba(180, 50, 50, 0.3),
       inset 0 0 30px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
   }
 
   .system-panel::before {
@@ -95,6 +96,170 @@
       rgba(180, 50, 50, 0.03) 2px,
       rgba(180, 50, 50, 0.03) 4px
     );
+  }
+
+  /* System panel hover glow + ink spread */
+  .system-panel:hover {
+    border-color: hsl(var(--blood-red));
+    box-shadow: 
+      0 0 30px rgba(180, 50, 50, 0.5),
+      0 0 60px rgba(180, 50, 50, 0.2),
+      inset 0 0 40px rgba(180, 50, 50, 0.1);
+  }
+
+  /* Corner nodes for system windows */
+  .system-panel-corners {
+    @apply relative;
+  }
+
+  .system-panel-corners::before,
+  .system-panel-corners::after,
+  .system-panel-corners .corner-bl::before,
+  .system-panel-corners .corner-br::before {
+    content: '◉';
+    @apply absolute text-xs;
+    color: hsl(var(--blood-red));
+    text-shadow: 0 0 8px hsl(var(--blood-red));
+    animation: pulse-node 2s infinite;
+  }
+
+  .system-panel-corners::before { top: 4px; left: 6px; }
+  .system-panel-corners::after { top: 4px; right: 6px; }
+
+  /* Interactive system card - hoverable HUD element */
+  .system-card {
+    @apply relative overflow-hidden cursor-pointer;
+    background: linear-gradient(135deg, rgba(10,10,10,0.98) 0%, rgba(25,20,15,0.98) 100%);
+    border: 2px solid hsl(var(--blood-red) / 0.6);
+    box-shadow: 
+      0 0 15px rgba(180, 50, 50, 0.2),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .system-card::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+      rgba(180, 50, 50, 0.15) 0%, 
+      transparent 50%);
+    transition: opacity 0.3s;
+  }
+
+  .system-card:hover::before {
+    opacity: 1;
+  }
+
+  .system-card:hover {
+    border-color: hsl(var(--blood-red));
+    box-shadow: 
+      0 0 25px rgba(180, 50, 50, 0.4),
+      0 0 50px rgba(180, 50, 50, 0.15),
+      inset 0 0 30px rgba(180, 50, 50, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .system-card:active {
+    transform: scale(0.98);
+    box-shadow: 
+      0 0 35px rgba(180, 50, 50, 0.6),
+      inset 0 0 50px rgba(180, 50, 50, 0.1);
+  }
+
+  /* System card scan line effect */
+  .system-card::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(180, 50, 50, 0.02) 2px,
+      rgba(180, 50, 50, 0.02) 4px
+    );
+  }
+
+  /* Floating HUD stat card */
+  .hud-stat-card {
+    @apply relative px-4 py-3;
+    background: linear-gradient(180deg, rgba(15,12,10,0.95) 0%, rgba(8,6,5,0.98) 100%);
+    border: 1px solid hsl(var(--blood-red) / 0.5);
+    box-shadow: 
+      0 4px 20px rgba(0,0,0,0.5),
+      0 0 15px rgba(180, 50, 50, 0.15),
+      inset 0 1px 0 rgba(255,255,255,0.03);
+    transition: all 0.2s ease;
+  }
+
+  .hud-stat-card:hover {
+    border-color: hsl(var(--blood-red));
+    box-shadow: 
+      0 6px 25px rgba(0,0,0,0.6),
+      0 0 25px rgba(180, 50, 50, 0.3);
+  }
+
+  /* System tag - sharp black bordered */
+  .system-tag {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider;
+    background: rgba(0,0,0,0.9);
+    border: 2px solid hsl(var(--blood-red) / 0.7);
+    color: hsl(var(--parchment));
+    box-shadow: 
+      0 0 10px rgba(180, 50, 50, 0.2),
+      inset 0 0 15px rgba(0,0,0,0.5);
+    font-family: 'Cinzel', serif;
+    transition: all 0.2s ease;
+  }
+
+  .system-tag:hover {
+    border-color: hsl(var(--blood-red));
+    box-shadow: 
+      0 0 20px rgba(180, 50, 50, 0.4),
+      inset 0 0 20px rgba(180, 50, 50, 0.1);
+    text-shadow: 0 0 8px hsl(var(--blood-red));
+  }
+
+  /* Pulse animation for corner nodes */
+  @keyframes pulse-node {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Ink spread effect on click */
+  @keyframes ink-spread {
+    0% { 
+      transform: scale(0);
+      opacity: 0.8;
+    }
+    100% { 
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .ink-spread-effect {
+    @apply absolute rounded-full pointer-events-none;
+    background: radial-gradient(circle, hsl(var(--blood-red) / 0.4) 0%, transparent 70%);
+    animation: ink-spread 0.6s ease-out forwards;
+  }
+
+  /* Scale-in animation for popups */
+  @keyframes system-popup {
+    0% { 
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.02);
+    }
+    100% { 
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .system-popup-animate {
+    animation: system-popup 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
   /* Glass card - dark murim style */
