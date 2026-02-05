@@ -1,6 +1,40 @@
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code2, Scroll, Sword, Shield } from 'lucide-react';
 
+// Page-flip easing for manhwa aesthetic
+const pageFlipEase = [0.33, 1, 0.68, 1] as const;
+
+// Stagger variants for project cards
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50, 
+    scale: 0.95,
+    rotateX: -5
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.5,
+      ease: pageFlipEase,
+    },
+  },
+};
+
 const projects = [
   {
     title: 'Code Sync Hub',
@@ -61,16 +95,20 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Project cards - panel grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              variants={cardVariants}
+              whileHover={{ y: -8, transition: { duration: 0.3, ease: pageFlipEase } }}
               className="manga-panel group relative overflow-hidden"
+              style={{ perspective: '1000px' }}
             >
               {/* Rank badge */}
               <motion.div
@@ -162,14 +200,14 @@ export default function ProjectsSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* More projects link */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.5, ease: pageFlipEase }}
           className="text-center mt-16"
         >
           <motion.a
