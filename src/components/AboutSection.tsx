@@ -42,10 +42,10 @@ const skills = [
 ];
 
 const coreStats = [
-  { label: "PROJECTS", value: "50+" },
-  { label: "EXPERIENCE", value: "5Y" },
-  { label: "COMMITS", value: "2K+" },
-  { label: "CERTS", value: "8" },
+  { label: "PROJECTS", value: "50+", tooltip: "Countless artifacts forged in the fires of production. Each one a testament to battles won.", rank: "S" as const },
+  { label: "EXPERIENCE", value: "5Y", tooltip: "Five cycles of cultivation in the digital realm. Wisdom accumulated through code and conflict.", rank: "A" as const },
+  { label: "COMMITS", value: "2K+", tooltip: "Over 2000 inscriptions in the sacred git scrolls. Each commit a step forward on the path.", rank: "A" as const },
+  { label: "CERTS", value: "8", tooltip: "Eight official seals of recognition from the great cloud sects: Azure, AWS, and beyond.", rank: "B" as const },
 ];
 
 export default function AboutSection() {
@@ -93,7 +93,15 @@ export default function AboutSection() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 * index, duration: 0.4, ease: pageFlipEase }}
                     >
-                      <StatDisplay label={stat.label} value={stat.value} />
+                      <MurimTooltip 
+                        content={stat.tooltip} 
+                        title={`[${stat.label}]`}
+                        rank={stat.rank}
+                      >
+                        <div className="cursor-help">
+                          <StatDisplay label={stat.label} value={stat.value} />
+                        </div>
+                      </MurimTooltip>
                     </motion.div>
                   ))}
                 </div>
