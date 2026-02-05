@@ -1,6 +1,47 @@
 import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Rocket, Sword, Crown } from 'lucide-react';
 
+// Page-flip easing for manhwa aesthetic
+const pageFlipEase = [0.33, 1, 0.68, 1] as const;
+
+// Timeline item variants
+const timelineVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemLeftVariants = {
+  hidden: { opacity: 0, x: -50, rotateY: 10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    rotateY: 0,
+    transition: {
+      duration: 0.5,
+      ease: pageFlipEase,
+    },
+  },
+};
+
+const itemRightVariants = {
+  hidden: { opacity: 0, x: 50, rotateY: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    rotateY: 0,
+    transition: {
+      duration: 0.5,
+      ease: pageFlipEase,
+    },
+  },
+};
+
 const timelineEvents = [
   {
     year: '2024',
@@ -64,20 +105,24 @@ export default function ExperienceSection() {
         </motion.div>
 
         {/* Vertical timeline */}
-        <div className="relative max-w-3xl mx-auto">
+        <motion.div 
+          className="relative max-w-3xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={timelineVariants}
+        >
           {/* Central timeline line - ink brush style */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 bg-foreground/30" />
 
           {timelineEvents.map((event, index) => (
             <motion.div
               key={event.year}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              variants={index % 2 === 0 ? itemLeftVariants : itemRightVariants}
               className={`relative flex items-center mb-16 ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
+              style={{ perspective: '1000px' }}
             >
               {/* Timeline node */}
               <motion.div 
@@ -140,21 +185,21 @@ export default function ExperienceSection() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.5, duration: 0.4, ease: pageFlipEase }}
             className="absolute left-8 md:left-1/2 bottom-0 md:-translate-x-1/2"
           >
             <div className="w-10 h-10 bg-primary border-2 border-foreground flex items-center justify-center ink-shadow">
               <span className="font-manga text-parchment text-lg">→</span>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* To be continued - murim style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 1.2 }}
+          transition={{ delay: 0.4, duration: 0.5, ease: pageFlipEase }}
           className="text-center mt-20"
         >
           <div className="inline-block system-panel px-8 py-4">
