@@ -206,15 +206,16 @@ export function StatDisplay({ label, value, icon, rank }: StatDisplayProps) {
   );
 }
 
-// System tag component
+// System tag component with qi aura effect
 interface SystemTagProps {
   children: ReactNode;
   variant?: 'default' | 'active' | 'legendary';
   icon?: ReactNode;
   onClick?: () => void;
+  showAura?: boolean;
 }
 
-export function SystemTag({ children, variant = 'default', icon, onClick }: SystemTagProps) {
+export function SystemTag({ children, variant = 'default', icon, onClick, showAura = true }: SystemTagProps) {
   const variantStyles = {
     default: '',
     active: 'border-primary bg-primary/20',
@@ -223,7 +224,7 @@ export function SystemTag({ children, variant = 'default', icon, onClick }: Syst
 
   return (
     <motion.span
-      className={`system-tag ${variantStyles[variant]}`}
+      className={`system-tag ${variantStyles[variant]} ${showAura ? 'qi-aura tag-aura' : ''}`}
       whileHover={{ scale: 1.05, y: -1 }}
       whileTap={{ scale: 0.95 }}
       onClick={(e) => {
