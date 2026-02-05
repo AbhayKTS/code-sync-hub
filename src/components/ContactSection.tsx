@@ -104,10 +104,10 @@ export default function ContactSection() {
           viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
         >
-          {/* Contact form - murim scroll style */}
+          {/* Contact form - manhwa panel style */}
           <motion.div
             variants={panelLeftVariants}
-            className="manga-panel-lg p-8 relative"
+            className="manhwa-card p-8 relative"
             style={{ perspective: '1000px' }}
           >
             {/* Corner decorations */}
@@ -233,7 +233,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="manga-panel p-6"
+              className="content-box p-6"
             >
               <Scroll className="text-primary mb-3" size={24} />
               <p className="font-body text-foreground text-center leading-relaxed italic">
