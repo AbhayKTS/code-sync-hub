@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Twitter, Send, Scroll } from 'lucide-react';
 import { useState } from 'react';
+import ChapterHeader from './ChapterHeader';
 
 // Page-flip easing for manhwa aesthetic
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -77,6 +78,9 @@ export default function ContactSection() {
       </motion.div>
 
       <div className="container mx-auto px-4">
+        {/* Chapter Header */}
+        <ChapterHeader number="CHAPTER 04" title="CONTACT GATE" />
+        
         {/* Chapter title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -84,7 +88,6 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="font-body text-sm text-muted-foreground tracking-[0.3em] uppercase">Final Chapter</span>
           <h2 className="font-manga text-5xl md:text-7xl text-foreground relative mt-2 tracking-wider">
             <span className="absolute -left-6 md:-left-10 top-1/2 -translate-y-1/2 text-primary text-2xl font-body">「</span>
             聯繫
