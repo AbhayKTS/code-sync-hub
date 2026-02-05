@@ -56,6 +56,244 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   PAGE-FLIP MANHWA TRANSITIONS
+   Smooth vertical panel sliding like turning manhwa pages
+   ═══════════════════════════════════════════════════════════ */
+
+/* Custom easing for manhwa page turns */
+:root {
+  --page-flip-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --page-flip-duration: 0.6s;
+}
+
+/* Section base for page-flip effect */
+.section-page {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1500px;
+}
+
+/* Paper fold shadow overlay */
+.paper-fold-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.08) 30%,
+    rgba(0, 0, 0, 0.02) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity var(--page-flip-duration) var(--page-flip-ease);
+}
+
+.section-page.in-view .paper-fold-shadow {
+  opacity: 1;
+}
+
+/* Bottom fold shadow */
+.paper-fold-shadow-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.04) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Page edge effect */
+.page-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 30%,
+    rgba(0, 0, 0, 0.12) 70%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.page-edge-left {
+  left: 0;
+  transform: scaleX(-1);
+}
+
+.page-edge-right {
+  right: 0;
+}
+
+/* Section divider - ink stroke style */
+.section-divider {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--ink-black)) 15%,
+    hsl(var(--ink-black)) 85%,
+    transparent 100%
+  );
+  margin: 0 auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: hsl(var(--blood-red));
+}
+
+.section-divider::before {
+  left: -20px;
+}
+
+.section-divider::after {
+  right: -20px;
+}
+
+/* Keyframes for page flip animations */
+@keyframes pageSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) rotateX(-8deg);
+    filter: brightness(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px) rotateX(-2deg);
+    filter: brightness(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    filter: brightness(1);
+  }
+}
+
+@keyframes pageSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) rotateX(5deg);
+  }
+}
+
+@keyframes pageFoldIn {
+  0% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    transform: perspective(1000px) rotateX(-15deg);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: perspective(1000px) rotateX(0deg);
+  }
+}
+
+@keyframes contentReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section transition wrapper */
+.section-transition {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 
+    opacity var(--page-flip-duration) var(--page-flip-ease),
+    transform var(--page-flip-duration) var(--page-flip-ease);
+}
+
+.section-transition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children animation */
+.section-transition.visible .stagger-child {
+  animation: contentReveal 0.5s var(--page-flip-ease) forwards;
+}
+
+.section-transition.visible .stagger-child:nth-child(1) { animation-delay: 0.1s; }
+.section-transition.visible .stagger-child:nth-child(2) { animation-delay: 0.15s; }
+.section-transition.visible .stagger-child:nth-child(3) { animation-delay: 0.2s; }
+.section-transition.visible .stagger-child:nth-child(4) { animation-delay: 0.25s; }
+.section-transition.visible .stagger-child:nth-child(5) { animation-delay: 0.3s; }
+.section-transition.visible .stagger-child:nth-child(6) { animation-delay: 0.35s; }
+
+/* Panel slide effect for grid items */
+.panel-slide {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: 
+    opacity 0.4s var(--page-flip-ease),
+    transform 0.5s var(--page-flip-ease);
+}
+
+.panel-slide.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Page turn corner effect */
+.page-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(
+    -45deg,
+    hsl(var(--parchment-dark)) 0%,
+    hsl(var(--parchment-dark)) 45%,
+    transparent 45%,
+    transparent 100%
+  );
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s var(--page-flip-ease);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.section-page:hover .page-corner {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @layer components {
   /* Murim panel - sharp ink borders, no rounded corners */
   .manga-panel {
