@@ -4,40 +4,46 @@
 
 @layer base {
   :root {
-    /* Bright pastel theme */
+    /* Vibrant manhwa theme - more saturated */
     --background: 45 100% 98%;
-    --foreground: 240 10% 20%;
+    --foreground: 240 15% 15%;
     
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 20%;
+    --card-foreground: 240 15% 15%;
     
-    --primary: 340 80% 65%;
+    --primary: 340 90% 60%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 200 80% 70%;
-    --secondary-foreground: 240 10% 20%;
+    --secondary: 200 90% 55%;
+    --secondary-foreground: 0 0% 100%;
     
-    --accent: 280 70% 75%;
-    --accent-foreground: 240 10% 20%;
+    --accent: 280 80% 65%;
+    --accent-foreground: 0 0% 100%;
     
     --muted: 45 30% 92%;
-    --muted-foreground: 240 5% 45%;
+    --muted-foreground: 240 8% 40%;
     
     --border: 240 10% 85%;
     --input: 240 10% 85%;
-    --ring: 340 80% 65%;
+    --ring: 340 90% 60%;
     
-    /* Pastel palette */
-    --pastel-pink: 340 80% 88%;
-    --pastel-blue: 200 80% 88%;
-    --pastel-lavender: 280 70% 88%;
-    --pastel-mint: 160 60% 88%;
-    --pastel-peach: 20 80% 88%;
-    --pastel-cream: 45 100% 95%;
+    /* Enhanced pastel palette */
+    --pastel-pink: 340 85% 85%;
+    --pastel-blue: 200 85% 85%;
+    --pastel-lavender: 280 75% 85%;
+    --pastel-mint: 160 70% 85%;
+    --pastel-peach: 20 85% 85%;
+    --pastel-cream: 45 100% 96%;
+    --pastel-yellow: 50 95% 80%;
     
     /* Manga styling */
-    --manga-border: 240 10% 15%;
-    --manga-shadow: 240 10% 30%;
+    --manga-border: 240 15% 10%;
+    --manga-shadow: 240 15% 25%;
+    
+    /* Action colors */
+    --action-red: 0 85% 60%;
+    --action-gold: 45 95% 55%;
+    --action-cyan: 180 90% 50%;
   }
 
   * {
@@ -51,51 +57,110 @@
 }
 
 @layer components {
-  /* Manga panel styles */
+  /* Enhanced manga panel - dramatic borders */
   .manga-panel {
-    @apply bg-card rounded-lg border-4 border-manga-border shadow-manga relative overflow-hidden;
-    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--pastel-cream)) 100%);
+    @apply bg-card rounded-xl border-[3px] border-manga-border relative overflow-hidden;
+    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--pastel-cream)) 100%);
+    box-shadow: 
+      5px 5px 0px hsl(var(--manga-border)),
+      inset 0 0 30px rgba(255, 255, 255, 0.5);
   }
 
   .manga-panel-lg {
-    @apply manga-panel shadow-manga-lg;
+    @apply manga-panel;
+    box-shadow: 
+      8px 8px 0px hsl(var(--manga-border)),
+      inset 0 0 40px rgba(255, 255, 255, 0.6);
   }
 
-  /* Glassmorphism */
+  /* Action panel - for dramatic moments */
+  .action-panel {
+    @apply relative overflow-hidden rounded-xl;
+    background: linear-gradient(135deg, hsl(var(--pastel-yellow)) 0%, hsl(var(--pastel-peach)) 100%);
+    border: 4px solid hsl(var(--manga-border));
+    box-shadow: 
+      8px 8px 0px hsl(var(--manga-border)),
+      0 0 60px rgba(255, 200, 0, 0.3);
+  }
+
+  /* Enhanced glassmorphism */
   .glass-card {
-    @apply backdrop-blur-md bg-white/70 border border-white/50 shadow-glass rounded-2xl;
+    @apply backdrop-blur-lg bg-white/80 border-2 border-white/60 rounded-2xl;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
-  /* Comic speech bubble */
+  /* Comic speech bubble - enhanced */
   .speech-bubble {
-    @apply relative bg-white rounded-2xl px-4 py-2 border-2 border-manga-border shadow-manga;
+    @apply relative bg-white rounded-3xl px-6 py-4 border-[3px] border-manga-border;
+    box-shadow: 5px 5px 0px hsl(var(--manga-border));
   }
   
   .speech-bubble::after {
     content: '';
-    @apply absolute -bottom-3 left-6 w-0 h-0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 12px solid hsl(var(--manga-border));
+    @apply absolute -bottom-4 left-8 w-0 h-0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid hsl(var(--manga-border));
   }
 
-  /* Speed lines effect */
-  .speed-lines {
+  .speech-bubble::before {
+    content: '';
+    @apply absolute -bottom-2 left-9 w-0 h-0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 14px solid white;
+    z-index: 1;
+  }
+
+  /* Shout bubble - for emphasis */
+  .shout-bubble {
+    @apply relative bg-white px-6 py-4 border-[3px] border-manga-border;
+    clip-path: polygon(
+      5% 0%, 15% 5%, 25% 0%, 35% 3%, 45% 0%, 55% 4%, 65% 0%, 75% 5%, 85% 0%, 95% 3%, 100% 10%,
+      97% 20%, 100% 30%, 98% 40%, 100% 50%, 97% 60%, 100% 70%, 98% 80%, 100% 90%,
+      95% 97%, 85% 95%, 75% 100%, 65% 96%, 55% 100%, 45% 97%, 35% 100%, 25% 96%, 15% 100%, 5% 97%, 0% 90%,
+      3% 80%, 0% 70%, 2% 60%, 0% 50%, 3% 40%, 0% 30%, 2% 20%, 0% 10%
+    );
+    box-shadow: 4px 4px 0px hsl(var(--manga-border));
+  }
+
+  /* Dramatic speed lines */
+  .speed-lines-radial {
+    @apply absolute inset-0 pointer-events-none overflow-hidden;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(0, 0, 0, 0.03) 2deg,
+      transparent 4deg
+    );
+    background-size: 100% 100%;
+  }
+
+  /* Action lines - horizontal burst */
+  .action-lines {
     @apply absolute inset-0 pointer-events-none overflow-hidden;
     background: repeating-linear-gradient(
       90deg,
       transparent,
-      transparent 20px,
-      rgba(0, 0, 0, 0.03) 20px,
-      rgba(0, 0, 0, 0.03) 21px
+      transparent 15px,
+      rgba(0, 0, 0, 0.04) 15px,
+      rgba(0, 0, 0, 0.04) 16px
     );
   }
 
-  /* Ink stroke decoration */
-  .ink-stroke {
-    @apply absolute;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+  /* Focus lines - concentration effect */
+  .focus-lines {
+    @apply absolute inset-0 pointer-events-none;
+    background: 
+      radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.02) 60%, transparent 70%),
+      repeating-conic-gradient(
+        from 0deg at 50% 50%,
+        transparent 0deg,
+        rgba(0, 0, 0, 0.015) 0.5deg,
+        transparent 1deg
+      );
   }
 
   /* Panel gutter */
@@ -103,9 +168,88 @@
     @apply bg-pastel-cream p-4 md:p-8;
   }
 
-  /* Skill tag */
+  /* Enhanced skill tag */
   .skill-tag {
-    @apply inline-block px-4 py-2 rounded-full text-sm font-bold border-2 border-manga-border shadow-manga transition-all hover:scale-105 hover:-translate-y-1;
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border-[3px] border-manga-border transition-all;
+    box-shadow: 4px 4px 0px hsl(var(--manga-border));
+  }
+
+  .skill-tag:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 6px 6px 0px hsl(var(--manga-border));
+  }
+
+  /* Chapter title */
+  .chapter-title {
+    @apply font-manga text-6xl md:text-8xl relative inline-block;
+    text-shadow: 
+      4px 4px 0px hsl(var(--primary)),
+      8px 8px 0px hsl(var(--manga-border));
+  }
+
+  /* Manga button */
+  .manga-btn {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 font-manga text-lg rounded-xl border-[3px] border-manga-border transition-all overflow-hidden;
+    box-shadow: 6px 6px 0px hsl(var(--manga-border));
+  }
+
+  .manga-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 8px 0px hsl(var(--manga-border));
+  }
+
+  .manga-btn:active {
+    transform: translateY(2px);
+    box-shadow: 3px 3px 0px hsl(var(--manga-border));
+  }
+
+  /* Power level badge */
+  .power-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-manga border-2 border-manga-border;
+    background: linear-gradient(135deg, hsl(var(--action-gold)) 0%, hsl(var(--pastel-peach)) 100%);
+    box-shadow: 3px 3px 0px hsl(var(--manga-border));
+  }
+
+  /* Glowing text effect */
+  .glow-text {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor;
+  }
+
+  /* Dramatic border accent */
+  .border-accent-corner::before,
+  .border-accent-corner::after {
+    content: '';
+    @apply absolute w-6 h-6 border-4 border-primary;
+  }
+
+  .border-accent-corner::before {
+    @apply top-0 left-0 border-r-0 border-b-0;
+  }
+
+  .border-accent-corner::after {
+    @apply bottom-0 right-0 border-l-0 border-t-0;
+  }
+
+  /* Halftone pattern overlay */
+  .halftone {
+    @apply relative;
+  }
+
+  .halftone::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-10;
+    background-image: radial-gradient(circle, hsl(var(--manga-border)) 1px, transparent 1px);
+    background-size: 6px 6px;
+  }
+
+  /* Ink splatter decoration */
+  .ink-splatter {
+    @apply absolute w-16 h-16 opacity-20;
+    background: radial-gradient(ellipse at center, hsl(var(--manga-border)) 0%, transparent 70%);
+    filter: blur(1px);
   }
 }
 
@@ -120,9 +264,14 @@
     scrollbar-width: none;
   }
 
-  /* Text stroke for manga titles */
+  /* Enhanced text stroke */
   .text-stroke {
-    -webkit-text-stroke: 2px hsl(var(--manga-border));
+    -webkit-text-stroke: 3px hsl(var(--manga-border));
+    paint-order: stroke fill;
+  }
+
+  .text-stroke-white {
+    -webkit-text-stroke: 3px white;
     paint-order: stroke fill;
   }
 
@@ -130,6 +279,32 @@
   .float-3d {
     transform-style: preserve-3d;
     perspective: 1000px;
+  }
+
+  /* Dramatic tilt */
+  .tilt-dramatic {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+  }
+
+  /* Shake animation for emphasis */
+  .shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-1deg); }
+    75% { transform: translateX(5px) rotate(1deg); }
+  }
+
+  /* Impact flash */
+  .impact-flash {
+    animation: impact-flash 0.3s ease-out;
+  }
+
+  @keyframes impact-flash {
+    0% { filter: brightness(2); transform: scale(1.05); }
+    100% { filter: brightness(1); transform: scale(1); }
   }
 }
 
@@ -140,5 +315,24 @@ html {
 
 /* Custom selection */
 ::selection {
-  @apply bg-primary/30 text-foreground;
+  @apply bg-primary/40 text-foreground;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--pastel-cream));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--secondary)));
+  border-radius: 6px;
+  border: 2px solid hsl(var(--pastel-cream));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
 }
