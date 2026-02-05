@@ -133,7 +133,7 @@ function PageSection({
 
 function App() {
   return (
-    <div className="min-h-screen bg-parchment overflow-x-hidden relative">
+    <div className="min-h-screen bg-parchment overflow-x-hidden relative ink-flow-bg">
       {/* Ink texture background */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-[0.02]"
@@ -141,6 +141,22 @@ function App() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
+      
+      {/* Flowing ink strokes background */}
+      <div className="ink-strokes fixed inset-0 z-0">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="ink-stroke"
+            style={{
+              left: `${10 + i * 12}%`,
+              height: `${30 + (i % 3) * 20}%`,
+              animationDelay: `${i * 1.2}s`,
+              animationDuration: `${6 + (i % 4) * 2}s`,
+            }}
+          />
+        ))}
+      </div>
       
       {/* Vertical panel lines */}
       <div className="fixed inset-0 pointer-events-none z-0 flex justify-between px-8 md:px-16">
