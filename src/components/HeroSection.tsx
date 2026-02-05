@@ -3,6 +3,34 @@ import { ChevronDown, Sword, Shield, Zap, Target, Flame } from 'lucide-react';
 import KnightCharacter from './KnightCharacter';
 import { SystemPanel, SystemTag, StatDisplay } from './SystemPanel';
 
+// Custom page-flip easing for manhwa aesthetic
+const pageFlipEase = [0.33, 1, 0.68, 1] as const;
+
+// Stagger container variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+// Child item variants
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: pageFlipEase,
+    },
+  },
+};
+
 export default function HeroSection() {
   return (
     <section id="hero" className="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -37,9 +65,9 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left side - Text content - MURIM SCROLL PANEL */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
           className="manga-panel-lg p-8 md:p-12 relative"
         >
           {/* Ink texture overlay */}
@@ -51,9 +79,7 @@ export default function HeroSection() {
 
           {/* Rank badge - System style */}
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            variants={itemVariants}
             className="absolute -top-4 right-8 rank-badge"
           >
             <Sword size={14} />
@@ -67,9 +93,7 @@ export default function HeroSection() {
           <div className="relative z-10">
             <motion.h1 
               className="font-manga text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight mb-6 tracking-wider"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              variants={itemVariants}
             >
               <motion.span 
                 className="block text-stroke"
@@ -79,17 +103,13 @@ export default function HeroSection() {
               </motion.span>
               <motion.span 
                 className="block text-primary text-4xl md:text-5xl mt-2"
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                variants={itemVariants}
               >
                 武林開發者
               </motion.span>
               <motion.span 
                 className="block text-muted-foreground text-xl md:text-2xl font-body mt-4 tracking-wide"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
+                variants={itemVariants}
               >
                 Murim Developer
               </motion.span>
@@ -98,9 +118,7 @@ export default function HeroSection() {
             {/* System Tags - Sharp black-bordered */}
             <motion.div 
               className="flex flex-wrap gap-3 mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
+              variants={itemVariants}
             >
               <SystemTag icon={<Zap size={12} />}>Frontend Engineer</SystemTag>
               <SystemTag icon={<Target size={12} />} variant="active">AI Builder</SystemTag>
@@ -109,9 +127,7 @@ export default function HeroSection() {
 
             <motion.div 
               className="flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
+              variants={itemVariants}
             >
               <motion.a
                 href="#projects"
