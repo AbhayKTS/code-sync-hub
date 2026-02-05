@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code2, Sparkles, Zap, Sword, Star } from 'lucide-react';
+import { Github, ExternalLink, Code2, Scroll, Sword, Shield } from 'lucide-react';
 
 const projects = [
   {
@@ -7,48 +7,39 @@ const projects = [
     description: 'Real-time collaborative code editor with live synchronization. Built for developers who love working together.',
     tech: ['React', 'WebSocket', 'Node.js', 'Monaco Editor'],
     github: 'https://github.com/AbhayKTS/code-sync-hub',
-    color: 'from-pastel-blue via-secondary to-pastel-lavender',
-    accentColor: 'secondary',
     icon: Code2,
-    rank: 'S',
+    rank: '甲',
+    rankLabel: 'S-RANK',
   },
   {
     title: 'AI Story Generator',
     description: 'An intelligent story creation tool powered by machine learning that crafts unique narratives.',
     tech: ['Next.js', 'OpenAI API', 'Tailwind CSS'],
-    color: 'from-pastel-pink via-primary to-pastel-peach',
-    accentColor: 'primary',
-    icon: Sparkles,
-    rank: 'A',
+    icon: Scroll,
+    rank: '乙',
+    rankLabel: 'A-RANK',
   },
   {
     title: 'Portfolio Showcase',
     description: 'This very website! A manhwa-inspired portfolio showcasing creativity and code.',
     tech: ['React', 'Framer Motion', 'Tailwind CSS'],
-    color: 'from-pastel-mint via-accent to-pastel-lavender',
-    accentColor: 'accent',
-    icon: Zap,
-    rank: 'S',
+    icon: Shield,
+    rank: '甲',
+    rankLabel: 'S-RANK',
   },
 ];
-
-const rankColors: Record<string, string> = {
-  'S': 'from-action-gold to-yellow-300 text-manga-border',
-  'A': 'from-primary to-pink-300 text-white',
-  'B': 'from-secondary to-cyan-300 text-white',
-};
 
 export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 relative">
-      {/* Decorative elements */}
+      {/* Decorative ink element */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.1 }}
+        whileInView={{ opacity: 0.05 }}
         viewport={{ once: true }}
-        className="absolute top-20 right-10 font-manga text-[200px] text-manga-border leading-none pointer-events-none"
+        className="absolute top-20 right-10 font-manga text-[200px] text-foreground leading-none pointer-events-none"
       >
-        作品
+        武功
       </motion.div>
 
       <div className="container mx-auto px-4">
@@ -59,73 +50,71 @@ export default function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="font-manga text-sm text-muted-foreground tracking-[0.3em] uppercase">Chapter 02</span>
-          <h2 className="font-manga text-5xl md:text-7xl text-foreground relative mt-2">
-            <span className="absolute -left-6 md:-left-10 top-1/2 -translate-y-1/2 text-secondary text-3xl md:text-4xl">「</span>
-            MY <span className="text-secondary">ARSENAL</span>
-            <span className="absolute -right-6 md:-right-10 top-1/2 -translate-y-1/2 text-secondary text-3xl md:text-4xl">」</span>
+          <span className="font-body text-sm text-muted-foreground tracking-[0.3em] uppercase">Chapter 02</span>
+          <h2 className="font-manga text-5xl md:text-7xl text-foreground relative mt-2 tracking-wider">
+            <span className="absolute -left-6 md:-left-10 top-1/2 -translate-y-1/2 text-primary text-2xl font-body">「</span>
+            武功
+            <span className="block text-primary text-4xl md:text-5xl mt-2">TECHNIQUES</span>
+            <span className="absolute -right-6 md:-right-10 top-1/2 -translate-y-1/2 text-primary text-2xl font-body">」</span>
           </h2>
-          <p className="font-body text-muted-foreground mt-4 text-lg">Featured works from my coding journey</p>
+          <p className="font-body text-muted-foreground mt-4 text-lg">Featured works from my martial journey</p>
         </motion.div>
 
-        {/* Project cards - comic panel grid */}
+        {/* Project cards - panel grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 50, rotate: index % 2 === 0 ? -2 : 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15, type: "spring", stiffness: 100 }}
-              whileHover={{ y: -12, rotate: 0, transition: { duration: 0.3 } }}
-              className="manga-panel group relative"
+              transition={{ delay: index * 0.15 }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="manga-panel group relative overflow-hidden"
             >
               {/* Rank badge */}
               <motion.div
-                initial={{ scale: 0, rotate: -20 }}
-                whileInView={{ scale: 1, rotate: 0 }}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.15, type: "spring" }}
-                className={`absolute -top-4 -right-4 z-20 w-14 h-14 rounded-xl bg-gradient-to-br ${rankColors[project.rank]} flex items-center justify-center font-manga text-2xl border-3 border-manga-border shadow-manga`}
+                transition={{ delay: 0.3 + index * 0.15 }}
+                className="absolute -top-1 -right-1 z-20 rank-badge"
               >
-                {project.rank}
+                <span className="font-manga text-lg">{project.rank}</span>
               </motion.div>
 
-              {/* Header gradient with icon */}
-              <div className={`h-36 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-                {/* Action lines effect */}
-                <div className="absolute inset-0 action-lines opacity-20" />
-                
-                {/* Halftone overlay */}
-                <div className="halftone absolute inset-0" />
+              {/* Header with icon */}
+              <div className="h-36 bg-foreground relative overflow-hidden">
+                {/* Ink texture */}
+                <div className="absolute inset-0 opacity-20"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
+                  }}
+                />
                 
                 {/* Icon */}
                 <motion.div 
-                  whileHover={{ rotate: 15, scale: 1.1 }}
-                  className="absolute top-4 left-4 w-14 h-14 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center border-2 border-white/50"
+                  whileHover={{ scale: 1.1 }}
+                  className="absolute top-4 left-4 w-12 h-12 bg-parchment/20 border-2 border-parchment/30 flex items-center justify-center"
                 >
-                  <project.icon size={28} className="text-white drop-shadow-lg" />
+                  <project.icon size={24} className="text-parchment" />
                 </motion.div>
 
-                {/* Chapter number */}
-                <div className="absolute bottom-4 right-4 font-manga text-6xl text-white/20">
-                  {String(index + 1).padStart(2, '0')}
+                {/* Rank label */}
+                <div className="absolute bottom-4 left-4 font-manga text-xs text-parchment/60 tracking-widest">
+                  {project.rankLabel}
                 </div>
 
-                {/* Decorative stars */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  className="absolute top-4 right-16 opacity-50"
-                >
-                  <Star size={16} className="text-white fill-white" />
-                </motion.div>
+                {/* Chapter number */}
+                <div className="absolute bottom-4 right-4 font-manga text-5xl text-parchment/10">
+                  {['壹', '貳', '參'][index]}
+                </div>
               </div>
 
               {/* Content */}
               <div className="p-6 relative">
-                <h3 className="font-manga text-2xl text-foreground mb-2 group-hover:text-primary transition-colors flex items-center gap-2">
-                  <Sword size={20} className="text-muted-foreground" />
+                <h3 className="font-manga text-xl text-foreground mb-2 group-hover:text-primary transition-colors flex items-center gap-2 tracking-wide">
+                  <Sword size={18} className="text-primary" />
                   {project.title}
                 </h3>
                 <p className="font-body text-muted-foreground text-sm mb-4 line-clamp-3 leading-relaxed">
@@ -137,7 +126,7 @@ export default function ProjectsSection() {
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 text-xs font-manga bg-pastel-cream rounded-lg border border-manga-border/20 text-muted-foreground"
+                      className="skill-tag-sm"
                     >
                       {tech}
                     </span>
@@ -151,25 +140,25 @@ export default function ProjectsSection() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05, x: 3 }}
-                      className="flex items-center gap-2 text-sm font-manga text-foreground hover:text-primary transition-colors"
+                      whileHover={{ x: 2 }}
+                      className="flex items-center gap-2 text-sm font-manga text-foreground hover:text-primary transition-colors tracking-wide"
                     >
-                      <Github size={18} />
+                      <Github size={16} />
                       Code
                     </motion.a>
                   )}
                   <motion.a
                     href="#"
-                    whileHover={{ scale: 1.05, x: 3 }}
-                    className="flex items-center gap-2 text-sm font-manga text-foreground hover:text-secondary transition-colors"
+                    whileHover={{ x: 2 }}
+                    className="flex items-center gap-2 text-sm font-manga text-foreground hover:text-primary transition-colors tracking-wide"
                   >
-                    <ExternalLink size={18} />
+                    <ExternalLink size={16} />
                     Demo
                   </motion.a>
                 </div>
 
                 {/* Hover glow effect */}
-                <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gradient-to-t from-${project.accentColor}/10 to-transparent`} />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gradient-to-t from-primary/5 to-transparent" />
               </div>
             </motion.div>
           ))}
@@ -187,13 +176,14 @@ export default function ProjectsSection() {
             href="https://github.com/AbhayKTS"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            className="manga-btn bg-gradient-to-r from-pastel-lavender to-pastel-pink text-foreground inline-flex"
+            whileHover={{ x: -2, y: -2 }}
+            whileTap={{ x: 2, y: 2 }}
+            className="manga-btn bg-foreground text-parchment inline-flex"
           >
-            <Github size={22} />
-            <span>See More on GitHub</span>
+            <Github size={20} />
+            <span>View All Techniques</span>
             <motion.span
-              animate={{ x: [0, 5, 0] }}
+              animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
               →
