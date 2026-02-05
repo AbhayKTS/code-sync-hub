@@ -63,6 +63,19 @@ export default {
         steel: {
           gray: "hsl(var(--steel-gray))",
         },
+        // System UI colors
+        system: {
+          blue: "hsl(var(--system-blue))",
+          green: "hsl(var(--system-green))",
+          purple: "hsl(var(--system-purple))",
+        },
+        rank: {
+          sss: "hsl(var(--rank-sss))",
+          ss: "hsl(var(--rank-ss))",
+          s: "hsl(var(--rank-s))",
+          a: "hsl(var(--rank-a))",
+          b: "hsl(var(--rank-b))",
+        },
         // Legacy support
         manga: {
           border: "hsl(var(--ink-black))",
