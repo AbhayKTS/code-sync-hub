@@ -729,6 +729,92 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   LEVEL UP ANIMATION - Skill hover effect
+   ═══════════════════════════════════════════════════════════ */
+
+.level-up-container {
+  position: relative;
+  overflow: visible;
+}
+
+.level-up-text {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: hsl(var(--aged-gold));
+  text-shadow: 
+    0 0 10px hsla(var(--aged-gold), 0.8),
+    0 0 20px hsla(var(--aged-gold), 0.5),
+    2px 2px 0 hsl(var(--ink-black));
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 50;
+}
+
+.level-up-container:hover .level-up-text {
+  animation: levelUpPop 0.6s ease-out forwards;
+}
+
+@keyframes levelUpPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.5);
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px) scale(1.2);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-15px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px) scale(0.8);
+  }
+}
+
+/* Level up sparkles */
+.level-up-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: hsl(var(--aged-gold));
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.level-up-container:hover .level-up-sparkle {
+  animation: sparkleFloat 0.8s ease-out forwards;
+}
+
+.level-up-sparkle:nth-child(1) { top: 0; left: 20%; animation-delay: 0s; }
+.level-up-sparkle:nth-child(2) { top: 0; left: 40%; animation-delay: 0.1s; }
+.level-up-sparkle:nth-child(3) { top: 0; left: 60%; animation-delay: 0.05s; }
+.level-up-sparkle:nth-child(4) { top: 0; left: 80%; animation-delay: 0.15s; }
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.5);
+  }
+}
+
 .manga-sfx-animated {
   animation: sfxPop 0.5s ease-out forwards;
 }
