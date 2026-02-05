@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { SystemPanel, SkillCard, StatDisplay, SystemTag } from "./SystemPanel";
 import ChapterHeader from './ChapterHeader';
+import MangaSFX from './MangaSFX';
 
 // Page-flip easing
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -122,7 +123,14 @@ export default function AboutSection() {
             </SystemPanel>
           </motion.div>
 
-          <motion.div variants={panelVariants}>
+          <motion.div variants={panelVariants} className="relative">
+            {/* Manga SFX */}
+            <MangaSFX 
+              text="SHFF!" 
+              type="shff" 
+              className="absolute -top-4 -right-2 z-10"
+              delay={0.3}
+            />
             <SystemPanel title="MARTIAL TECHNIQUES" className="h-full">
               <div className="space-y-3">
                 {skills.map((skill, index) => (
