@@ -139,29 +139,35 @@ function App() {
   usePageNavigation();
 
   return (
-    <div className="min-h-screen bg-parchment overflow-x-hidden relative ink-flow-bg">
+    <div className="min-h-screen bg-background overflow-x-hidden relative">
       {/* Canvas parallax background - paper scraps, ink droplets, speedlines */}
       <ParallaxBackground />
       
-      {/* Ink texture background */}
+      {/* Dark ambient glow effects */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/3 rounded-full blur-[100px]" />
+      </div>
+      
+      {/* Grid overlay */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-[0.02]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundImage: 'linear-gradient(rgba(180,40,40,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(180,40,40,0.3) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
         }}
       />
       
-      {/* Flowing ink strokes background */}
-      <div className="ink-strokes fixed inset-0 z-0">
-        {[...Array(8)].map((_, i) => (
+      {/* Flowing energy strokes background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="ink-stroke"
+            className="absolute w-px opacity-20"
             style={{
-              left: `${10 + i * 12}%`,
-              height: `${30 + (i % 3) * 20}%`,
-              animationDelay: `${i * 1.2}s`,
-              animationDuration: `${6 + (i % 4) * 2}s`,
+              left: `${15 + i * 15}%`,
+              height: '100%',
+              background: `linear-gradient(to bottom, transparent, hsl(var(--primary) / 0.3), transparent)`,
             }}
           />
         ))}
@@ -169,10 +175,10 @@ function App() {
       
       {/* Vertical panel lines */}
       <div className="fixed inset-0 pointer-events-none z-0 flex justify-between px-8 md:px-16">
-        <div className="w-px h-full bg-foreground/5" />
-        <div className="w-px h-full bg-foreground/5 hidden md:block" />
-        <div className="w-px h-full bg-foreground/5 hidden lg:block" />
-        <div className="w-px h-full bg-foreground/5" />
+        <div className="w-px h-full bg-primary/5" />
+        <div className="w-px h-full bg-primary/5 hidden md:block" />
+        <div className="w-px h-full bg-primary/5 hidden lg:block" />
+        <div className="w-px h-full bg-primary/5" />
       </div>
       
       <SpeedLines />
@@ -183,33 +189,33 @@ function App() {
           <HeroSection />
         </PageSection>
         
-        <InkDivider symbol="一" />
+        <InkDivider symbol="I" />
         
         <PageSection delay={0.1}>
           <AboutSection />
         </PageSection>
         
-        <InkDivider symbol="二" delay={0.1} />
+        <InkDivider symbol="II" delay={0.1} />
         
         <PageSection delay={0.1}>
           <ProjectsSection />
         </PageSection>
         
-        <InkDivider symbol="三" delay={0.1} />
+        <InkDivider symbol="III" delay={0.1} />
         
         <PageSection delay={0.1}>
           <ExperienceSection />
         </PageSection>
         
-        <InkDivider symbol="四" delay={0.1} />
+        <InkDivider symbol="IV" delay={0.1} />
         
         <PageSection delay={0.1}>
           <ContactSection />
         </PageSection>
       </main>
       
-      {/* Footer - Murim scroll style */}
-      <footer className="relative py-16 mt-12 border-t-2 border-foreground/20">
+      {/* Footer - Dark System Style */}
+      <footer className="relative py-16 mt-12 border-t-2 border-primary/30 bg-black/50">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -217,16 +223,16 @@ function App() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="font-manga text-2xl text-foreground/60 mb-3 tracking-widest">
-              — 完 —
+            <p className="font-manga text-2xl text-secondary mb-3 tracking-widest" style={{ textShadow: '0 0 10px rgba(200,160,50,0.4)' }}>
+              — THE END —
             </p>
             <p className="font-body text-sm text-muted-foreground tracking-wide">
-              © 2024 Abhay — Forged in the fires of the Murim
+              © 2024 Abhay — Forged in the Depths of the Shadow Realm
             </p>
-            <div className="flex justify-center gap-4 mt-6 text-foreground/40">
-              <span className="text-xl">⚔</span>
-              <span className="text-xl">墨</span>
-              <span className="text-xl">道</span>
+            <div className="flex justify-center gap-4 mt-6 text-primary/60">
+              <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}>◆</motion.span>
+              <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}>◇</motion.span>
+              <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}>◆</motion.span>
             </div>
           </motion.div>
         </div>
