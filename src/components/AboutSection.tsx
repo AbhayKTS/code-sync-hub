@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { SystemPanel, SkillCard, StatDisplay, SystemTag } from "./SystemPanel";
+import ChapterHeader from './ChapterHeader';
 
 // Page-flip easing
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -55,6 +56,9 @@ export default function AboutSection() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
+        {/* Chapter Header */}
+        <ChapterHeader number="CHAPTER 02" title="ABILITIES UNLOCKED" />
+        
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
