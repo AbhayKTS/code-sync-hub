@@ -5,7 +5,131 @@ import ExperienceSection from '@/components/ExperienceSection';
 import ContactSection from '@/components/ContactSection';
 import Navigation from '@/components/Navigation';
 import SpeedLines from '@/components/SpeedLines';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+
+// Custom page-flip easing
+const pageFlipEase = [0.33, 1, 0.68, 1] as const;
+
+// Ink brush divider component with page-flip animation
+function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
+  return (
+    <motion.div 
+      initial={{ scaleX: 0, opacity: 0 }}
+      whileInView={{ scaleX: 1, opacity: 1 }}
+      viewport={{ once: true, amount: 0.8 }}
+      transition={{ duration: 0.6, ease: pageFlipEase, delay }}
+      className="relative mx-auto w-4/5 max-w-xl my-8 md:my-12"
+    >
+      {/* Main divider line */}
+      <div className="h-[3px] bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
+      
+      {/* Center symbol */}
+      <motion.span 
+        initial={{ scale: 0, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: pageFlipEase, delay: delay + 0.3 }}
+        className="absolute left-1/2 -translate-x-1/2 -top-4 text-foreground/40 font-manga text-lg bg-parchment px-3"
+      >
+        {symbol}
+      </motion.span>
+      
+      {/* Side decorations */}
+      <motion.span 
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: pageFlipEase, delay: delay + 0.4 }}
+        className="absolute -left-6 top-1/2 -translate-y-1/2 text-primary/40 text-xs"
+      >
+        ◆
+      </motion.span>
+      <motion.span 
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: pageFlipEase, delay: delay + 0.4 }}
+        className="absolute -right-6 top-1/2 -translate-y-1/2 text-primary/40 text-xs"
+      >
+        ◆
+      </motion.span>
+    </motion.div>
+  );
+}
+
+// Section wrapper with page-flip animation
+function PageSection({ 
+  children, 
+  className = '',
+  delay = 0 
+}: { 
+  children: React.ReactNode; 
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Create paper fold shadow effect based on scroll
+  const shadowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const yOffset = useTransform(scrollYProgress, [0, 0.2], [40, 0]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`section-page relative ${className}`}
+      initial={{ opacity: 0, y: 50, rotateX: -5 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ 
+        duration: 0.6, 
+        ease: pageFlipEase,
+        delay 
+      }}
+      style={{ 
+        perspective: '1500px',
+        transformStyle: 'preserve-3d',
+        y: yOffset
+      }}
+    >
+      {/* Paper fold shadow - top */}
+      <motion.div 
+        className="absolute top-0 left-0 right-0 h-24 pointer-events-none z-10"
+        style={{ 
+          opacity: shadowOpacity,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.03) 40%, transparent 100%)'
+        }}
+      />
+      
+      {/* Page edge effects */}
+      <div className="absolute top-0 bottom-0 left-0 w-2 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to right, rgba(0,0,0,0.05) 0%, transparent 100%)'
+        }}
+      />
+      <div className="absolute top-0 bottom-0 right-0 w-2 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to left, rgba(0,0,0,0.05) 0%, transparent 100%)'
+        }}
+      />
+      
+      {children}
+      
+      {/* Paper fold shadow - bottom */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none z-10"
+        style={{ 
+          opacity: shadowOpacity,
+          background: 'linear-gradient(to top, rgba(0,0,0,0.06) 0%, transparent 100%)'
+        }}
+      />
+    </motion.div>
+  );
+}
 
 function App() {
   return (
@@ -29,53 +153,34 @@ function App() {
       <SpeedLines />
       <Navigation />
       
-      <main className="panel-gutter space-y-12 md:space-y-20 relative z-10">
-        <HeroSection />
+      <main className="panel-gutter relative z-10">
+        <PageSection>
+          <HeroSection />
+        </PageSection>
         
-        {/* Ink brush divider */}
-        <motion.div 
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          className="h-px bg-foreground/20 relative"
-        >
-          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">一</span>
-        </motion.div>
+        <InkDivider symbol="一" />
         
-        <AboutSection />
+        <PageSection delay={0.1}>
+          <AboutSection />
+        </PageSection>
         
-        <motion.div 
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          className="h-px bg-foreground/20 relative"
-        >
-          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">二</span>
-        </motion.div>
+        <InkDivider symbol="二" delay={0.1} />
         
-        <ProjectsSection />
+        <PageSection delay={0.1}>
+          <ProjectsSection />
+        </PageSection>
         
-        <motion.div 
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          className="h-px bg-foreground/20 relative"
-        >
-          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">三</span>
-        </motion.div>
+        <InkDivider symbol="三" delay={0.1} />
         
-        <ExperienceSection />
+        <PageSection delay={0.1}>
+          <ExperienceSection />
+        </PageSection>
         
-        <motion.div 
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          className="h-px bg-foreground/20 relative"
-        >
-          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">四</span>
-        </motion.div>
+        <InkDivider symbol="四" delay={0.1} />
         
-        <ContactSection />
+        <PageSection delay={0.1}>
+          <ContactSection />
+        </PageSection>
       </main>
       
       {/* Footer - Murim scroll style */}
