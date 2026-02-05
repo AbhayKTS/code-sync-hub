@@ -1,153 +1,109 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Sparkles, Zap } from 'lucide-react';
+import { ChevronDown, Sword, Shield } from 'lucide-react';
 import KnightCharacter from './KnightCharacter';
 
 export default function HeroSection() {
   return (
     <section id="hero" className="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-      {/* Background dramatic effects */}
+      {/* Ink wash background effect */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Radial burst from center */}
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1.5, opacity: 0.15 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.05 }}
+          transition={{ duration: 2 }}
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px]"
           style={{
-            background: `conic-gradient(from 0deg at 50% 50%, 
-              transparent 0deg,
-              hsl(var(--primary) / 0.3) 15deg,
-              transparent 30deg,
-              hsl(var(--secondary) / 0.3) 45deg,
-              transparent 60deg
-            )`
+            background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, transparent 70%)',
+            filter: 'blur(40px)'
           }}
-        />
-
-        {/* Floating action lines */}
-        <motion.div
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-primary/40 via-transparent to-transparent"
-        />
-        <motion.div
-          initial={{ x: 200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="absolute bottom-32 left-0 right-0 h-1 bg-gradient-to-l from-secondary/40 via-transparent to-transparent"
         />
       </div>
 
-      {/* Decorative manga elements */}
-      <motion.svg 
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 0.3 }}
-        transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute top-16 left-8 w-40 h-40" 
-        viewBox="0 0 100 100"
-      >
-        <motion.path
-          d="M10 50 Q 30 10, 50 50 T 90 50"
-          stroke="hsl(var(--primary))"
-          strokeWidth="4"
-          fill="none"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-        />
-        <motion.circle 
-          cx="90" 
-          cy="50" 
-          r="8" 
-          fill="hsl(var(--primary))"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 1.8 }}
-        />
-      </motion.svg>
+      {/* Decorative brush strokes */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute top-20 left-0 right-1/2 h-0.5 bg-gradient-to-r from-transparent via-foreground/20 to-foreground/10 origin-left"
+      />
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1, delay: 0.7 }}
+        className="absolute bottom-32 right-0 left-1/2 h-0.5 bg-gradient-to-l from-transparent via-primary/30 to-primary/10 origin-right"
+      />
 
-      <motion.svg 
-        className="absolute bottom-40 right-8 w-32 h-32" 
-        viewBox="0 0 100 100"
-        initial={{ scale: 0, rotate: -90 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-      >
-        <circle cx="50" cy="50" r="35" stroke="hsl(var(--secondary))" strokeWidth="3" fill="none" strokeDasharray="10 5" />
-        <circle cx="50" cy="50" r="20" stroke="hsl(var(--accent))" strokeWidth="2" fill="none" />
-      </motion.svg>
-
-      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-8 items-center relative z-10">
-        {/* Left side - Text content - DRAMATIC MANGA PANEL */}
+      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        {/* Left side - Text content - MURIM SCROLL PANEL */}
         <motion.div
-          initial={{ opacity: 0, x: -80, rotate: -3 }}
-          animate={{ opacity: 1, x: 0, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
-          className="manga-panel-lg p-8 md:p-12 relative border-accent-corner"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="manga-panel-lg p-8 md:p-12 relative"
         >
-          {/* Action flash effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-pastel-yellow/20 via-transparent to-pastel-pink/20 rounded-xl" />
-          
-          {/* Comic speed lines inside panel */}
-          <div className="action-lines absolute inset-0 rounded-xl opacity-30" />
+          {/* Ink texture overlay */}
+          <div className="absolute inset-0 opacity-[0.02]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
+            }}
+          />
 
-          {/* Character title tag - shout style */}
+          {/* Rank badge - System style */}
           <motion.div 
-            initial={{ scale: 0, rotate: -10 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-            className="absolute -top-5 right-8 shout-bubble bg-gradient-to-r from-action-gold to-pastel-peach px-5 py-2"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="absolute -top-4 right-8 rank-badge"
           >
-            <span className="font-manga text-lg text-manga-border flex items-center gap-2">
-              <Zap size={18} className="text-action-red" />
-              LEVEL 999
-              <Sparkles size={18} className="text-secondary" />
-            </span>
+            <Sword size={14} />
+            <span className="tracking-wider">MASTER RANK</span>
           </motion.div>
+
+          {/* Corner decorations */}
+          <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-foreground/40" />
+          <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-foreground/40" />
 
           <div className="relative z-10">
             <motion.h1 
-              className="font-manga text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight mb-6"
+              className="font-manga text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight mb-6 tracking-wider"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
               <motion.span 
-                className="block text-stroke text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground"
-                whileHover={{ scale: 1.02 }}
+                className="block text-stroke"
+                whileHover={{ scale: 1.01 }}
               >
                 ABHAY
               </motion.span>
               <motion.span 
-                className="block text-primary glow-text"
+                className="block text-primary text-4xl md:text-5xl mt-2"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                Crafting Code
+                武林開發者
               </motion.span>
               <motion.span 
-                className="block text-secondary"
-                initial={{ x: 20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                className="block text-muted-foreground text-xl md:text-2xl font-body mt-4 tracking-wide"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                with Style
+                Murim Developer
               </motion.span>
             </motion.h1>
             
-            <motion.p 
-              className="font-body text-lg md:text-xl text-muted-foreground mb-8 max-w-md"
+            <motion.div 
+              className="flex flex-wrap gap-3 mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              <span className="inline-block px-3 py-1 bg-pastel-lavender/50 rounded-lg mr-2">Frontend Engineer</span>
-              <span className="inline-block px-3 py-1 bg-pastel-blue/50 rounded-lg mr-2">AI Builder</span>
-              <span className="inline-block px-3 py-1 bg-pastel-mint/50 rounded-lg">Designer</span>
-            </motion.p>
+              <span className="skill-tag">Frontend Engineer</span>
+              <span className="skill-tag">AI Builder</span>
+              <span className="skill-tag">Designer</span>
+            </motion.div>
 
             <motion.div 
               className="flex flex-wrap gap-4"
@@ -157,92 +113,78 @@ export default function HeroSection() {
             >
               <motion.a
                 href="#projects"
-                whileHover={{ scale: 1.05, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="manga-btn bg-gradient-to-r from-primary to-pink-400 text-primary-foreground"
+                whileHover={{ x: -2, y: -2 }}
+                whileTap={{ x: 2, y: 2 }}
+                className="manga-btn bg-primary text-primary-foreground"
               >
-                <Sparkles size={20} />
-                View My Work
+                <Sword size={18} />
+                <span>View Techniques</span>
               </motion.a>
               <motion.a
                 href="#contact"
-                whileHover={{ scale: 1.05, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="manga-btn bg-gradient-to-r from-secondary to-cyan-400 text-secondary-foreground"
+                whileHover={{ x: -2, y: -2 }}
+                whileTap={{ x: 2, y: 2 }}
+                className="manga-btn bg-parchment text-foreground"
               >
-                <Zap size={20} />
-                Contact Me
+                <Shield size={18} />
+                <span>Contact</span>
               </motion.a>
             </motion.div>
           </div>
 
-          {/* Panel number */}
-          <div className="absolute bottom-4 right-6 font-manga text-7xl text-muted-foreground/10">
-            01
+          {/* Chapter number - ink style */}
+          <div className="absolute bottom-4 right-6 chapter-number">
+            壹
           </div>
         </motion.div>
 
-        {/* Right side - Knight Character with enhanced effects */}
+        {/* Right side - Knight Character */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.5, rotate: 5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="relative flex justify-center"
         >
-          {/* Power aura rings */}
+          {/* Subtle aura effect */}
           <motion.div
             animate={{ 
-              rotate: 360,
-              scale: [1, 1.1, 1]
+              opacity: [0.1, 0.2, 0.1]
             }}
-            transition={{ 
-              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-              scale: { duration: 3, repeat: Infinity }
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full"
+            style={{
+              background: 'radial-gradient(ellipse at center, rgba(180,50,50,0.2) 0%, transparent 70%)'
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border-2 border-dashed border-primary/30"
-          />
-          <motion.div
-            animate={{ 
-              rotate: -360,
-            }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border border-secondary/20"
           />
 
           <KnightCharacter />
 
-          {/* Power stat floating badge */}
+          {/* Power level indicator - System HUD style */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.5 }}
-            className="absolute top-10 right-0 power-badge"
+            className="absolute top-8 right-0 system-panel px-4 py-2"
           >
-            <span className="text-manga-border">PWR</span>
-            <span className="text-action-red font-bold">∞</span>
+            <div className="text-primary font-manga text-xs tracking-widest">POWER</div>
+            <div className="text-parchment font-manga text-xl">∞</div>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator with manga style */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
+        <span className="font-body text-sm text-muted-foreground tracking-widest uppercase">Scroll</span>
         <motion.div
-          className="speech-bubble py-2 px-4"
-          animate={{ y: [0, -5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <span className="font-manga text-sm text-muted-foreground">SCROLL ↓</span>
-        </motion.div>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <ChevronDown size={28} className="text-primary" />
+          <ChevronDown size={24} className="text-primary" />
         </motion.div>
       </motion.div>
     </section>
