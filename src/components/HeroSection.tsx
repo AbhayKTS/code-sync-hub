@@ -199,6 +199,13 @@ export default function HeroSection() {
             transition={{ delay: 1.5 }}
             className="absolute top-8 right-0"
           >
+            {/* Manga SFX - System Notification */}
+            <MangaSFX 
+              text="DING!" 
+              type="ding" 
+              className="absolute -top-6 -left-4 z-10"
+              delay={1.6}
+            />
             <SystemPanel variant="stat" className="px-4 py-3 min-w-[100px]">
               <StatDisplay label="POWER" value="∞" />
             </SystemPanel>
