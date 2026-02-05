@@ -2,17 +2,30 @@ import { motion } from 'framer-motion';
 
 export default function KnightCharacter() {
   return (
-    <div className="relative w-80 h-96 md:w-96 md:h-[500px]">
-      {/* Qi/Energy aura behind character - subtle ink wash effect */}
+    <div className="relative w-80 h-96 md:w-96 md:h-[500px] character-aura">
+      {/* Blood energy aura - primary layer */}
       <motion.div
         animate={{ 
           scale: [1, 1.05, 1],
           opacity: [0.15, 0.25, 0.15]
         }}
         transition={{ duration: 4, repeat: Infinity }}
-        className="absolute inset-0 rounded-full blur-3xl"
+        className="absolute inset-0 rounded-full blur-3xl blood-aura"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(180,50,50,0.3) 0%, transparent 70%)'
+          background: 'radial-gradient(ellipse at center, hsla(0, 60%, 40%, 0.2) 0%, transparent 70%)'
+        }}
+      />
+      
+      {/* Secondary energy ring - softer outer glow */}
+      <motion.div
+        animate={{ 
+          scale: [1.1, 1.15, 1.1],
+          opacity: [0.08, 0.15, 0.08]
+        }}
+        transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
+        className="absolute inset-[-20%] rounded-full blur-3xl"
+        style={{
+          background: 'radial-gradient(ellipse at center, hsla(0, 45%, 50%, 0.12) 0%, transparent 60%)'
         }}
       />
       
