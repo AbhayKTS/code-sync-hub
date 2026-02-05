@@ -1,14 +1,13 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { SystemPanel, SkillCard, StatDisplay, SystemTag, useSystemSound } from "./SystemPanel";
+import { SystemPanel, SkillCard, StatDisplay, SystemTag } from "./SystemPanel";
 
 const skills = [
-  { name: "React/TypeScript", level: 95, description: "Mastery of modern frontend architecture", rank: "S" },
-  { name: "Node.js/Python", level: 90, description: "Backend cultivation complete", rank: "S" },
-  { name: "Cloud Architecture", level: 85, description: "Azure and AWS formation mastery", rank: "A" },
-  { name: "System Design", level: 88, description: "Architect-level comprehension", rank: "S" },
-  { name: "Database Arts", level: 82, description: "SQL and NoSQL dual cultivation", rank: "A" },
-  { name: "DevOps Flow", level: 78, description: "CI/CD pipeline techniques", rank: "B" },
+  { name: "React/TypeScript", level: 9, maxLevel: 10, description: "Mastery of modern frontend architecture", rank: "S" as const },
+  { name: "Node.js/Python", level: 9, maxLevel: 10, description: "Backend cultivation complete", rank: "S" as const },
+  { name: "Cloud Architecture", level: 8, maxLevel: 10, description: "Azure and AWS formation mastery", rank: "A" as const },
+  { name: "System Design", level: 8, maxLevel: 10, description: "Architect-level comprehension", rank: "S" as const },
+  { name: "Database Arts", level: 8, maxLevel: 10, description: "SQL and NoSQL dual cultivation", rank: "A" as const },
+  { name: "DevOps Flow", level: 7, maxLevel: 10, description: "CI/CD pipeline techniques", rank: "B" as const },
 ];
 
 const coreStats = [
@@ -19,13 +18,6 @@ const coreStats = [
 ];
 
 export default function AboutSection() {
-  const [expandedSkill, setExpandedSkill] = useState<number | null>(null);
-  const playSound = useSystemSound();
-
-  const handleSkillClick = (index: number) => {
-    playSound();
-    setExpandedSkill(expandedSkill === index ? null : index);
-  };
 
   return (
     <section id="about" className="py-24 px-4 relative overflow-hidden">
@@ -80,8 +72,8 @@ export default function AboutSection() {
 
                 <div className="flex flex-wrap gap-2">
                   <SystemTag>Frontend Master</SystemTag>
-                  <SystemTag variant="blood">Backend Adept</SystemTag>
-                  <SystemTag variant="gold">Cloud Architect</SystemTag>
+                  <SystemTag variant="active">Backend Adept</SystemTag>
+                  <SystemTag variant="legendary">Cloud Architect</SystemTag>
                   <SystemTag>System Designer</SystemTag>
                 </div>
 
