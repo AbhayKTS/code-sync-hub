@@ -273,47 +273,29 @@
     scrollbar-width: none;
   }
 
-  /* Enhanced text stroke */
+  /* Ink stroke text */
   .text-stroke {
-    -webkit-text-stroke: 3px hsl(var(--manga-border));
+    -webkit-text-stroke: 2px hsl(var(--ink-black));
     paint-order: stroke fill;
   }
 
-  .text-stroke-white {
-    -webkit-text-stroke: 3px white;
+  .text-stroke-red {
+    -webkit-text-stroke: 2px hsl(var(--blood-red));
     paint-order: stroke fill;
+  }
+
+  /* Murim glow effect */
+  .murim-glow {
+    text-shadow: 
+      0 0 10px hsl(var(--blood-red)),
+      0 0 20px hsl(var(--blood-red)),
+      0 0 40px rgba(180, 50, 50, 0.5);
   }
 
   /* 3D float effect */
   .float-3d {
     transform-style: preserve-3d;
     perspective: 1000px;
-  }
-
-  /* Dramatic tilt */
-  .tilt-dramatic {
-    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
-  }
-
-  /* Shake animation for emphasis */
-  .shake {
-    animation: shake 0.5s ease-in-out;
-  }
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px) rotate(-1deg); }
-    75% { transform: translateX(5px) rotate(1deg); }
-  }
-
-  /* Impact flash */
-  .impact-flash {
-    animation: impact-flash 0.3s ease-out;
-  }
-
-  @keyframes impact-flash {
-    0% { filter: brightness(2); transform: scale(1.05); }
-    100% { filter: brightness(1); transform: scale(1); }
   }
 }
 
@@ -322,26 +304,27 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom selection */
+/* Custom selection - blood red */
 ::selection {
-  @apply bg-primary/40 text-foreground;
+  background: hsl(var(--blood-red) / 0.3);
+  color: hsl(var(--foreground));
 }
 
-/* Custom scrollbar for webkit */
+/* Custom scrollbar - murim style */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--pastel-cream));
+  background: hsl(var(--parchment-dark));
+  border-left: 1px solid hsl(var(--ink-black));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--secondary)));
-  border-radius: 6px;
-  border: 2px solid hsl(var(--pastel-cream));
+  background: hsl(var(--ink-black));
+  border: 2px solid hsl(var(--parchment-dark));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
+  background: hsl(var(--blood-red));
 }
