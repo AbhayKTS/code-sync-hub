@@ -9,28 +9,38 @@ import { motion } from 'framer-motion';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pastel-cream via-white to-pastel-pink/20 overflow-x-hidden relative">
-      {/* Background texture */}
+    <div className="min-h-screen bg-parchment overflow-x-hidden relative">
+      {/* Ink texture background */}
       <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.03]"
+        className="fixed inset-0 pointer-events-none opacity-[0.02]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
+      
+      {/* Vertical panel lines */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex justify-between px-8 md:px-16">
+        <div className="w-px h-full bg-foreground/5" />
+        <div className="w-px h-full bg-foreground/5 hidden md:block" />
+        <div className="w-px h-full bg-foreground/5 hidden lg:block" />
+        <div className="w-px h-full bg-foreground/5" />
+      </div>
       
       <SpeedLines />
       <Navigation />
       
-      <main className="panel-gutter space-y-8 md:space-y-16 relative z-10">
+      <main className="panel-gutter space-y-12 md:space-y-20 relative z-10">
         <HeroSection />
         
-        {/* Panel divider */}
+        {/* Ink brush divider */}
         <motion.div 
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          className="h-1 bg-gradient-to-r from-transparent via-manga-border/20 to-transparent"
-        />
+          className="h-px bg-foreground/20 relative"
+        >
+          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">一</span>
+        </motion.div>
         
         <AboutSection />
         
@@ -38,8 +48,10 @@ function App() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          className="h-1 bg-gradient-to-r from-transparent via-manga-border/20 to-transparent"
-        />
+          className="h-px bg-foreground/20 relative"
+        >
+          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">二</span>
+        </motion.div>
         
         <ProjectsSection />
         
@@ -47,8 +59,10 @@ function App() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          className="h-1 bg-gradient-to-r from-transparent via-manga-border/20 to-transparent"
-        />
+          className="h-px bg-foreground/20 relative"
+        >
+          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">三</span>
+        </motion.div>
         
         <ExperienceSection />
         
@@ -56,15 +70,16 @@ function App() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          className="h-1 bg-gradient-to-r from-transparent via-manga-border/20 to-transparent"
-        />
+          className="h-px bg-foreground/20 relative"
+        >
+          <span className="absolute left-1/2 -translate-x-1/2 -top-3 text-foreground/30 font-manga text-sm">四</span>
+        </motion.div>
         
         <ContactSection />
       </main>
       
-      {/* Footer with manga style */}
-      <footer className="relative py-12 mt-8">
-        <div className="absolute inset-0 bg-gradient-to-t from-pastel-cream to-transparent" />
+      {/* Footer - Murim scroll style */}
+      <footer className="relative py-16 mt-12 border-t-2 border-foreground/20">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -72,16 +87,16 @@ function App() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="font-manga text-xl text-muted-foreground mb-2">
-              — THE END —
+            <p className="font-manga text-2xl text-foreground/60 mb-3 tracking-widest">
+              — 完 —
             </p>
-            <p className="font-body text-sm text-muted-foreground">
-              © 2024 Abhay — Crafted with passion like a true manhwa hero
+            <p className="font-body text-sm text-muted-foreground tracking-wide">
+              © 2024 Abhay — Forged in the fires of the Murim
             </p>
-            <div className="flex justify-center gap-2 mt-4">
-              <span className="text-2xl">⚔️</span>
-              <span className="text-2xl">🎨</span>
-              <span className="text-2xl">💻</span>
+            <div className="flex justify-center gap-4 mt-6 text-foreground/40">
+              <span className="text-xl">⚔</span>
+              <span className="text-xl">墨</span>
+              <span className="text-xl">道</span>
             </div>
           </motion.div>
         </div>

@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Sword } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
-  { label: 'Hero', href: '#hero' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Journey', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: '序章', subLabel: 'Prologue', href: '#hero' },
+  { label: '人物', subLabel: 'Character', href: '#about' },
+  { label: '武功', subLabel: 'Techniques', href: '#projects' },
+  { label: '歷程', subLabel: 'Journey', href: '#experience' },
+  { label: '聯繫', subLabel: 'Contact', href: '#contact' },
 ];
 
 export default function Navigation() {
@@ -17,49 +17,48 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl"
     >
-      <div className="manga-panel px-6 py-3 flex items-center justify-between">
-        {/* Logo with manga flair */}
+      <div className="glass-card px-6 py-3 flex items-center justify-between">
+        {/* Logo - Murim style */}
         <motion.a 
           href="#hero" 
-          className="font-manga text-2xl md:text-3xl relative group"
-          whileHover={{ scale: 1.05 }}
+          className="font-manga text-xl md:text-2xl relative group flex items-center gap-2"
+          whileHover={{ scale: 1.02 }}
         >
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary">
+          <Sword size={20} className="text-primary" />
+          <span className="text-foreground tracking-wider">
             ABHAY
           </span>
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1 }}
-            className="absolute -top-1 -right-4"
-          >
-            <Sparkles size={14} className="text-action-gold" />
-          </motion.span>
+          <span className="text-primary font-body text-xs ml-1">武林</span>
           
-          {/* Hover effect */}
-          <span className="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full rounded-full" />
+          {/* Blood accent underline */}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
         </motion.a>
         
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden md:flex items-center gap-0">
           {navItems.map((item, index) => (
             <motion.li 
               key={item.label}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index }}
+              className="relative"
             >
+              {/* Vertical divider */}
+              {index > 0 && (
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-4 bg-foreground/20" />
+              )}
               <a
                 href={item.href}
-                className="relative px-4 py-2 font-manga text-sm uppercase tracking-wider text-foreground hover:text-primary transition-all group"
+                className="relative px-4 py-2 font-body text-sm uppercase tracking-widest text-foreground hover:text-primary transition-all group flex flex-col items-center"
               >
-                {item.label}
-                {/* Manga underline effect */}
+                <span className="text-[10px] text-muted-foreground/60 font-manga">{item.label}</span>
+                <span>{item.subLabel}</span>
+                {/* Ink underline effect */}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-3/4" />
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-secondary/50 transition-all duration-300 delay-75 group-hover:w-1/2" />
               </a>
             </motion.li>
           ))}
@@ -68,37 +67,41 @@ export default function Navigation() {
         {/* Mobile Menu Button */}
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="md:hidden p-2 rounded-lg border-2 border-manga-border bg-white text-foreground hover:bg-pastel-pink/30 transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="md:hidden p-2 border-2 border-foreground bg-parchment text-foreground hover:bg-primary hover:text-parchment transition-colors"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
       </div>
 
-      {/* Mobile Menu - Manga Panel Style */}
+      {/* Mobile Menu - Murim Panel Style */}
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.95 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
           className="manga-panel mt-2 p-4 md:hidden"
         >
-          <ul className="space-y-1">
+          <ul className="space-y-0">
             {navItems.map((item, index) => (
               <motion.li 
                 key={item.label}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.05 * index }}
+                className="border-b border-foreground/10 last:border-b-0"
               >
                 <a
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block font-manga text-lg text-center py-3 px-4 text-foreground hover:bg-pastel-lavender/50 hover:text-primary transition-all rounded-lg"
+                  className="flex items-center justify-between font-body text-base py-3 px-4 text-foreground hover:bg-primary/10 hover:text-primary transition-all"
                 >
-                  <span className="text-muted-foreground/50 mr-2">0{index + 1}</span>
-                  {item.label}
+                  <span className="flex items-center gap-3">
+                    <span className="text-muted-foreground/40 font-manga text-xs">0{index + 1}</span>
+                    <span className="text-sm text-muted-foreground/60">{item.label}</span>
+                  </span>
+                  <span className="uppercase tracking-wider">{item.subLabel}</span>
                 </a>
               </motion.li>
             ))}
