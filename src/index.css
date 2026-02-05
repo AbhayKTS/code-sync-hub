@@ -250,6 +250,20 @@
       16px 16px 30px rgba(0, 0, 0, 0.35);
   }
 
+  /* Smaller skill tag variant */
+  .skill-tag-sm {
+    @apply inline-flex items-center gap-1 px-2 py-1 text-xs font-bold transition-all;
+    background: hsl(var(--parchment-dark));
+    border: 1px solid hsl(var(--ink-black) / 0.3);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .skill-tag-sm:hover {
+    background: hsl(var(--primary) / 0.1);
+  }
+
   /* Blood accent line */
   .blood-accent {
     @apply relative;
