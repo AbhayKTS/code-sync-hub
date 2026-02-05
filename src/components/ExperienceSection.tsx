@@ -130,12 +130,12 @@ export default function ExperienceSection() {
                 className="absolute left-8 md:left-1/2 w-4 h-4 bg-parchment border-2 border-foreground md:-translate-x-1/2 z-10"
               />
 
-              {/* Content card - murim panel style */}
+              {/* Content card - manhwa panel style */}
               <motion.div 
                 whileHover={{ y: -4 }}
                 className={`ml-20 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'}`}
               >
-                <div className="manga-panel p-6 relative border-l-2 border-primary">
+                <div className="manhwa-card p-6 relative border-l-2 border-primary">
                   {/* Year badge */}
                   <motion.div 
                     initial={{ scale: 0.8 }}
