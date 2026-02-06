@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Code, MessageSquare, Zap, Shield, Brain, Target } from 'lucide-react';
-// Video is in public folder, reference directly
+import { ChevronDown, Code, MessageSquare, Zap, Shield, Brain, Target, Sparkles } from 'lucide-react';
 
 // Black & Green color palette
 const colors = {
@@ -35,96 +34,53 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.5,
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
     },
   },
 };
 
-// Stat Panel Component
-function StatPanel({ 
+// Stat item for the status window
+function StatItem({ 
   label, 
   value, 
   icon: Icon,
   delay = 0,
-  position 
 }: { 
   label: string; 
   value: string; 
   icon: React.ElementType;
   delay?: number;
-  position: string;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ delay, duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-      className={`absolute ${position} z-20 hidden md:block`}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay, duration: 0.4 }}
+      className="flex items-center justify-between py-2 border-b border-[#1DB954]/20 last:border-b-0"
     >
-      <motion.div
-        whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${colors.neonGreen}40` }}
-        className="relative bg-black/80 backdrop-blur-sm border border-[#1DB954]/60 px-4 py-3 min-w-[120px]"
-        style={{
-          boxShadow: `0 0 20px ${colors.neonGreen}20, inset 0 0 20px rgba(0,0,0,0.5)`
-        }}
+      <div className="flex items-center gap-2">
+        <Icon size={14} className="text-[#1DB954]" />
+        <span className="text-[11px] text-[#EAEAEA]/60 font-sans tracking-[0.15em] uppercase">{label}</span>
+      </div>
+      <span 
+        className="text-[#1DB954] font-serif text-base font-bold"
+        style={{ textShadow: `0 0 8px ${colors.neonGreen}60` }}
       >
-        {/* Corner nodes - green */}
-        <motion.span 
-          className="absolute -top-1 -left-1 w-2 h-2 bg-[#1DB954]"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        <motion.span 
-          className="absolute -top-1 -right-1 w-2 h-2 bg-[#1DB954]"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-        />
-        <motion.span 
-          className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#1DB954]"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        />
-        <motion.span 
-          className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#1DB954]"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
-        />
-
-        {/* Scan line effect - green */}
-        <motion.div
-          className="absolute inset-0 overflow-hidden pointer-events-none"
-          style={{ opacity: 0.1 }}
-        >
-          <motion.div
-            className="absolute w-full h-1 bg-gradient-to-r from-transparent via-[#1DB954] to-transparent"
-            animate={{ y: ['-100%', '400%'] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-          />
-        </motion.div>
-
-        <div className="flex items-center gap-3">
-          <Icon size={16} className="text-[#1DB954]" />
-          <div>
-            <div className="text-[10px] text-[#EAEAEA]/50 font-sans tracking-[0.2em] uppercase">{label}</div>
-            <div className="text-[#EAEAEA] font-serif text-lg font-bold" style={{ textShadow: `0 0 10px ${colors.neonGreen}60` }}>
-              {value}
-            </div>
-          </div>
-        </div>
-
-        {/* Pulsing border effect - green */}
-        <motion.div
-          className="absolute inset-0 border border-[#1DB954]/30 pointer-events-none"
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      </motion.div>
+        {value}
+      </span>
     </motion.div>
   );
 }
 
 export default function HeroSection() {
+  const stats = [
+    { label: 'LEVEL', value: '99', icon: Zap },
+    { label: 'STRENGTH', value: '999+', icon: Shield },
+    { label: 'INTELLIGENCE', value: '999+', icon: Brain },
+    { label: 'FOCUS', value: '990', icon: Target },
+  ];
+
   return (
     <section id="hero" className="min-h-screen relative flex items-center overflow-hidden">
       {/* Video Background - Samurai centered right */}
@@ -207,201 +163,188 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Left side - Text Content */}
+      {/* Left side - Solo Leveling Style Status Window */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="absolute left-6 md:left-12 lg:left-20 top-1/2 -translate-y-1/2 z-20 max-w-lg"
+        className="absolute left-4 md:left-8 lg:left-16 top-1/2 -translate-y-1/2 z-20 w-[90%] max-w-md"
       >
-        {/* Main panel with holographic effect */}
+        {/* Main Status Window */}
         <motion.div
           variants={holoVariants}
-          className="relative bg-black/80 backdrop-blur-md border border-[#1DB954]/50 p-6 md:p-8"
+          className="relative bg-black/85 backdrop-blur-md border border-[#1DB954]/50"
           style={{
-            boxShadow: `0 0 40px ${colors.neonGreen}30, inset 0 0 40px rgba(0,0,0,0.5)`
+            boxShadow: `0 0 50px ${colors.neonGreen}25, inset 0 0 40px rgba(0,0,0,0.6)`
           }}
         >
           {/* Corner nodes - glowing green */}
           <motion.span 
-            className="absolute -top-2 -left-2 w-3 h-3 bg-[#1DB954]"
+            className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#1DB954]"
             animate={{ 
-              opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
+              opacity: [0.6, 1, 0.6],
+              boxShadow: [`0 0 8px ${colors.neonGreen}`, `0 0 16px ${colors.neonGreen}`, `0 0 8px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity }}
           />
           <motion.span 
-            className="absolute -top-2 -right-2 w-3 h-3 bg-[#1DB954]"
+            className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#1DB954]"
             animate={{ 
-              opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
+              opacity: [0.6, 1, 0.6],
+              boxShadow: [`0 0 8px ${colors.neonGreen}`, `0 0 16px ${colors.neonGreen}`, `0 0 8px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           />
           <motion.span 
-            className="absolute -bottom-2 -left-2 w-3 h-3 bg-[#1DB954]"
+            className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[#1DB954]"
             animate={{ 
-              opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
+              opacity: [0.6, 1, 0.6],
+              boxShadow: [`0 0 8px ${colors.neonGreen}`, `0 0 16px ${colors.neonGreen}`, `0 0 8px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           />
           <motion.span 
-            className="absolute -bottom-2 -right-2 w-3 h-3 bg-[#1DB954]"
+            className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[#1DB954]"
             animate={{ 
-              opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
+              opacity: [0.6, 1, 0.6],
+              boxShadow: [`0 0 8px ${colors.neonGreen}`, `0 0 16px ${colors.neonGreen}`, `0 0 8px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
           />
 
           {/* Scan lines overlay */}
           <div 
-            className="absolute inset-0 pointer-events-none opacity-10"
+            className="absolute inset-0 pointer-events-none opacity-[0.07]"
             style={{
-              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(29,185,84,0.1) 2px, rgba(29,185,84,0.1) 4px)'
+              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(29,185,84,0.15) 2px, rgba(29,185,84,0.15) 4px)'
             }}
           />
 
-          {/* Hunter Title Badge */}
-          <motion.div 
-            variants={holoVariants}
-            className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-[#1DB954]/50 bg-[#1DB954]/10"
-          >
-            <span className="w-2 h-2 bg-[#1DB954] animate-pulse" />
-            <span className="text-[10px] text-[#1DB954] font-sans tracking-[0.3em] uppercase">Chaos_Immortal</span>
-          </motion.div>
+          {/* Header Section with Rank and Title */}
+          <div className="p-4 md:p-5 border-b border-[#1DB954]/30">
+            <div className="flex items-start justify-between gap-3">
+              {/* Left: Title Info */}
+              <div className="flex-1">
+                {/* Hunter ID Badge */}
+                <motion.div 
+                  variants={holoVariants}
+                  className="inline-flex items-center gap-2 px-2 py-1 mb-3 border border-[#1DB954]/40 bg-[#1DB954]/10"
+                >
+                  <span className="w-1.5 h-1.5 bg-[#1DB954] animate-pulse" />
+                  <span className="text-[10px] text-[#1DB954] font-sans tracking-[0.2em] uppercase">Chaos_Immortal</span>
+                </motion.div>
 
-          {/* Title */}
-          <motion.div variants={holoVariants}>
-            <motion.h1 
-              className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#F5F5F5] leading-tight mb-1"
-              style={{ textShadow: `0 0 30px ${colors.neonGreen}50` }}
-            >
-              ABHAY KUMAR
-            </motion.h1>
-            <motion.span 
-              className="block text-lg md:text-xl font-serif text-[#1DB954] tracking-widest mb-3"
-              style={{ textShadow: `0 0 15px ${colors.neonGreen}60` }}
-            >
-              — The System Walker
-            </motion.span>
-          </motion.div>
+                {/* Name */}
+                <motion.h1 
+                  className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-[#F5F5F5] leading-tight"
+                  style={{ textShadow: `0 0 25px ${colors.neonGreen}40` }}
+                >
+                  ABHAY KUMAR
+                </motion.h1>
+                <motion.span 
+                  className="block text-base md:text-lg font-serif text-[#1DB954] tracking-widest mt-1"
+                  style={{ textShadow: `0 0 12px ${colors.neonGreen}50` }}
+                >
+                  — The System Walker
+                </motion.span>
+              </div>
 
-          {/* Tagline */}
-          <motion.p 
-            variants={holoVariants}
-            className="text-sm md:text-base font-sans text-[#F5F5F5]/80 tracking-wide mb-6 leading-relaxed border-l-2 border-[#1DB954]/50 pl-4"
-          >
-            "Walking between logic and chaos, crafting systems that think, adapt, and evolve."
-          </motion.p>
+              {/* Right: Rank Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="flex-shrink-0"
+              >
+                <div 
+                  className="px-3 py-2 bg-black/80 border-2 border-[#1DB954] text-center"
+                  style={{ boxShadow: `0 0 20px ${colors.neonGreen}40` }}
+                >
+                  <div className="text-[9px] text-[#1DB954]/70 tracking-[0.15em] uppercase">Rank</div>
+                  <div 
+                    className="text-2xl md:text-3xl font-serif font-bold text-[#1DB954]"
+                    style={{ textShadow: `0 0 15px ${colors.neonGreen}` }}
+                  >
+                    EX
+                  </div>
+                  <div className="text-[8px] text-[#F5F5F5]/50 tracking-wider uppercase">Chaos</div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
 
-          {/* Special Ability Tag */}
-          <motion.div
-            variants={holoVariants}
-            className="mb-6 p-3 bg-black/50 border border-[#1DB954]/30"
-          >
-            <div className="text-[10px] text-[#1DB954]/70 font-sans tracking-[0.2em] uppercase mb-1">Special Ability</div>
+          {/* Stats Section */}
+          <div className="p-4 md:p-5 border-b border-[#1DB954]/30">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles size={12} className="text-[#1DB954]" />
+              <span className="text-[10px] text-[#1DB954]/70 font-sans tracking-[0.2em] uppercase">Status</span>
+            </div>
+            <div className="grid grid-cols-2 gap-x-4">
+              {stats.map((stat, index) => (
+                <StatItem
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  icon={stat.icon}
+                  delay={0.8 + index * 0.1}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Tagline Section */}
+          <div className="p-4 md:p-5 border-b border-[#1DB954]/30">
+            <p className="text-sm md:text-base font-sans text-[#F5F5F5]/80 tracking-wide leading-relaxed italic">
+              "Walking between logic and chaos, crafting systems that think, adapt, and evolve."
+            </p>
+          </div>
+
+          {/* Special Ability Section */}
+          <div className="p-4 md:p-5 border-b border-[#1DB954]/30">
+            <div className="text-[10px] text-[#1DB954]/70 font-sans tracking-[0.15em] uppercase mb-1">Special Ability</div>
             <div className="text-sm text-[#F5F5F5] font-sans">
               <span className="text-[#1DB954] font-medium">Code Absorption</span> — Learns new frameworks instantly
             </div>
-          </motion.div>
+          </div>
 
           {/* Buttons */}
-          <motion.div 
-            variants={holoVariants}
-            className="flex flex-wrap gap-4"
-          >
-            <motion.a
-              href="#projects"
-              whileHover={{ 
-                scale: 1.02, 
-                boxShadow: `0 0 30px ${colors.neonGreen}60`,
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-5 py-3 bg-[#1DB954] text-[#0A0A0A] font-sans font-medium tracking-wider border border-[#1DB954]"
-              style={{ boxShadow: `0 0 20px ${colors.neonGreen}40` }}
-            >
-              <Code size={18} />
-              <span>View Techniques</span>
-            </motion.a>
-            <motion.a
-              href="#contact"
-              whileHover={{ 
-                scale: 1.02, 
-                borderColor: colors.softGreen,
-                boxShadow: `0 0 20px ${colors.softGreen}30`,
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-5 py-3 bg-transparent text-[#F5F5F5] font-sans font-medium tracking-wider border border-[#F5F5F5]/30"
-            >
-              <MessageSquare size={18} />
-              <span>Contact</span>
-            </motion.a>
-          </motion.div>
+          <div className="p-4 md:p-5">
+            <div className="flex flex-wrap gap-3">
+              <motion.a
+                href="#projects"
+                whileHover={{ 
+                  scale: 1.02, 
+                  boxShadow: `0 0 25px ${colors.neonGreen}50`,
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#1DB954] text-[#0A0A0A] font-sans font-medium tracking-wider text-sm border border-[#1DB954]"
+                style={{ boxShadow: `0 0 15px ${colors.neonGreen}30` }}
+              >
+                <Code size={16} />
+                <span>View Techniques</span>
+              </motion.a>
+              <motion.a
+                href="#contact"
+                whileHover={{ 
+                  scale: 1.02, 
+                  borderColor: colors.softGreen,
+                  boxShadow: `0 0 15px ${colors.softGreen}25`,
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-transparent text-[#F5F5F5] font-sans font-medium tracking-wider text-sm border border-[#F5F5F5]/30"
+              >
+                <MessageSquare size={16} />
+                <span>Contact</span>
+              </motion.a>
+            </div>
+          </div>
 
           {/* Pulsing border animation */}
           <motion.div
             className="absolute inset-0 border border-[#1DB954]/20 pointer-events-none"
-            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
-        </motion.div>
-      </motion.div>
-
-      {/* Floating Stat Panels - Positioned on edges, not covering samurai */}
-      <StatPanel 
-        label="LEVEL" 
-        value="99" 
-        icon={Zap}
-        delay={1.2}
-        position="top-28 right-6 lg:right-16"
-      />
-      
-      <StatPanel 
-        label="STRENGTH" 
-        value="999+" 
-        icon={Shield}
-        delay={1.4}
-        position="top-48 right-6 lg:right-32"
-      />
-      
-      <StatPanel 
-        label="INTELLIGENCE" 
-        value="999+" 
-        icon={Brain}
-        delay={1.6}
-        position="bottom-48 right-6 lg:right-16"
-      />
-      
-      <StatPanel 
-        label="FOCUS" 
-        value="990" 
-        icon={Target}
-        delay={1.7}
-        position="bottom-32 right-6 lg:right-40"
-      />
-
-      {/* Rank Badge - EX Chaos Rank */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 2, duration: 0.6 }}
-        className="absolute top-28 left-6 md:left-12 lg:left-20 z-30 hidden md:block"
-      >
-        <motion.div
-          animate={{ 
-            boxShadow: [`0 0 20px ${colors.neonGreen}40`, `0 0 40px ${colors.neonGreen}60`, `0 0 20px ${colors.neonGreen}40`]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="px-4 py-2 bg-black/90 border-2 border-[#1DB954]"
-        >
-          <div className="text-[10px] text-[#1DB954]/70 tracking-[0.2em] uppercase">Rank</div>
-          <div className="text-2xl font-serif font-bold text-[#1DB954]" style={{ textShadow: `0 0 15px ${colors.neonGreen}` }}>
-            EX
-          </div>
-          <div className="text-[10px] text-[#F5F5F5]/60 tracking-wider">CHAOS RANK</div>
         </motion.div>
       </motion.div>
 
@@ -409,7 +352,7 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.5 }}
+        transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
       >
         <span className="font-sans text-xs text-[#F5F5F5]/50 tracking-[0.3em] uppercase">Scroll</span>
