@@ -12,7 +12,7 @@ export default function MartialArtist() {
         transition={{ duration: 3, repeat: Infinity }}
         className="absolute inset-[-15%] blur-3xl"
         style={{
-          background: 'radial-gradient(ellipse at center bottom, rgba(180, 30, 30, 0.5) 0%, rgba(80, 0, 0, 0.3) 40%, transparent 70%)'
+          background: 'radial-gradient(ellipse at center bottom, rgba(29, 185, 84, 0.5) 0%, rgba(0, 80, 40, 0.3) 40%, transparent 70%)'
         }}
       />
       
@@ -25,7 +25,7 @@ export default function MartialArtist() {
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="absolute inset-[-20%]"
         style={{
-          background: 'conic-gradient(from 0deg, transparent, rgba(180,30,30,0.2), transparent, rgba(180,30,30,0.1), transparent)'
+          background: 'conic-gradient(from 0deg, transparent, rgba(29,185,84,0.2), transparent, rgba(29,185,84,0.1), transparent)'
         }}
       />
 
@@ -136,7 +136,7 @@ export default function MartialArtist() {
           cy="280"
           r="180"
           fill="none"
-          stroke="rgba(180,40,40,0.08)"
+          stroke="rgba(29,185,84,0.08)"
           strokeWidth="1"
           animate={{ r: [175, 188, 175], opacity: [0.05, 0.15, 0.05] }}
           transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
@@ -347,7 +347,7 @@ export default function MartialArtist() {
             y1={280}
             x2={200 + Math.cos(i * 72 * Math.PI / 180) * 200}
             y2={280 + Math.sin(i * 72 * Math.PI / 180) * 200}
-            stroke="rgba(180,40,40,0.1)"
+            stroke="rgba(29,185,84,0.1)"
             strokeWidth="1"
             animate={{ opacity: [0.05, 0.2, 0.05] }}
             transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
@@ -361,7 +361,7 @@ export default function MartialArtist() {
         animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
         transition={{ duration: 3, repeat: Infinity }}
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(180,40,40,0.25) 0%, rgba(0,0,0,0.4) 50%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(29,185,84,0.25) 0%, rgba(0,0,0,0.4) 50%, transparent 70%)',
           filter: 'blur(6px)'
         }}
       />
@@ -376,7 +376,7 @@ export default function MartialArtist() {
               width: '200%',
               left: '-50%',
               top: `${25 + i * 10}%`,
-              background: 'linear-gradient(90deg, transparent, rgba(180,40,40,0.25), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(29,185,84,0.25), transparent)',
               transform: `rotate(${-4 + i * 2}deg)`,
             }}
             animate={{ 
