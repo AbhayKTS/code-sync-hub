@@ -189,13 +189,13 @@ interface StatDisplayProps {
 
 export function StatDisplay({ label, value, icon, rank }: StatDisplayProps) {
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
+    <div className="flex flex-col items-center text-center p-3 bg-black/40 border border-primary/30">
+      <div className="flex items-center gap-1.5 mb-1">
         {icon && <span className="text-primary">{icon}</span>}
-        <span className="text-foreground/70 text-sm font-body">{label}</span>
+        <span className="text-foreground/60 text-[10px] font-manga tracking-wider uppercase">{label}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-manga text-foreground text-xl" style={{ textShadow: '0 0 8px rgba(29,185,84,0.5)' }}>
+        <span className="font-manga text-foreground text-2xl" style={{ textShadow: '0 0 8px rgba(29,185,84,0.5)' }}>
           {value}
         </span>
         {rank && (
@@ -217,24 +217,24 @@ interface SystemTagProps {
 
 export function SystemTag({ children, variant = 'default', icon, onClick, showAura = true }: SystemTagProps) {
   const variantStyles = {
-    default: '',
-    active: 'border-primary bg-primary/20',
+    default: 'border-primary/50 bg-black/60 text-foreground',
+    active: 'border-primary bg-primary/20 text-primary',
     legendary: 'border-yellow-500/70 bg-yellow-900/30 text-yellow-200'
   };
 
   return (
     <motion.span
-      className={`system-tag ${variantStyles[variant]} ${showAura ? 'qi-aura tag-aura' : ''}`}
-      whileHover={{ scale: 1.05, y: -1 }}
-      whileTap={{ scale: 0.95 }}
+      className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-body border cursor-pointer transition-all ${variantStyles[variant]} ${showAura ? 'hover:bg-primary/30 hover:border-primary' : ''}`}
+      whileHover={{ scale: 1.03, y: -1 }}
+      whileTap={{ scale: 0.97 }}
       onClick={(e) => {
         e.stopPropagation();
         playSystemSound();
         onClick?.();
       }}
     >
-      {icon && <span className="text-current">{icon}</span>}
-      {children}
+      {icon && <span className="text-primary">{icon}</span>}
+      <span>{children}</span>
     </motion.span>
   );
 }
