@@ -7,20 +7,20 @@
 
 @layer base {
   :root {
-    /* === DARK INTENSE MURIM PALETTE - Solo Leveling Inspired === */
+    /* === CINEMATIC MURIM PALETTE === */
     --background: 0 0% 5%; /* Deep black */
-    --foreground: 45 15% 90%; /* Light parchment text */
+    --foreground: 0 0% 96%; /* Mist white #F5F5F5 */
     
-    --card: 0 0% 8%;
-    --card-foreground: 45 15% 90%;
+    --card: 0 0% 10%; /* Dark iron grey */
+    --card-foreground: 0 0% 96%;
     
-    --primary: 0 80% 50%; /* Blood crimson */
+    --primary: 0 90% 33%; /* Deep crimson #9B0A0A */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 45 60% 50%; /* Gold */
-    --secondary-foreground: 0 0% 5%;
+    --secondary: 0 70% 49%; /* Soft blood-red #CC2E2E */
+    --secondary-foreground: 0 0% 100%;
     
-    --accent: 270 60% 55%; /* Purple for legendary */
+    --accent: 0 80% 40%; /* Blood accent */
     --accent-foreground: 0 0% 100%;
     
     --muted: 0 0% 15%;
@@ -28,38 +28,39 @@
     
     --border: 0 0% 20%;
     --input: 0 0% 12%;
-    --ring: 0 80% 50%;
+    --ring: 0 90% 33%;
     
-    /* === Core Murim Colors === */
-    --parchment: 45 15% 90%;
-    --parchment-dark: 45 10% 80%;
-    --ink-black: 0 0% 3%;
-    --blood-red: 0 80% 50%;
-    --aged-gold: 45 70% 55%;
+    /* === Core Cinematic Colors === */
+    --parchment: 0 0% 96%; /* Mist white */
+    --parchment-dark: 0 0% 85%;
+    --ink-black: 0 0% 10%; /* Dark iron grey #1A1A1A */
+    --blood-red: 0 90% 33%; /* Deep crimson #9B0A0A */
+    --soft-blood: 0 70% 49%; /* Soft blood-red #CC2E2E */
+    --aged-gold: 0 0% 70%; /* Removed, using grey */
     --steel-gray: 0 0% 40%;
     --shadow-black: 0 0% 2%;
     
     /* === System UI Colors === */
     --system-blue: 220 90% 60%;
     --system-green: 145 70% 45%;
-    --system-purple: 270 70% 60%;
-    --rank-sss: 45 100% 55%;
-    --rank-ss: 35 100% 60%;
-    --rank-s: 45 90% 55%;
-    --rank-a: 270 70% 60%;
-    --rank-b: 220 80% 55%;
+    --system-purple: 0 70% 50%; /* Changed to red family */
+    --rank-sss: 0 90% 50%;
+    --rank-ss: 0 80% 45%;
+    --rank-s: 0 90% 40%;
+    --rank-a: 0 60% 50%;
+    --rank-b: 0 50% 40%;
     
     /* Ink styling */
     --ink-border: 0 0% 15%;
     --ink-shadow: 0 0% 10%;
     
     /* === Aura & Energy Colors === */
-    --qi-blue: 220 80% 60%;
-    --qi-blue-soft: 220 50% 70%;
-    --blood-aura: 0 70% 45%;
-    --blood-aura-soft: 0 55% 55%;
-    --shadow-aura: 270 50% 30%;
-    --killing-intent: 0 90% 40%;
+    --qi-blue: 0 80% 50%; /* Changed to crimson */
+    --qi-blue-soft: 0 60% 60%;
+    --blood-aura: 0 90% 33%;
+    --blood-aura-soft: 0 70% 49%;
+    --shadow-aura: 0 50% 25%;
+    --killing-intent: 0 95% 35%;
     --ink-flow: 0 0% 8%;
   }
 
