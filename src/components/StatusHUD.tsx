@@ -23,9 +23,9 @@ export function StatBar({ label, current, max, color, showNumbers = true }: Stat
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-1">
-        <span className="text-[10px] font-manga tracking-widest text-parchment/70 uppercase">{label}</span>
+        <span className="text-[10px] font-manga tracking-widest text-foreground/70 uppercase">{label}</span>
         {showNumbers && (
-          <span className="text-xs font-manga text-parchment">
+          <span className="text-xs font-manga text-foreground">
             {current.toLocaleString()}/{max.toLocaleString()}
           </span>
         )}
@@ -105,13 +105,13 @@ export function StatusWindow({ playerName, title, level, rank, stats, className 
       animate={{ opacity: 1, scale: 1, y: 0 }}
       className={`relative bg-black/95 border-2 border-primary/60 p-4 min-w-[280px] ${className}`}
       style={{
-        boxShadow: '0 0 30px rgba(180,40,40,0.3), inset 0 0 20px rgba(0,0,0,0.5)',
+        boxShadow: '0 0 30px rgba(29,185,84,0.3), inset 0 0 20px rgba(0,0,0,0.5)',
       }}
     >
       {/* Scan lines */}
       <div className="absolute inset-0 pointer-events-none opacity-30"
         style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(180,40,40,0.03) 2px, rgba(180,40,40,0.03) 4px)'
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(29,185,84,0.03) 2px, rgba(29,185,84,0.03) 4px)'
         }}
       />
       
@@ -125,7 +125,7 @@ export function StatusWindow({ playerName, title, level, rank, stats, className 
       <div className="flex items-center justify-between mb-4 pb-2 border-b border-primary/30">
         <div>
           <span className="text-[10px] text-primary/70 font-manga tracking-widest uppercase block">{title}</span>
-          <h3 className="font-manga text-xl text-parchment tracking-wide" style={{ textShadow: '0 0 10px rgba(180,40,40,0.4)' }}>
+          <h3 className="font-manga text-xl text-foreground tracking-wide" style={{ textShadow: '0 0 10px rgba(29,185,84,0.4)' }}>
             {playerName}
           </h3>
         </div>
@@ -175,7 +175,7 @@ export function QuestNotification({ type, questName, reward }: QuestNotification
       style={{ boxShadow: '0 0 20px rgba(0,0,0,0.5)' }}
     >
       <span className={`text-[10px] font-manga tracking-widest ${style.color}`}>{style.text}</span>
-      <h4 className="font-manga text-parchment text-lg mt-1">{questName}</h4>
+      <h4 className="font-manga text-foreground text-lg mt-1">{questName}</h4>
       {reward && (
         <p className="text-xs text-secondary/80 mt-2 font-body">
           Reward: {reward}
@@ -230,7 +230,7 @@ export function LevelUpEffect({ level, onComplete }: LevelUpEffectProps) {
           LEVEL UP!
         </motion.span>
         <motion.span
-          className="block font-manga text-8xl text-parchment mt-4"
+          className="block font-manga text-8xl text-foreground mt-4"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -290,7 +290,7 @@ export function SkillTag({ name, level, rank, icon }: SkillTagProps) {
 
   return (
     <motion.div
-      className={`inline-flex items-center gap-2 px-3 py-1.5 border-2 font-manga text-sm tracking-wider ${rank ? rankColors[rank] : 'border-primary/50 bg-black/80 text-parchment'}`}
+      className={`inline-flex items-center gap-2 px-3 py-1.5 border-2 font-manga text-sm tracking-wider ${rank ? rankColors[rank] : 'border-primary/50 bg-black/80 text-foreground'}`}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
       style={{ boxShadow: '0 0 15px rgba(0,0,0,0.5)' }}
