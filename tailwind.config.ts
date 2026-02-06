@@ -76,11 +76,11 @@ export default {
           a: "hsl(var(--rank-a))",
           b: "hsl(var(--rank-b))",
         },
-        // Cinematic palette
+        // Cinematic palette - Black, Green, Red
         cinematic: {
-          crimson: '#9B0A0A',
-          blood: '#CC2E2E',
-          iron: '#1A1A1A',
+          neonGreen: '#1DB954',
+          hunterRed: '#CC2E2E',
+          deepBlack: '#0A0A0A',
           mist: '#F5F5F5',
         },
         // Legacy support
@@ -103,7 +103,7 @@ export default {
         manga: "4px 4px 0px hsl(var(--ink-black))",
         "manga-lg": "6px 6px 0px hsl(var(--ink-black))",
         murim: "5px 5px 0px hsl(var(--ink-black)), 10px 10px 20px rgba(0, 0, 0, 0.3)",
-        blood: "0 0 20px rgba(180, 50, 50, 0.4)",
+        neonGlow: "0 0 20px rgba(29, 185, 84, 0.4)",
       },
       borderRadius: {
         none: "0",
@@ -114,7 +114,7 @@ export default {
         "float-slow": "float 8s ease-in-out infinite",
         "panel-enter": "panel-enter 0.6s ease-out",
         "ink-stroke": "ink-stroke 1.5s ease-out forwards",
-        "pulse-blood": "pulse-blood 2s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "brush-reveal": "brush-reveal 0.8s ease-out forwards",
       },
       keyframes: {
@@ -130,9 +130,9 @@ export default {
           "0%": { strokeDashoffset: "1000" },
           "100%": { strokeDashoffset: "0" },
         },
-        "pulse-blood": {
-          "0%, 100%": { opacity: "0.6", boxShadow: "0 0 10px rgba(180, 50, 50, 0.3)" },
-          "50%": { opacity: "1", boxShadow: "0 0 25px rgba(180, 50, 50, 0.6)" },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.6", boxShadow: "0 0 10px rgba(29, 185, 84, 0.3)" },
+          "50%": { opacity: "1", boxShadow: "0 0 25px rgba(29, 185, 84, 0.6)" },
         },
         "brush-reveal": {
           "0%": { clipPath: "inset(0 100% 0 0)" },
