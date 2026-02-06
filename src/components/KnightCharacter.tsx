@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function KnightCharacter() {
   return (
     <div className="relative w-80 h-96 md:w-96 md:h-[520px] character-aura">
-      {/* Killing intent aura - dark crimson energy */}
+      {/* Hunter aura - neon green energy */}
       <motion.div
         animate={{ 
           scale: [1, 1.08, 1],
@@ -12,11 +12,11 @@ export default function KnightCharacter() {
         transition={{ duration: 3.5, repeat: Infinity }}
         className="absolute inset-[-10%] blur-3xl"
         style={{
-          background: 'radial-gradient(ellipse at center bottom, rgba(120, 20, 20, 0.4) 0%, rgba(40, 0, 0, 0.2) 40%, transparent 70%)'
+          background: 'radial-gradient(ellipse at center bottom, rgba(29, 185, 84, 0.4) 0%, rgba(0, 40, 20, 0.2) 40%, transparent 70%)'
         }}
       />
       
-      {/* Secondary malevolent aura */}
+      {/* Secondary power aura */}
       <motion.div
         animate={{ 
           scale: [1.05, 1.12, 1.05],
@@ -25,7 +25,7 @@ export default function KnightCharacter() {
         transition={{ duration: 5, repeat: Infinity, delay: 1 }}
         className="absolute inset-[-25%] blur-3xl"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(80, 10, 10, 0.15) 0%, transparent 60%)'
+          background: 'radial-gradient(ellipse at center, rgba(29, 185, 84, 0.15) 0%, transparent 60%)'
         }}
       />
       
@@ -99,18 +99,18 @@ export default function KnightCharacter() {
             <stop offset="100%" stopColor="#050505" />
           </linearGradient>
           
-          {/* Inner robe - deep blood red */}
+          {/* Inner robe - hunter green */}
           <linearGradient id="bloodRobe" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#4a1515" />
-            <stop offset="50%" stopColor="#2a0a0a" />
-            <stop offset="100%" stopColor="#1a0505" />
+            <stop offset="0%" stopColor="#0a4a1a" />
+            <stop offset="50%" stopColor="#052a0a" />
+            <stop offset="100%" stopColor="#031a05" />
           </linearGradient>
           
-          {/* Red sash gradient */}
+          {/* Green sash gradient */}
           <linearGradient id="sashGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#3a0808" />
-            <stop offset="50%" stopColor="#6a1515" />
-            <stop offset="100%" stopColor="#3a0808" />
+            <stop offset="0%" stopColor="#083a1a" />
+            <stop offset="50%" stopColor="#1DB954" />
+            <stop offset="100%" stopColor="#083a1a" />
           </linearGradient>
           
           {/* Skin - pale martial artist */}
@@ -206,17 +206,17 @@ export default function KnightCharacter() {
         <path d="M150 300 Q155 360 150 420" stroke="#080808" strokeWidth="4" fill="none" opacity="0.5" />
         <path d="M250 300 Q245 360 250 420" stroke="#080808" strokeWidth="4" fill="none" opacity="0.5" />
 
-        {/* Inner robe layer - deep crimson showing */}
+        {/* Inner robe layer - deep hunter green showing */}
         <path
           d="M150 210 L200 195 L250 210 L255 380 L200 395 L145 380 Z"
           fill="url(#bloodRobe)"
         />
         
         {/* Gi fold details */}
-        <path d="M155 220 L195 205" stroke="#2a0808" strokeWidth="2" fill="none" />
-        <path d="M245 220 L205 205" stroke="#2a0808" strokeWidth="2" fill="none" />
-        <path d="M160 250 L190 240" stroke="#1a0505" strokeWidth="1.5" fill="none" />
-        <path d="M240 250 L210 240" stroke="#1a0505" strokeWidth="1.5" fill="none" />
+        <path d="M155 220 L195 205" stroke="#082a08" strokeWidth="2" fill="none" />
+        <path d="M245 220 L205 205" stroke="#082a08" strokeWidth="2" fill="none" />
+        <path d="M160 250 L190 240" stroke="#051a05" strokeWidth="1.5" fill="none" />
+        <path d="M240 250 L210 240" stroke="#051a05" strokeWidth="1.5" fill="none" />
 
         {/* Torso/chest armor plate subtle */}
         <path
