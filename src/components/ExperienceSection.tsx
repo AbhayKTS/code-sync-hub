@@ -127,7 +127,7 @@ export default function ExperienceSection() {
               {/* Timeline node */}
               <motion.div 
                 whileHover={{ scale: 1.2 }}
-                className="absolute left-8 md:left-1/2 w-4 h-4 bg-parchment border-2 border-foreground md:-translate-x-1/2 z-10"
+                className="absolute left-8 md:left-1/2 w-4 h-4 bg-card border-2 border-primary md:-translate-x-1/2 z-10"
               />
 
               {/* Content card - manhwa panel style */}

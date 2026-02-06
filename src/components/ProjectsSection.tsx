@@ -135,18 +135,18 @@ export default function ProjectsSection() {
                 {/* Icon */}
                 <motion.div 
                   whileHover={{ scale: 1.1 }}
-                  className="absolute top-4 left-4 w-12 h-12 bg-parchment/20 border-2 border-parchment/30 flex items-center justify-center"
+                  className="absolute top-4 left-4 w-12 h-12 bg-card border-2 border-primary/30 flex items-center justify-center"
                 >
-                  <project.icon size={24} className="text-parchment" />
+                  <project.icon size={24} className="text-foreground" />
                 </motion.div>
 
                 {/* Rank label */}
-                <div className="absolute bottom-4 left-4 font-manga text-xs text-parchment/60 tracking-widest">
+                <div className="absolute bottom-4 left-4 font-manga text-xs text-foreground/60 tracking-widest">
                   {project.rankLabel}
                 </div>
 
                 {/* Chapter number */}
-                <div className="absolute bottom-4 right-4 font-manga text-5xl text-parchment/10">
+                <div className="absolute bottom-4 right-4 font-manga text-5xl text-foreground/10">
                   {['壹', '貳', '參'][index]}
                 </div>
               </div>

@@ -136,7 +136,7 @@ export default function ContactSection() {
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   required
-                  className="w-full px-4 py-3 border-2 border-foreground/30 bg-parchment/50 font-body text-foreground focus:outline-none focus:border-primary transition-all"
+                  className="w-full px-4 py-3 border-2 border-primary/30 bg-card font-body text-foreground focus:outline-none focus:border-primary transition-all"
                   placeholder="Your name..."
                 />
               </div>
@@ -150,7 +150,7 @@ export default function ContactSection() {
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   required
-                  className="w-full px-4 py-3 border-2 border-foreground/30 bg-parchment/50 font-body text-foreground focus:outline-none focus:border-primary transition-all"
+                  className="w-full px-4 py-3 border-2 border-primary/30 bg-card font-body text-foreground focus:outline-none focus:border-primary transition-all"
                   placeholder="your@email.com"
                 />
               </div>
@@ -164,7 +164,7 @@ export default function ContactSection() {
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   required
                   rows={4}
-                  className="w-full px-4 py-3 border-2 border-foreground/30 bg-parchment/50 font-body text-foreground focus:outline-none focus:border-primary transition-all resize-none"
+                  className="w-full px-4 py-3 border-2 border-primary/30 bg-card font-body text-foreground focus:outline-none focus:border-primary transition-all resize-none"
                   placeholder="Your message..."
                 />
               </div>
@@ -219,9 +219,9 @@ export default function ContactSection() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + index * 0.1 }}
                     whileHover={{ y: -4 }}
-                    className="w-14 h-14 bg-parchment/10 border-2 border-parchment/30 flex items-center justify-center hover:bg-parchment/20 transition-colors"
+                    className="w-14 h-14 bg-card border-2 border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-colors"
                   >
-                    <link.icon size={22} className="text-parchment" />
+                    <link.icon size={22} className="text-foreground" />
                   </motion.a>
                 ))}
               </div>

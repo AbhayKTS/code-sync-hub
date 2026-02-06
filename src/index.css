@@ -8,60 +8,60 @@
 @layer base {
   :root {
     /* === BLACK GREEN RED HUNTER PALETTE === */
-    --background: 0 0% 4%; /* Deep black #0A0A0A */
-    --foreground: 0 0% 92%; /* Off-white text */
+    --background: 0 0% 6%; /* Deep black #0F0F0F */
+    --foreground: 0 0% 90%; /* Light gray text for readability */
     
-    --card: 0 0% 8%; /* Dark card background */
-    --card-foreground: 0 0% 92%;
+    --card: 0 0% 10%; /* Slightly lighter card background */
+    --card-foreground: 0 0% 90%;
     
-    --primary: 145 80% 40%; /* Neon green #1DB954 */
-    --primary-foreground: 0 0% 0%;
+    --primary: 145 80% 45%; /* Neon green #22C55E */
+    --primary-foreground: 0 0% 5%;
     
-    --secondary: 0 85% 50%; /* Bright red #E62020 */
+    --secondary: 0 75% 55%; /* Bright red */
     --secondary-foreground: 0 0% 100%;
     
-    --accent: 145 70% 35%; /* Darker green accent */
+    --accent: 145 70% 40%; /* Green accent */
     --accent-foreground: 0 0% 100%;
     
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 50%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%; /* More visible muted text */
     
-    --border: 145 50% 20%; /* Green-tinted border */
-    --input: 0 0% 10%;
-    --ring: 145 80% 40%;
+    --border: 145 40% 25%; /* Visible green-tinted border */
+    --input: 0 0% 12%;
+    --ring: 145 80% 45%;
     
     /* === Core Theme Colors === */
-    --parchment: 0 0% 8%; /* Dark parchment */
-    --parchment-dark: 0 0% 6%;
-    --ink-black: 0 0% 4%; /* True black */
-    --blood-red: 0 85% 50%; /* Bright red */
-    --neon-green: 145 80% 40%; /* Hunter green */
-    --soft-green: 145 60% 50%; /* Softer green */
-    --steel-gray: 0 0% 35%;
-    --shadow-black: 0 0% 2%;
+    --parchment: 0 0% 12%; /* Slightly lighter dark parchment */
+    --parchment-dark: 0 0% 8%;
+    --ink-black: 0 0% 5%; /* True black */
+    --blood-red: 0 75% 55%; /* Visible red */
+    --neon-green: 145 80% 50%; /* Brighter hunter green */
+    --soft-green: 145 65% 55%; /* Softer green */
+    --steel-gray: 0 0% 50%; /* More visible gray */
+    --shadow-black: 0 0% 3%;
     
     /* === System UI Colors === */
-    --system-blue: 145 80% 45%; /* Changed to green */
-    --system-green: 145 80% 40%;
-    --system-purple: 145 70% 35%;
-    --rank-sss: 145 90% 50%; /* Green ranks */
-    --rank-ss: 145 80% 45%;
-    --rank-s: 145 80% 40%;
-    --rank-a: 0 85% 50%; /* Red for lower ranks */
-    --rank-b: 0 70% 45%;
+    --system-blue: 145 80% 50%; /* Bright green */
+    --system-green: 145 80% 50%;
+    --system-purple: 280 70% 60%; /* Actual purple for variety */
+    --rank-sss: 50 100% 55%; /* Gold for SSS */
+    --rank-ss: 145 90% 55%; /* Bright green ranks */
+    --rank-s: 145 80% 50%;
+    --rank-a: 0 80% 55%; /* Red for A rank */
+    --rank-b: 30 80% 50%; /* Orange for B rank */
     
     /* Ink styling */
-    --ink-border: 145 40% 15%;
-    --ink-shadow: 0 0% 5%;
+    --ink-border: 145 50% 25%;
+    --ink-shadow: 0 0% 8%;
     
     /* === Aura & Energy Colors === */
-    --qi-blue: 145 80% 45%; /* Green energy */
-    --qi-blue-soft: 145 60% 55%;
-    --blood-aura: 0 85% 50%;
-    --blood-aura-soft: 0 70% 55%;
-    --shadow-aura: 145 50% 20%;
-    --killing-intent: 0 90% 45%;
-    --ink-flow: 0 0% 6%;
+    --qi-blue: 145 80% 50%; /* Green energy */
+    --qi-blue-soft: 145 65% 60%;
+    --blood-aura: 0 80% 55%;
+    --blood-aura-soft: 0 70% 60%;
+    --shadow-aura: 145 50% 25%;
+    --killing-intent: 0 90% 50%;
+    --ink-flow: 0 0% 10%;
   }
 
   * {
