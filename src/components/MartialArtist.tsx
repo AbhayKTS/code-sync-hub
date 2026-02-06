@@ -83,18 +83,18 @@ export default function MartialArtist() {
             <stop offset="100%" stopColor="#050505" />
           </linearGradient>
           
-          {/* Blood red sash/belt */}
+          {/* Hunter green sash/belt */}
           <linearGradient id="bloodSash" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#4a0a0a" />
-            <stop offset="50%" stopColor="#8a1515" />
-            <stop offset="100%" stopColor="#4a0a0a" />
+            <stop offset="0%" stopColor="#0a4a1a" />
+            <stop offset="50%" stopColor="#1DB954" />
+            <stop offset="100%" stopColor="#0a4a1a" />
           </linearGradient>
           
-          {/* Glowing crimson eyes */}
-          <radialGradient id="crimsonEye" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ff4444" />
-            <stop offset="50%" stopColor="#cc2020" />
-            <stop offset="100%" stopColor="#880808" />
+          {/* Glowing neon green eyes */}
+          <radialGradient id="neonEye" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#44ff88" />
+            <stop offset="50%" stopColor="#1DB954" />
+            <stop offset="100%" stopColor="#0a5a2a" />
           </radialGradient>
           
           {/* Hair */}
@@ -126,7 +126,7 @@ export default function MartialArtist() {
           cy="280"
           r="160"
           fill="none"
-          stroke="rgba(180,40,40,0.15)"
+          stroke="rgba(29,185,84,0.15)"
           strokeWidth="2"
           animate={{ r: [155, 165, 155], opacity: [0.1, 0.25, 0.1] }}
           transition={{ duration: 3, repeat: Infinity }}
@@ -298,14 +298,14 @@ export default function MartialArtist() {
         <path d="M195 65 L200 45 L205 65" fill="#1a1a1a" />
         <path d="M222 75 L228 55 L215 70" fill="#1a1a1a" />
 
-        {/* EYES - Intense crimson glow */}
+        {/* EYES - Intense neon green glow */}
         <g filter="url(#powerGlow)">
           <motion.ellipse
             cx="183"
             cy="145"
             rx="6"
             ry="4"
-            fill="url(#crimsonEye)"
+            fill="url(#neonEye)"
             animate={{ 
               opacity: [0.8, 1, 0.8],
               rx: [6, 7, 6]
@@ -317,7 +317,7 @@ export default function MartialArtist() {
             cy="145"
             rx="6"
             ry="4"
-            fill="url(#crimsonEye)"
+            fill="url(#neonEye)"
             animate={{ 
               opacity: [0.8, 1, 0.8],
               rx: [6, 7, 6]
@@ -325,8 +325,8 @@ export default function MartialArtist() {
             transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
           />
           {/* Eye glow effect */}
-          <circle cx="181" cy="144" r="1.5" fill="#ff8080" opacity="0.9" />
-          <circle cx="215" cy="144" r="1.5" fill="#ff8080" opacity="0.9" />
+          <circle cx="181" cy="144" r="1.5" fill="#80ffa0" opacity="0.9" />
+          <circle cx="215" cy="144" r="1.5" fill="#80ffa0" opacity="0.9" />
         </g>
 
         {/* Eyebrows - intense */}
