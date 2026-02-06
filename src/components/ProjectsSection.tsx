@@ -218,7 +218,7 @@ export default function ProjectsSection() {
             rel="noopener noreferrer"
             whileHover={{ x: -2, y: -2 }}
             whileTap={{ x: 2, y: 2 }}
-            className="manga-btn bg-foreground text-parchment inline-flex"
+            className="manga-btn bg-foreground text-background inline-flex"
           >
             <Github size={20} />
             <span>View All Techniques</span>
