@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Code, MessageSquare, Zap, Shield, Cpu, Target } from 'lucide-react';
 
-// Cinematic color palette
+// Black Green Red color palette
 const colors = {
-  crimson: '#9B0A0A',
-  softBlood: '#CC2E2E',
-  iron: '#1A1A1A',
-  mist: '#F5F5F5',
+  neonGreen: '#1DB954',
+  softGreen: '#2ECC71',
+  bloodRed: '#E62020',
+  deepBlack: '#0A0A0A',
+  offWhite: '#EAEAEA',
 };
 
 // Holographic distortion animation
@@ -61,59 +62,59 @@ function StatPanel({
       className={`absolute ${position} z-20`}
     >
       <motion.div
-        whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${colors.crimson}40` }}
-        className="relative bg-black/80 backdrop-blur-sm border border-[#9B0A0A]/60 px-4 py-3 min-w-[120px]"
+        whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${colors.neonGreen}40` }}
+        className="relative bg-black/80 backdrop-blur-sm border border-[#1DB954]/60 px-4 py-3 min-w-[120px]"
         style={{
-          boxShadow: `0 0 20px ${colors.crimson}20, inset 0 0 20px rgba(0,0,0,0.5)`
+          boxShadow: `0 0 20px ${colors.neonGreen}20, inset 0 0 20px rgba(0,0,0,0.5)`
         }}
       >
-        {/* Corner nodes */}
+        {/* Corner nodes - green */}
         <motion.span 
-          className="absolute -top-1 -left-1 w-2 h-2 bg-[#CC2E2E]"
+          className="absolute -top-1 -left-1 w-2 h-2 bg-[#1DB954]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
         <motion.span 
-          className="absolute -top-1 -right-1 w-2 h-2 bg-[#CC2E2E]"
+          className="absolute -top-1 -right-1 w-2 h-2 bg-[#1DB954]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
         />
         <motion.span 
-          className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#CC2E2E]"
+          className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#1DB954]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
         />
         <motion.span 
-          className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#CC2E2E]"
+          className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#1DB954]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
         />
 
-        {/* Scan line effect */}
+        {/* Scan line effect - green */}
         <motion.div
           className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{ opacity: 0.1 }}
         >
           <motion.div
-            className="absolute w-full h-1 bg-gradient-to-r from-transparent via-[#CC2E2E] to-transparent"
+            className="absolute w-full h-1 bg-gradient-to-r from-transparent via-[#1DB954] to-transparent"
             animate={{ y: ['-100%', '400%'] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
           />
         </motion.div>
 
         <div className="flex items-center gap-3">
-          <Icon size={16} className="text-[#CC2E2E]" />
+          <Icon size={16} className="text-[#1DB954]" />
           <div>
-            <div className="text-[10px] text-[#F5F5F5]/50 font-sans tracking-[0.2em] uppercase">{label}</div>
-            <div className="text-[#F5F5F5] font-serif text-lg font-bold" style={{ textShadow: `0 0 10px ${colors.crimson}60` }}>
+            <div className="text-[10px] text-[#EAEAEA]/50 font-sans tracking-[0.2em] uppercase">{label}</div>
+            <div className="text-[#EAEAEA] font-serif text-lg font-bold" style={{ textShadow: `0 0 10px ${colors.neonGreen}60` }}>
               {value}
             </div>
           </div>
         </div>
 
-        {/* Pulsing border effect */}
+        {/* Pulsing border effect - green */}
         <motion.div
-          className="absolute inset-0 border border-[#CC2E2E]/30 pointer-events-none"
+          className="absolute inset-0 border border-[#1DB954]/30 pointer-events-none"
           animate={{ opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -163,38 +164,38 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Animated red energy lines */}
+      {/* Animated green energy lines */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {/* Top horizontal line */}
+        {/* Top horizontal line - green */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
           className="absolute top-24 left-0 w-1/3 h-px origin-left"
-          style={{ background: `linear-gradient(90deg, transparent, ${colors.crimson}80, ${colors.crimson}40)` }}
+          style={{ background: `linear-gradient(90deg, transparent, ${colors.neonGreen}80, ${colors.neonGreen}40)` }}
         />
         
-        {/* Bottom horizontal line */}
+        {/* Bottom horizontal line - red */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.5, delay: 0.8 }}
           className="absolute bottom-24 right-0 w-1/3 h-px origin-right"
-          style={{ background: `linear-gradient(270deg, transparent, ${colors.crimson}80, ${colors.crimson}40)` }}
+          style={{ background: `linear-gradient(270deg, transparent, ${colors.bloodRed}80, ${colors.bloodRed}40)` }}
         />
         
-        {/* Pulsing vertical accent lines */}
+        {/* Pulsing vertical accent lines - green */}
         <motion.div
           animate={{ opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 3, repeat: Infinity }}
           className="absolute left-8 top-0 bottom-0 w-px"
-          style={{ background: `linear-gradient(180deg, transparent, ${colors.crimson}60, transparent)` }}
+          style={{ background: `linear-gradient(180deg, transparent, ${colors.neonGreen}60, transparent)` }}
         />
         <motion.div
           animate={{ opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
           className="absolute right-8 top-0 bottom-0 w-px"
-          style={{ background: `linear-gradient(180deg, transparent, ${colors.crimson}60, transparent)` }}
+          style={{ background: `linear-gradient(180deg, transparent, ${colors.neonGreen}60, transparent)` }}
         />
       </div>
 
@@ -208,41 +209,41 @@ export default function HeroSection() {
         {/* Main panel with holographic effect */}
         <motion.div
           variants={holoVariants}
-          className="relative bg-black/70 backdrop-blur-md border border-[#9B0A0A]/50 p-8 md:p-10"
+          className="relative bg-black/70 backdrop-blur-md border border-[#1DB954]/50 p-8 md:p-10"
           style={{
-            boxShadow: `0 0 40px ${colors.crimson}30, inset 0 0 40px rgba(0,0,0,0.5)`
+            boxShadow: `0 0 40px ${colors.neonGreen}30, inset 0 0 40px rgba(0,0,0,0.5)`
           }}
         >
-          {/* Corner nodes - glowing */}
+          {/* Corner nodes - glowing green */}
           <motion.span 
-            className="absolute -top-2 -left-2 w-3 h-3 bg-[#CC2E2E]"
+            className="absolute -top-2 -left-2 w-3 h-3 bg-[#1DB954]"
             animate={{ 
               opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.softBlood}`, `0 0 20px ${colors.softBlood}`, `0 0 10px ${colors.softBlood}`]
+              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity }}
           />
           <motion.span 
-            className="absolute -top-2 -right-2 w-3 h-3 bg-[#CC2E2E]"
+            className="absolute -top-2 -right-2 w-3 h-3 bg-[#1DB954]"
             animate={{ 
               opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.softBlood}`, `0 0 20px ${colors.softBlood}`, `0 0 10px ${colors.softBlood}`]
+              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           />
           <motion.span 
-            className="absolute -bottom-2 -left-2 w-3 h-3 bg-[#CC2E2E]"
+            className="absolute -bottom-2 -left-2 w-3 h-3 bg-[#1DB954]"
             animate={{ 
               opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.softBlood}`, `0 0 20px ${colors.softBlood}`, `0 0 10px ${colors.softBlood}`]
+              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           />
           <motion.span 
-            className="absolute -bottom-2 -right-2 w-3 h-3 bg-[#CC2E2E]"
+            className="absolute -bottom-2 -right-2 w-3 h-3 bg-[#1DB954]"
             animate={{ 
               opacity: [0.5, 1, 0.5],
-              boxShadow: [`0 0 10px ${colors.softBlood}`, `0 0 20px ${colors.softBlood}`, `0 0 10px ${colors.softBlood}`]
+              boxShadow: [`0 0 10px ${colors.neonGreen}`, `0 0 20px ${colors.neonGreen}`, `0 0 10px ${colors.neonGreen}`]
             }}
             transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
           />
@@ -251,7 +252,7 @@ export default function HeroSection() {
           <div 
             className="absolute inset-0 pointer-events-none opacity-10"
             style={{
-              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(155,10,10,0.1) 2px, rgba(155,10,10,0.1) 4px)'
+              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(29,185,84,0.1) 2px, rgba(29,185,84,0.1) 4px)'
             }}
           />
 
@@ -259,13 +260,13 @@ export default function HeroSection() {
           <motion.div variants={holoVariants}>
             <motion.h1 
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#F5F5F5] leading-tight mb-2"
-              style={{ textShadow: `0 0 30px ${colors.crimson}50` }}
+              style={{ textShadow: `0 0 30px ${colors.neonGreen}50` }}
             >
               ABHAY
             </motion.h1>
             <motion.span 
-              className="block text-xl md:text-2xl font-serif text-[#CC2E2E] tracking-widest mb-4"
-              style={{ textShadow: `0 0 15px ${colors.crimson}60` }}
+              className="block text-xl md:text-2xl font-serif text-[#1DB954] tracking-widest mb-4"
+              style={{ textShadow: `0 0 15px ${colors.neonGreen}60` }}
             >
               — The Hunter
             </motion.span>
@@ -288,11 +289,11 @@ export default function HeroSection() {
               href="#projects"
               whileHover={{ 
                 scale: 1.02, 
-                boxShadow: `0 0 30px ${colors.crimson}60`,
+                boxShadow: `0 0 30px ${colors.neonGreen}60`,
               }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#9B0A0A] text-[#F5F5F5] font-sans font-medium tracking-wider border border-[#CC2E2E]"
-              style={{ boxShadow: `0 0 20px ${colors.crimson}40` }}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1DB954] text-[#0A0A0A] font-sans font-medium tracking-wider border border-[#1DB954]"
+              style={{ boxShadow: `0 0 20px ${colors.neonGreen}40` }}
             >
               <Code size={18} />
               <span>View Techniques</span>
@@ -301,8 +302,8 @@ export default function HeroSection() {
               href="#contact"
               whileHover={{ 
                 scale: 1.02, 
-                borderColor: colors.softBlood,
-                boxShadow: `0 0 20px ${colors.crimson}30`,
+                borderColor: colors.hunterRed,
+                boxShadow: `0 0 20px ${colors.hunterRed}30`,
               }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#F5F5F5] font-sans font-medium tracking-wider border border-[#F5F5F5]/30"
@@ -314,7 +315,7 @@ export default function HeroSection() {
 
           {/* Pulsing border animation */}
           <motion.div
-            className="absolute inset-0 border border-[#CC2E2E]/20 pointer-events-none"
+            className="absolute inset-0 border border-[#1DB954]/20 pointer-events-none"
             animate={{ opacity: [0.2, 0.5, 0.2] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
@@ -366,15 +367,15 @@ export default function HeroSection() {
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <ChevronDown size={24} className="text-[#CC2E2E]" />
+          <ChevronDown size={24} className="text-[#1DB954]" />
         </motion.div>
       </motion.div>
 
-      {/* Red glow at bottom for cinematic effect */}
+      {/* Green glow at bottom for cinematic effect */}
       <div 
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
         style={{
-          background: `linear-gradient(to top, ${colors.crimson}10, transparent)`
+          background: `linear-gradient(to top, ${colors.neonGreen}10, transparent)`
         }}
       />
     </section>
