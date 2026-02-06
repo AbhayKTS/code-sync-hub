@@ -7,61 +7,61 @@
 
 @layer base {
   :root {
-    /* === CINEMATIC MURIM PALETTE === */
-    --background: 0 0% 5%; /* Deep black */
-    --foreground: 0 0% 96%; /* Mist white #F5F5F5 */
+    /* === BLACK GREEN RED HUNTER PALETTE === */
+    --background: 0 0% 4%; /* Deep black #0A0A0A */
+    --foreground: 0 0% 92%; /* Off-white text */
     
-    --card: 0 0% 10%; /* Dark iron grey */
-    --card-foreground: 0 0% 96%;
+    --card: 0 0% 8%; /* Dark card background */
+    --card-foreground: 0 0% 92%;
     
-    --primary: 0 90% 33%; /* Deep crimson #9B0A0A */
-    --primary-foreground: 0 0% 100%;
+    --primary: 145 80% 40%; /* Neon green #1DB954 */
+    --primary-foreground: 0 0% 0%;
     
-    --secondary: 0 70% 49%; /* Soft blood-red #CC2E2E */
+    --secondary: 0 85% 50%; /* Bright red #E62020 */
     --secondary-foreground: 0 0% 100%;
     
-    --accent: 0 80% 40%; /* Blood accent */
+    --accent: 145 70% 35%; /* Darker green accent */
     --accent-foreground: 0 0% 100%;
     
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 50%;
     
-    --border: 0 0% 20%;
-    --input: 0 0% 12%;
-    --ring: 0 90% 33%;
+    --border: 145 50% 20%; /* Green-tinted border */
+    --input: 0 0% 10%;
+    --ring: 145 80% 40%;
     
-    /* === Core Cinematic Colors === */
-    --parchment: 0 0% 96%; /* Mist white */
-    --parchment-dark: 0 0% 85%;
-    --ink-black: 0 0% 10%; /* Dark iron grey #1A1A1A */
-    --blood-red: 0 90% 33%; /* Deep crimson #9B0A0A */
-    --soft-blood: 0 70% 49%; /* Soft blood-red #CC2E2E */
-    --aged-gold: 0 0% 70%; /* Removed, using grey */
-    --steel-gray: 0 0% 40%;
+    /* === Core Theme Colors === */
+    --parchment: 0 0% 92%;
+    --parchment-dark: 0 0% 80%;
+    --ink-black: 0 0% 4%; /* True black */
+    --blood-red: 0 85% 50%; /* Bright red */
+    --neon-green: 145 80% 40%; /* Hunter green */
+    --soft-green: 145 60% 50%; /* Softer green */
+    --steel-gray: 0 0% 35%;
     --shadow-black: 0 0% 2%;
     
     /* === System UI Colors === */
-    --system-blue: 220 90% 60%;
-    --system-green: 145 70% 45%;
-    --system-purple: 0 70% 50%; /* Changed to red family */
-    --rank-sss: 0 90% 50%;
-    --rank-ss: 0 80% 45%;
-    --rank-s: 0 90% 40%;
-    --rank-a: 0 60% 50%;
-    --rank-b: 0 50% 40%;
+    --system-blue: 145 80% 45%; /* Changed to green */
+    --system-green: 145 80% 40%;
+    --system-purple: 145 70% 35%;
+    --rank-sss: 145 90% 50%; /* Green ranks */
+    --rank-ss: 145 80% 45%;
+    --rank-s: 145 80% 40%;
+    --rank-a: 0 85% 50%; /* Red for lower ranks */
+    --rank-b: 0 70% 45%;
     
     /* Ink styling */
-    --ink-border: 0 0% 15%;
-    --ink-shadow: 0 0% 10%;
+    --ink-border: 145 40% 15%;
+    --ink-shadow: 0 0% 5%;
     
     /* === Aura & Energy Colors === */
-    --qi-blue: 0 80% 50%; /* Changed to crimson */
-    --qi-blue-soft: 0 60% 60%;
-    --blood-aura: 0 90% 33%;
-    --blood-aura-soft: 0 70% 49%;
-    --shadow-aura: 0 50% 25%;
-    --killing-intent: 0 95% 35%;
-    --ink-flow: 0 0% 8%;
+    --qi-blue: 145 80% 45%; /* Green energy */
+    --qi-blue-soft: 145 60% 55%;
+    --blood-aura: 0 85% 50%;
+    --blood-aura-soft: 0 70% 55%;
+    --shadow-aura: 145 50% 20%;
+    --killing-intent: 0 90% 45%;
+    --ink-flow: 0 0% 6%;
   }
 
   * {
