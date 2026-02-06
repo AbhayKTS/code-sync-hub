@@ -116,20 +116,23 @@ export default function AboutSection() {
                 </div>
 
                 {/* Hackathon Stats */}
-                <div className="grid grid-cols-3 gap-3">
-                  {coreStats.map((stat, index) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.1 * index, duration: 0.4, ease: pageFlipEase }}
-                    >
-                      <StatDisplay label={stat.label} value={stat.value} icon={stat.icon} />
-                    </motion.div>
-                  ))}
+                <div>
+                  <span className="font-manga text-sm text-primary tracking-wider block mb-3">HACKATHON STATS</span>
+                  <div className="grid grid-cols-3 gap-2">
+                    {coreStats.map((stat, index) => (
+                      <motion.div
+                        key={stat.label}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 * index, duration: 0.4, ease: pageFlipEase }}
+                      >
+                        <StatDisplay label={stat.label} value={stat.value} icon={stat.icon} />
+                      </motion.div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground text-center mt-2">First hackathon was in 2025</p>
                 </div>
-                <p className="text-xs text-muted-foreground text-center">First hackathon was in 2025</p>
 
                 {/* Strong Areas */}
                 <div className="space-y-2">
