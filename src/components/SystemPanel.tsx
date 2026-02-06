@@ -39,7 +39,7 @@ export function SystemPanel({
   variant = 'default',
   showCorners = true,
   onClick,
-  glowColor = 'rgba(180, 50, 50, 0.4)'
+  glowColor = 'rgba(29, 185, 84, 0.4)'
 }: SystemPanelProps) {
   const [inkEffects, setInkEffects] = useState<{ id: number; x: number; y: number }[]>([]);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
@@ -100,7 +100,7 @@ export function SystemPanel({
         <>
           <motion.span 
             className="absolute top-1 left-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--blood-red))', textShadow: `0 0 8px ${glowColor}` }}
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
             animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -108,7 +108,7 @@ export function SystemPanel({
           </motion.span>
           <motion.span 
             className="absolute top-1 right-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--blood-red))', textShadow: `0 0 8px ${glowColor}` }}
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
             animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           >
@@ -116,7 +116,7 @@ export function SystemPanel({
           </motion.span>
           <motion.span 
             className="absolute bottom-1 left-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--blood-red))', textShadow: `0 0 8px ${glowColor}` }}
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
             animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           >
@@ -124,7 +124,7 @@ export function SystemPanel({
           </motion.span>
           <motion.span 
             className="absolute bottom-1 right-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--blood-red))', textShadow: `0 0 8px ${glowColor}` }}
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
             animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
           >
@@ -142,7 +142,7 @@ export function SystemPanel({
             </span>
           )}
           {title && (
-            <h4 className="font-manga text-parchment text-lg tracking-wider" style={{ textShadow: '0 0 10px rgba(180,50,50,0.3)' }}>
+            <h4 className="font-manga text-foreground text-lg tracking-wider" style={{ textShadow: '0 0 10px rgba(29,185,84,0.3)' }}>
               {title}
             </h4>
           )}
@@ -192,10 +192,10 @@ export function StatDisplay({ label, value, icon, rank }: StatDisplayProps) {
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
         {icon && <span className="text-primary">{icon}</span>}
-        <span className="text-parchment/70 text-sm font-body">{label}</span>
+        <span className="text-foreground/70 text-sm font-body">{label}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-manga text-parchment text-xl" style={{ textShadow: '0 0 8px rgba(180,50,50,0.5)' }}>
+        <span className="font-manga text-foreground text-xl" style={{ textShadow: '0 0 8px rgba(29,185,84,0.5)' }}>
           {value}
         </span>
         {rank && (
@@ -251,10 +251,10 @@ interface SkillCardProps {
 
 export function SkillCard({ name, level = 1, maxLevel = 10, description, icon, rank }: SkillCardProps) {
   const rankColors = {
-    S: 'text-yellow-400 border-yellow-500/50',
-    A: 'text-purple-400 border-purple-500/50',
-    B: 'text-blue-400 border-blue-500/50',
-    C: 'text-green-400 border-green-500/50',
+    S: 'text-emerald-300 border-emerald-400/50',
+    A: 'text-green-400 border-green-500/50',
+    B: 'text-teal-400 border-teal-500/50',
+    C: 'text-cyan-400 border-cyan-500/50',
     D: 'text-gray-400 border-gray-500/50',
   };
 
@@ -279,7 +279,7 @@ export function SkillCard({ name, level = 1, maxLevel = 10, description, icon, r
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h5 className="font-manga text-parchment tracking-wide truncate">{name}</h5>
+              <h5 className="font-manga text-foreground tracking-wide truncate">{name}</h5>
               {rank && (
                 <span className={`text-xs font-manga px-1.5 py-0.5 border ${rankColors[rank]}`}>
                   {rank}
@@ -288,7 +288,7 @@ export function SkillCard({ name, level = 1, maxLevel = 10, description, icon, r
             </div>
             
             {description && (
-              <p className="text-parchment/60 text-xs font-body line-clamp-2 mb-2">{description}</p>
+              <p className="text-foreground/60 text-xs font-body line-clamp-2 mb-2">{description}</p>
             )}
             
             {/* Level bar */}
