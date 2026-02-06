@@ -69,7 +69,7 @@ export default function Navigation() {
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="md:hidden p-2 border-2 border-foreground bg-parchment text-foreground hover:bg-primary hover:text-parchment transition-colors"
+          className="md:hidden p-2 border-2 border-primary bg-background text-foreground hover:bg-primary hover:text-background transition-colors"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>

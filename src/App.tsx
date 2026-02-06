@@ -33,7 +33,7 @@ function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4, ease: pageFlipEase, delay: delay + 0.3 }}
-        className="absolute left-1/2 -translate-x-1/2 -top-4 text-foreground/40 font-manga text-lg bg-parchment px-3"
+        className="absolute left-1/2 -translate-x-1/2 -top-4 text-foreground/40 font-manga text-lg bg-background px-3"
       >
         {symbol}
       </motion.span>
