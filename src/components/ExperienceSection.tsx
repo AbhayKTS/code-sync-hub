@@ -154,7 +154,7 @@ export default function ExperienceSection() {
 
                   {/* Icon */}
                   <div className="w-12 h-12 bg-foreground flex items-center justify-center mb-4 ink-shadow">
-                    <event.icon size={22} className="text-parchment" />
+                    <event.icon size={22} className="text-background" />
                   </div>
 
                   <h3 className="font-manga text-lg text-foreground mb-2 flex items-center gap-2 tracking-wide">
@@ -189,7 +189,7 @@ export default function ExperienceSection() {
             className="absolute left-8 md:left-1/2 bottom-0 md:-translate-x-1/2"
           >
             <div className="w-10 h-10 bg-primary border-2 border-foreground flex items-center justify-center ink-shadow">
-              <span className="font-manga text-parchment text-lg">→</span>
+              <span className="font-manga text-background text-lg">→</span>
             </div>
           </motion.div>
         </motion.div>
@@ -203,7 +203,7 @@ export default function ExperienceSection() {
           className="text-center mt-20"
         >
           <div className="inline-block system-panel px-8 py-4">
-            <p className="font-manga text-xl md:text-2xl text-parchment tracking-widest">
+            <p className="font-manga text-xl md:text-2xl text-foreground tracking-widest">
               修煉未完 • TO BE CONTINUED...
             </p>
           </div>
