@@ -76,6 +76,13 @@ export default {
           a: "hsl(var(--rank-a))",
           b: "hsl(var(--rank-b))",
         },
+        // Cinematic palette
+        cinematic: {
+          crimson: '#9B0A0A',
+          blood: '#CC2E2E',
+          iron: '#1A1A1A',
+          mist: '#F5F5F5',
+        },
         // Legacy support
         manga: {
           border: "hsl(var(--ink-black))",
@@ -83,9 +90,11 @@ export default {
         },
       },
       fontFamily: {
-        manga: ["'Cinzel'", "'Bangers'", "serif"],
-        body: ["'Crimson Text'", "'Nunito'", "serif"],
+        manga: ["'Cinzel'", "serif"],
+        body: ["'Crimson Text'", "sans-serif"],
         display: ["'Cinzel'", "serif"],
+        serif: ["'Cinzel'", "Georgia", "serif"],
+        sans: ["'Crimson Text'", "system-ui", "sans-serif"],
       },
       boxShadow: {
         ink: "4px 4px 0px hsl(var(--ink-black))",
