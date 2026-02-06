@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Code, MessageSquare, Zap, Shield, Cpu, Target } from 'lucide-react';
+import { ChevronDown, Code, MessageSquare, Zap, Shield, Brain, Target } from 'lucide-react';
+// Video is in public folder, reference directly
 
 // Black & Green color palette
 const colors = {
@@ -59,7 +60,7 @@ function StatPanel({
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay, duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-      className={`absolute ${position} z-20`}
+      className={`absolute ${position} z-20 hidden md:block`}
     >
       <motion.div
         whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${colors.neonGreen}40` }}
@@ -126,32 +127,39 @@ function StatPanel({
 export default function HeroSection() {
   return (
     <section id="hero" className="min-h-screen relative flex items-center overflow-hidden">
-      {/* Video Background - Fixed Samurai */}
+      {/* Video Background - Samurai centered right */}
       <div className="absolute inset-0 z-0">
         <video
+          src="/From KlickPin CF Samurai Practice Live Wallpaper.mp4"
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           style={{ 
-            filter: 'brightness(0.7) contrast(1.1)',
+            filter: 'brightness(0.75) contrast(1.1) saturate(0.9)',
           }}
-        >
-          <source src="/From KlickPin CF Samurai Practice Live Wallpaper.mp4" type="video/mp4" />
-        </video>
+        />
         
-        {/* Dark gradient overlays for text readability */}
+        {/* Dark gradient overlays - heavier on left for text readability */}
         <div 
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.6) 100%)`
+            background: `linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.4) 100%)`
           }}
         />
         <div 
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.7) 100%)`
+            background: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.7) 100%)`
+          }}
+        />
+        
+        {/* Neon green accent glow */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse at 70% 50%, rgba(29,185,84,0.08) 0%, transparent 50%)`
           }}
         />
         
@@ -175,7 +183,7 @@ export default function HeroSection() {
           style={{ background: `linear-gradient(90deg, transparent, ${colors.neonGreen}80, ${colors.neonGreen}40)` }}
         />
         
-        {/* Bottom horizontal line - darker green */}
+        {/* Bottom horizontal line */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -184,7 +192,7 @@ export default function HeroSection() {
           style={{ background: `linear-gradient(270deg, transparent, ${colors.darkGreen}80, ${colors.darkGreen}40)` }}
         />
         
-        {/* Pulsing vertical accent lines - green */}
+        {/* Pulsing vertical accent lines */}
         <motion.div
           animate={{ opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 3, repeat: Infinity }}
@@ -204,12 +212,12 @@ export default function HeroSection() {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="absolute left-8 md:left-16 lg:left-24 top-1/2 -translate-y-1/2 z-20 max-w-xl"
+        className="absolute left-6 md:left-12 lg:left-20 top-1/2 -translate-y-1/2 z-20 max-w-lg"
       >
         {/* Main panel with holographic effect */}
         <motion.div
           variants={holoVariants}
-          className="relative bg-black/70 backdrop-blur-md border border-[#1DB954]/50 p-8 md:p-10"
+          className="relative bg-black/80 backdrop-blur-md border border-[#1DB954]/50 p-6 md:p-8"
           style={{
             boxShadow: `0 0 40px ${colors.neonGreen}30, inset 0 0 40px rgba(0,0,0,0.5)`
           }}
@@ -256,29 +264,49 @@ export default function HeroSection() {
             }}
           />
 
+          {/* Hunter Title Badge */}
+          <motion.div 
+            variants={holoVariants}
+            className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-[#1DB954]/50 bg-[#1DB954]/10"
+          >
+            <span className="w-2 h-2 bg-[#1DB954] animate-pulse" />
+            <span className="text-[10px] text-[#1DB954] font-sans tracking-[0.3em] uppercase">Chaos_Immortal</span>
+          </motion.div>
+
           {/* Title */}
           <motion.div variants={holoVariants}>
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#F5F5F5] leading-tight mb-2"
+              className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#F5F5F5] leading-tight mb-1"
               style={{ textShadow: `0 0 30px ${colors.neonGreen}50` }}
             >
-              ABHAY
+              ABHAY KUMAR
             </motion.h1>
             <motion.span 
-              className="block text-xl md:text-2xl font-serif text-[#1DB954] tracking-widest mb-4"
+              className="block text-lg md:text-xl font-serif text-[#1DB954] tracking-widest mb-3"
               style={{ textShadow: `0 0 15px ${colors.neonGreen}60` }}
             >
-              — The Hunter
+              — The System Walker
             </motion.span>
           </motion.div>
 
-          {/* Subtitle */}
+          {/* Tagline */}
           <motion.p 
             variants={holoVariants}
-            className="text-sm md:text-base font-sans text-[#F5F5F5]/70 tracking-wide mb-8 leading-relaxed"
+            className="text-sm md:text-base font-sans text-[#F5F5F5]/80 tracking-wide mb-6 leading-relaxed border-l-2 border-[#1DB954]/50 pl-4"
           >
-            Full-Stack Developer | AI Builder | System Architect
+            "Walking between logic and chaos, crafting systems that think, adapt, and evolve."
           </motion.p>
+
+          {/* Special Ability Tag */}
+          <motion.div
+            variants={holoVariants}
+            className="mb-6 p-3 bg-black/50 border border-[#1DB954]/30"
+          >
+            <div className="text-[10px] text-[#1DB954]/70 font-sans tracking-[0.2em] uppercase mb-1">Special Ability</div>
+            <div className="text-sm text-[#F5F5F5] font-sans">
+              <span className="text-[#1DB954] font-medium">Code Absorption</span> — Learns new frameworks instantly
+            </div>
+          </motion.div>
 
           {/* Buttons */}
           <motion.div 
@@ -292,7 +320,7 @@ export default function HeroSection() {
                 boxShadow: `0 0 30px ${colors.neonGreen}60`,
               }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1DB954] text-[#0A0A0A] font-sans font-medium tracking-wider border border-[#1DB954]"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-[#1DB954] text-[#0A0A0A] font-sans font-medium tracking-wider border border-[#1DB954]"
               style={{ boxShadow: `0 0 20px ${colors.neonGreen}40` }}
             >
               <Code size={18} />
@@ -306,7 +334,7 @@ export default function HeroSection() {
                 boxShadow: `0 0 20px ${colors.softGreen}30`,
               }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#F5F5F5] font-sans font-medium tracking-wider border border-[#F5F5F5]/30"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-transparent text-[#F5F5F5] font-sans font-medium tracking-wider border border-[#F5F5F5]/30"
             >
               <MessageSquare size={18} />
               <span>Contact</span>
@@ -322,13 +350,13 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Floating Stat Panels - Positioned around samurai (not covering center) */}
+      {/* Floating Stat Panels - Positioned on edges, not covering samurai */}
       <StatPanel 
         label="LEVEL" 
         value="99" 
         icon={Zap}
         delay={1.2}
-        position="top-32 right-8 md:right-16 lg:right-24"
+        position="top-28 right-6 lg:right-16"
       />
       
       <StatPanel 
@@ -336,24 +364,46 @@ export default function HeroSection() {
         value="999+" 
         icon={Shield}
         delay={1.4}
-        position="top-48 right-8 md:right-40 lg:right-56"
+        position="top-48 right-6 lg:right-32"
       />
       
       <StatPanel 
-        label="POWER" 
-        value="∞" 
-        icon={Cpu}
+        label="INTELLIGENCE" 
+        value="999+" 
+        icon={Brain}
         delay={1.6}
-        position="bottom-40 right-8 md:right-16 lg:right-24"
+        position="bottom-48 right-6 lg:right-16"
       />
       
       <StatPanel 
-        label="RANK" 
-        value="S" 
+        label="FOCUS" 
+        value="990" 
         icon={Target}
-        delay={1.8}
-        position="bottom-56 right-8 md:right-48 lg:right-64"
+        delay={1.7}
+        position="bottom-32 right-6 lg:right-40"
       />
+
+      {/* Rank Badge - EX Chaos Rank */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 2, duration: 0.6 }}
+        className="absolute top-28 left-6 md:left-12 lg:left-20 z-30 hidden md:block"
+      >
+        <motion.div
+          animate={{ 
+            boxShadow: [`0 0 20px ${colors.neonGreen}40`, `0 0 40px ${colors.neonGreen}60`, `0 0 20px ${colors.neonGreen}40`]
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="px-4 py-2 bg-black/90 border-2 border-[#1DB954]"
+        >
+          <div className="text-[10px] text-[#1DB954]/70 tracking-[0.2em] uppercase">Rank</div>
+          <div className="text-2xl font-serif font-bold text-[#1DB954]" style={{ textShadow: `0 0 15px ${colors.neonGreen}` }}>
+            EX
+          </div>
+          <div className="text-[10px] text-[#F5F5F5]/60 tracking-wider">CHAOS RANK</div>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
@@ -371,7 +421,7 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Green glow at bottom for cinematic effect */}
+      {/* Green glow at bottom */}
       <div 
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
         style={{

@@ -3,11 +3,11 @@ import { Menu, X, Sword } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
-  { label: '序章', subLabel: 'Prologue', href: '#hero' },
-  { label: '人物', subLabel: 'Character', href: '#about' },
-  { label: '武功', subLabel: 'Techniques', href: '#projects' },
-  { label: '歷程', subLabel: 'Journey', href: '#experience' },
-  { label: '聯繫', subLabel: 'Contact', href: '#contact' },
+  { label: 'HOME', href: '#hero' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'TECHNIQUES', href: '#projects' },
+  { label: 'JOURNEY', href: '#experience' },
+  { label: 'CONTACT', href: '#contact' },
 ];
 
 export default function Navigation() {
@@ -21,7 +21,7 @@ export default function Navigation() {
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl"
     >
       <div className="glass-card px-6 py-3 flex items-center justify-between">
-        {/* Logo - Murim style */}
+        {/* Logo */}
         <motion.a 
           href="#hero" 
           className="font-manga text-xl md:text-2xl relative group flex items-center gap-2"
@@ -31,9 +31,9 @@ export default function Navigation() {
           <span className="text-foreground tracking-wider">
             ABHAY
           </span>
-          <span className="text-primary font-body text-xs ml-1">武林</span>
+          <span className="text-primary font-body text-xs ml-1">CHAOS</span>
           
-          {/* Blood accent underline */}
+          {/* Accent underline */}
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
         </motion.a>
         
@@ -55,8 +55,7 @@ export default function Navigation() {
                 href={item.href}
                 className="relative px-4 py-2 font-body text-sm uppercase tracking-widest text-foreground hover:text-primary transition-all group flex flex-col items-center"
               >
-                <span className="text-[10px] text-muted-foreground/60 font-manga">{item.label}</span>
-                <span>{item.subLabel}</span>
+                <span>{item.label}</span>
                 {/* Ink underline effect */}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-3/4" />
               </a>
@@ -75,7 +74,7 @@ export default function Navigation() {
         </motion.button>
       </div>
 
-      {/* Mobile Menu - Murim Panel Style */}
+      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -99,9 +98,8 @@ export default function Navigation() {
                 >
                   <span className="flex items-center gap-3">
                     <span className="text-muted-foreground/40 font-manga text-xs">0{index + 1}</span>
-                    <span className="text-sm text-muted-foreground/60">{item.label}</span>
                   </span>
-                  <span className="uppercase tracking-wider">{item.subLabel}</span>
+                  <span className="uppercase tracking-wider">{item.label}</span>
                 </a>
               </motion.li>
             ))}
