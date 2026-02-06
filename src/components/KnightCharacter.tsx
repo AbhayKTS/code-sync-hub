@@ -68,7 +68,7 @@ export default function KnightCharacter() {
             repeat: Infinity,
             delay: i * 0.8,
           }}
-          className="absolute w-1 h-4 bg-gradient-to-b from-blood-red/40 to-transparent"
+          className="absolute w-1 h-4 bg-gradient-to-b from-primary/40 to-transparent"
           style={{
             left: `${25 + i * 12}%`,
             top: `${75 + (i % 2) * 5}%`,
@@ -523,7 +523,7 @@ export default function KnightCharacter() {
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={`intent-${i}`}
-            className="absolute h-px bg-gradient-to-r from-transparent via-blood-red/20 to-transparent"
+            className="absolute h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
             style={{
               width: '200%',
               left: '-50%',
