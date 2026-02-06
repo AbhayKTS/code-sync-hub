@@ -1179,17 +1179,17 @@
   /* Glass card - dark murim style */
   .glass-card {
     @apply backdrop-blur-md;
-    background: linear-gradient(135deg, rgba(243, 234, 215, 0.95) 0%, rgba(230, 220, 200, 0.9) 100%);
-    border: 2px solid hsl(var(--ink-black));
-    box-shadow: 4px 4px 0px hsl(var(--ink-black));
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);
+    border: 2px solid hsl(var(--primary));
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.2);
   }
 
   /* Speech bubble - sharp corners, ink style */
   .speech-bubble {
     @apply relative px-6 py-4;
-    background: hsl(var(--parchment));
-    border: 3px solid hsl(var(--ink-black));
-    box-shadow: 4px 4px 0px hsl(var(--ink-black));
+    background: hsl(var(--background));
+    border: 3px solid hsl(var(--primary));
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.15);
   }
   
   .speech-bubble::after {
@@ -1197,7 +1197,7 @@
     @apply absolute -bottom-4 left-8 w-0 h-0;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-top: 16px solid hsl(var(--ink-black));
+    border-top: 16px solid hsl(var(--primary));
   }
 
   .speech-bubble::before {
