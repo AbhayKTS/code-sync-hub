@@ -22,7 +22,7 @@ const holoVariants = {
     filter: 'blur(0px) brightness(1)',
     transition: {
       duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
+      ease: [0.33, 1, 0.68, 1] as [number, number, number, number],
     },
   },
 };
