@@ -215,7 +215,7 @@ function App() {
       </main>
       
       {/* Footer - Dark System Style */}
-      <footer className="relative py-16 mt-12 border-t-2 border-primary/30 bg-black/50">
+      <footer className="relative py-16 mt-12 border-t-2 border-primary/30 bg-black/80">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -223,11 +223,11 @@ function App() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="font-manga text-2xl text-secondary mb-3 tracking-widest" style={{ textShadow: '0 0 10px rgba(200,160,50,0.4)' }}>
+            <p className="font-manga text-2xl text-primary mb-3 tracking-widest" style={{ textShadow: '0 0 15px rgba(29,185,84,0.5)' }}>
               — THE END —
             </p>
             <p className="font-body text-sm text-muted-foreground tracking-wide">
-              © 2024 Abhay — Forged in the Depths of the Shadow Realm
+              © 2025 Abhay Kumar — Chaos_Immortal — The System Walker
             </p>
             <div className="flex justify-center gap-4 mt-6 text-primary/60">
               <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}>◆</motion.span>
