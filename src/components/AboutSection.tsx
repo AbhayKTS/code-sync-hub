@@ -54,7 +54,7 @@ export default function AboutSection() {
     <section id="about" className="py-24 px-4 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-64 h-64 bg-ink-black rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-blood-red rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
