@@ -30,8 +30,8 @@ export default function SystemMenu() {
         whileTap={{ scale: 0.95 }}
         style={{
           background: 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(20,15,10,0.95) 100%)',
-          border: '2px solid hsl(0, 75%, 45%)',
-          boxShadow: '0 0 20px rgba(180, 50, 50, 0.4), inset 0 0 15px rgba(0,0,0,0.5)',
+          border: '2px solid hsl(145, 80%, 45%)',
+          boxShadow: '0 0 20px rgba(29, 185, 84, 0.4), inset 0 0 15px rgba(0,0,0,0.5)',
         }}
       >
         <motion.div
@@ -39,24 +39,24 @@ export default function SystemMenu() {
           transition={{ duration: 0.3 }}
         >
           {isOpen ? (
-            <X className="text-parchment" size={24} />
+            <X className="text-foreground" size={24} />
           ) : (
-            <Menu className="text-blood-red" size={24} />
+            <Menu className="text-primary" size={24} />
           )}
         </motion.div>
         
         {/* Pulsing ring */}
         <motion.div
-          className="absolute inset-0 border-2 border-blood-red/50"
+          className="absolute inset-0 border-2 border-primary/50"
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
         
         {/* Corner nodes */}
-        <span className="absolute -top-0.5 -left-0.5 text-blood-red text-[6px]">◉</span>
-        <span className="absolute -top-0.5 -right-0.5 text-blood-red text-[6px]">◉</span>
-        <span className="absolute -bottom-0.5 -left-0.5 text-blood-red text-[6px]">◉</span>
-        <span className="absolute -bottom-0.5 -right-0.5 text-blood-red text-[6px]">◉</span>
+        <span className="absolute -top-0.5 -left-0.5 text-primary text-[6px]">◉</span>
+        <span className="absolute -top-0.5 -right-0.5 text-primary text-[6px]">◉</span>
+        <span className="absolute -bottom-0.5 -left-0.5 text-primary text-[6px]">◉</span>
+        <span className="absolute -bottom-0.5 -right-0.5 text-primary text-[6px]">◉</span>
       </motion.button>
 
       {/* Navigation Arrows - Always visible */}
@@ -69,11 +69,11 @@ export default function SystemMenu() {
           whileTap={{ scale: 0.95 }}
           style={{
             background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,15,10,0.9) 100%)',
-            border: '2px solid hsl(0, 75%, 45%)',
-            boxShadow: '0 0 10px rgba(180, 50, 50, 0.3)',
+            border: '2px solid hsl(145, 80%, 45%)',
+            boxShadow: '0 0 10px rgba(29, 185, 84, 0.3)',
           }}
         >
-          <ChevronLeft className="text-parchment" size={18} />
+          <ChevronLeft className="text-foreground" size={18} />
         </motion.button>
         
         <motion.button
@@ -84,18 +84,18 @@ export default function SystemMenu() {
           whileTap={{ scale: 0.95 }}
           style={{
             background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,15,10,0.9) 100%)',
-            border: '2px solid hsl(0, 75%, 45%)',
-            boxShadow: '0 0 10px rgba(180, 50, 50, 0.3)',
+            border: '2px solid hsl(145, 80%, 45%)',
+            boxShadow: '0 0 10px rgba(29, 185, 84, 0.3)',
           }}
         >
-          <ChevronRight className="text-parchment" size={18} />
+          <ChevronRight className="text-foreground" size={18} />
         </motion.button>
         
         {/* Keyboard hint */}
-        <div className="hidden md:flex items-center gap-1 ml-2 text-[10px] text-parchment/50 font-mono">
-          <span className="px-1.5 py-0.5 bg-ink-black/50 border border-parchment/20">A</span>
+        <div className="hidden md:flex items-center gap-1 ml-2 text-[10px] text-foreground/50 font-mono">
+          <span className="px-1.5 py-0.5 bg-ink-black/50 border border-foreground/20">A</span>
           <span>/</span>
-          <span className="px-1.5 py-0.5 bg-ink-black/50 border border-parchment/20">D</span>
+          <span className="px-1.5 py-0.5 bg-ink-black/50 border border-foreground/20">D</span>
         </div>
       </div>
 
@@ -121,31 +121,31 @@ export default function SystemMenu() {
               className="fixed bottom-24 right-6 z-50 w-72"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(20,15,10,0.98) 100%)',
-                border: '3px solid hsl(0, 75%, 45%)',
-                boxShadow: '0 0 40px rgba(180, 50, 50, 0.5), inset 0 0 40px rgba(0,0,0,0.5)',
+                border: '3px solid hsl(145, 80%, 45%)',
+                boxShadow: '0 0 40px rgba(29, 185, 84, 0.5), inset 0 0 40px rgba(0,0,0,0.5)',
               }}
             >
               {/* Corner nodes */}
-              <span className="absolute -top-1 -left-1 text-blood-red text-xs">◉</span>
-              <span className="absolute -top-1 -right-1 text-blood-red text-xs">◉</span>
-              <span className="absolute -bottom-1 -left-1 text-blood-red text-xs">◉</span>
-              <span className="absolute -bottom-1 -right-1 text-blood-red text-xs">◉</span>
+              <span className="absolute -top-1 -left-1 text-primary text-xs">◉</span>
+              <span className="absolute -top-1 -right-1 text-primary text-xs">◉</span>
+              <span className="absolute -bottom-1 -left-1 text-primary text-xs">◉</span>
+              <span className="absolute -bottom-1 -right-1 text-primary text-xs">◉</span>
               
               {/* Scan lines */}
               <div className="absolute inset-0 pointer-events-none opacity-5"
                 style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(180,50,50,0.3) 2px, rgba(180,50,50,0.3) 4px)'
+                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(29,185,84,0.3) 2px, rgba(29,185,84,0.3) 4px)'
                 }}
               />
               
               {/* Header */}
-              <div className="p-4 border-b-2 border-blood-red/30">
+              <div className="p-4 border-b-2 border-primary/30">
                 <div className="flex items-center gap-2">
-                  <span className="text-blood-red text-sm">『</span>
-                  <h3 className="font-cinzel text-parchment font-bold tracking-wider">SYSTEM MENU</h3>
-                  <span className="text-blood-red text-sm">』</span>
+                  <span className="text-primary text-sm">『</span>
+                  <h3 className="font-cinzel text-foreground font-bold tracking-wider">SYSTEM MENU</h3>
+                  <span className="text-primary text-sm">』</span>
                 </div>
-                <p className="text-parchment/50 text-xs font-crimson mt-1">Navigate chapters</p>
+                <p className="text-foreground/50 text-xs font-crimson mt-1">Navigate chapters</p>
               </div>
               
               {/* Menu Items */}
@@ -156,8 +156,8 @@ export default function SystemMenu() {
                     onClick={() => handleNavigate(index)}
                     className={`w-full p-3 flex items-center gap-3 transition-all ${
                       currentSection === index 
-                        ? 'bg-blood-red/20 border-l-2 border-blood-red' 
-                        : 'hover:bg-parchment/5 border-l-2 border-transparent'
+                        ? 'bg-primary/20 border-l-2 border-primary' 
+                        : 'hover:bg-foreground/5 border-l-2 border-transparent'
                     }`}
                     whileHover={{ x: 4 }}
                     initial={{ opacity: 0, x: -20 }}
@@ -165,21 +165,21 @@ export default function SystemMenu() {
                     transition={{ delay: index * 0.05 }}
                   >
                     <div className={`w-8 h-8 flex items-center justify-center border ${
-                      currentSection === index ? 'border-blood-red bg-blood-red/20' : 'border-parchment/30'
+                      currentSection === index ? 'border-primary bg-primary/20' : 'border-foreground/30'
                     }`}>
-                      <item.icon size={16} className={currentSection === index ? 'text-blood-red' : 'text-parchment/70'} />
+                      <item.icon size={16} className={currentSection === index ? 'text-primary' : 'text-foreground/70'} />
                     </div>
                     
                     <div className="flex-1 text-left">
-                      <div className="font-cinzel text-sm text-parchment tracking-wide">{item.label}</div>
-                      <div className="text-[10px] text-parchment/40 font-mono">CHAPTER {item.chapter}</div>
+                      <div className="font-cinzel text-sm text-foreground tracking-wide">{item.label}</div>
+                      <div className="text-[10px] text-foreground/40 font-mono">CHAPTER {item.chapter}</div>
                     </div>
                     
                     {currentSection === index && (
                       <motion.span
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="text-blood-red text-xs"
+                        className="text-primary text-xs"
                       >
                         ◆
                       </motion.span>
@@ -189,8 +189,8 @@ export default function SystemMenu() {
               </div>
               
               {/* Footer */}
-              <div className="p-3 border-t border-blood-red/20 text-center">
-                <p className="text-[10px] text-parchment/30 font-mono">
+              <div className="p-3 border-t border-primary/20 text-center">
+                <p className="text-[10px] text-foreground/30 font-mono">
                   PRESS [A] PREV • [D] NEXT
                 </p>
               </div>
@@ -201,7 +201,7 @@ export default function SystemMenu() {
                 animate={{ opacity: [0.2, 0.4, 0.2] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 style={{
-                  boxShadow: 'inset 0 0 30px rgba(180, 50, 50, 0.15)'
+                  boxShadow: 'inset 0 0 30px rgba(29, 185, 84, 0.15)'
                 }}
               />
             </motion.div>
@@ -219,21 +219,21 @@ export default function SystemMenu() {
         <div className="flex items-center gap-2 px-4 py-2"
           style={{
             background: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(20,15,10,0.8) 100%)',
-            border: '1px solid rgba(180, 50, 50, 0.3)',
+            border: '1px solid rgba(29, 185, 84, 0.3)',
           }}
         >
-          <span className="text-blood-red/60 text-xs">『</span>
-          <span className="font-cinzel text-parchment/80 text-xs tracking-widest">
+          <span className="text-primary/60 text-xs">『</span>
+          <span className="font-cinzel text-foreground/80 text-xs tracking-widest">
             CH.0{currentSection + 1}
           </span>
-          <span className="text-blood-red/60 text-xs">』</span>
+          <span className="text-primary/60 text-xs">』</span>
           
           {/* Progress dots */}
           <div className="flex gap-1 ml-2">
             {sections.map((_, i) => (
               <motion.div
                 key={i}
-                className={`w-1.5 h-1.5 ${i === currentSection ? 'bg-blood-red' : 'bg-parchment/30'}`}
+                className={`w-1.5 h-1.5 ${i === currentSection ? 'bg-primary' : 'bg-foreground/30'}`}
                 animate={i === currentSection ? { scale: [1, 1.3, 1] } : {}}
                 transition={{ duration: 1, repeat: Infinity }}
               />
