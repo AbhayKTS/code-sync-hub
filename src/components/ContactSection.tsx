@@ -206,7 +206,7 @@ export default function ContactSection() {
           >
             {/* Social icons - system panel */}
             <div className="system-panel p-6">
-              <h3 className="font-manga text-lg text-parchment mb-6 tracking-wider">TRANSMISSION CHANNELS</h3>
+              <h3 className="font-manga text-lg text-foreground mb-6 tracking-wider">TRANSMISSION CHANNELS</h3>
               <div className="flex flex-wrap gap-4 justify-center">
                 {socialLinks.map((link, index) => (
                   <motion.a
