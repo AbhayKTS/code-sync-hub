@@ -30,11 +30,11 @@ export default function SpeedLines() {
         }}
       />
 
-      {/* Blood red corner accent - top right */}
+      {/* Green corner accent - top right */}
       <div 
         className="absolute top-0 right-0 w-64 h-64 opacity-[0.03]"
         style={{
-          background: 'radial-gradient(ellipse at top right, rgba(180,50,50,0.5) 0%, transparent 70%)'
+          background: 'radial-gradient(ellipse at top right, rgba(29,185,84,0.5) 0%, transparent 70%)'
         }}
       />
 
