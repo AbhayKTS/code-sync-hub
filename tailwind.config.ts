@@ -76,10 +76,10 @@ export default {
           a: "hsl(var(--rank-a))",
           b: "hsl(var(--rank-b))",
         },
-        // Cinematic palette - Black, Green, Red
+        // Cinematic palette - Black & Green
         cinematic: {
           neonGreen: '#1DB954',
-          hunterRed: '#CC2E2E',
+          darkGreen: '#0D7D3A',
           deepBlack: '#0A0A0A',
           mist: '#F5F5F5',
         },

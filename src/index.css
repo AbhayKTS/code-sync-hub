@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    /* === BLACK GREEN RED HUNTER PALETTE === */
+    /* === BLACK & GREEN HUNTER PALETTE === */
     --background: 0 0% 6%; /* Deep black #0F0F0F */
     --foreground: 0 0% 90%; /* Light gray text for readability */
     
@@ -17,7 +17,7 @@
     --primary: 145 80% 45%; /* Neon green #22C55E */
     --primary-foreground: 0 0% 5%;
     
-    --secondary: 0 75% 55%; /* Bright red */
+    --secondary: 145 60% 35%; /* Darker green as secondary */
     --secondary-foreground: 0 0% 100%;
     
     --accent: 145 70% 40%; /* Green accent */
@@ -34,7 +34,7 @@
     --parchment: 0 0% 12%; /* Slightly lighter dark parchment */
     --parchment-dark: 0 0% 8%;
     --ink-black: 0 0% 5%; /* True black */
-    --blood-red: 0 75% 55%; /* Visible red */
+    --blood-red: 145 80% 45%; /* Changed to green */
     --neon-green: 145 80% 50%; /* Brighter hunter green */
     --soft-green: 145 65% 55%; /* Softer green */
     --steel-gray: 0 0% 50%; /* More visible gray */
@@ -43,12 +43,12 @@
     /* === System UI Colors === */
     --system-blue: 145 80% 50%; /* Bright green */
     --system-green: 145 80% 50%;
-    --system-purple: 280 70% 60%; /* Actual purple for variety */
-    --rank-sss: 50 100% 55%; /* Gold for SSS */
+    --system-purple: 145 60% 40%; /* Green variant */
+    --rank-sss: 145 100% 60%; /* Brightest green for SSS */
     --rank-ss: 145 90% 55%; /* Bright green ranks */
     --rank-s: 145 80% 50%;
-    --rank-a: 0 80% 55%; /* Red for A rank */
-    --rank-b: 30 80% 50%; /* Orange for B rank */
+    --rank-a: 145 70% 45%; /* Green for A rank */
+    --rank-b: 145 60% 40%; /* Darker green for B rank */
     
     /* Ink styling */
     --ink-border: 145 50% 25%;
@@ -57,10 +57,10 @@
     /* === Aura & Energy Colors === */
     --qi-blue: 145 80% 50%; /* Green energy */
     --qi-blue-soft: 145 65% 60%;
-    --blood-aura: 0 80% 55%;
-    --blood-aura-soft: 0 70% 60%;
+    --blood-aura: 145 80% 50%; /* Changed to green */
+    --blood-aura-soft: 145 70% 55%;
     --shadow-aura: 145 50% 25%;
-    --killing-intent: 0 90% 50%;
+    --killing-intent: 145 90% 50%; /* Green intent */
     --ink-flow: 0 0% 10%;
   }
 

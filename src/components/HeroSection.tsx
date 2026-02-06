@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Code, MessageSquare, Zap, Shield, Cpu, Target } from 'lucide-react';
 
-// Black Green Red color palette
+// Black & Green color palette
 const colors = {
   neonGreen: '#1DB954',
   softGreen: '#2ECC71',
-  bloodRed: '#E62020',
+  darkGreen: '#0D7D3A',
   deepBlack: '#0A0A0A',
   offWhite: '#EAEAEA',
 };
@@ -175,13 +175,13 @@ export default function HeroSection() {
           style={{ background: `linear-gradient(90deg, transparent, ${colors.neonGreen}80, ${colors.neonGreen}40)` }}
         />
         
-        {/* Bottom horizontal line - red */}
+        {/* Bottom horizontal line - darker green */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.5, delay: 0.8 }}
           className="absolute bottom-24 right-0 w-1/3 h-px origin-right"
-          style={{ background: `linear-gradient(270deg, transparent, ${colors.bloodRed}80, ${colors.bloodRed}40)` }}
+          style={{ background: `linear-gradient(270deg, transparent, ${colors.darkGreen}80, ${colors.darkGreen}40)` }}
         />
         
         {/* Pulsing vertical accent lines - green */}
@@ -302,8 +302,8 @@ export default function HeroSection() {
               href="#contact"
               whileHover={{ 
                 scale: 1.02, 
-                borderColor: colors.hunterRed,
-                boxShadow: `0 0 20px ${colors.hunterRed}30`,
+                borderColor: colors.softGreen,
+                boxShadow: `0 0 20px ${colors.softGreen}30`,
               }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#F5F5F5] font-sans font-medium tracking-wider border border-[#F5F5F5]/30"
