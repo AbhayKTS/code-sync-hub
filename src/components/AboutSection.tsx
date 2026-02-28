@@ -125,6 +125,26 @@ export default function AboutSection() {
                     <span>HACKATHON_STATISTICS</span>
                     <span className="text-primary hidden md:block">ENHANCED_UI</span>
                   </div>
+
+                  {/* Performance Memory Image */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="relative group overflow-hidden border border-primary/20 aspect-[16/6] md:aspect-[16/5]"
+                  >
+                    <motion.img
+                      src="/1771659636539 (1).jpg"
+                      alt="Hackathon Memory"
+                      className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 md:grayscale"
+                      whileHover={{ scale: 1.05 }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 pointer-events-none" />
+                    <div className="absolute top-2 right-2 px-2 py-0.5 bg-primary/20 backdrop-blur-sm border border-primary/40">
+                      <span className="text-[8px] font-manga text-primary tracking-widest">PERFORMANCE_MEMORY_v1.0</span>
+                    </div>
+                  </motion.div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
                     <StatDisplay label="PROJECTS" value="13" rank="S" icon={<Cpu size={12} />} />
                     <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={12} />} />

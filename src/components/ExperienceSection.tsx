@@ -42,6 +42,11 @@ const timelineEvents = [
     icon: GraduationCap,
     status: 'CLEARED',
     rank: 'A',
+    eduLinks: [
+      { name: 'KV Nagrota', url: 'https://nagrota.kvs.ac.in/' },
+      { name: 'KV Baad', url: 'https://mathurabaad.kvs.ac.in/' },
+      { name: 'GLA University', url: 'https://student.glauniversity.in/Main/Index' }
+    ]
   },
 ];
 
@@ -109,6 +114,23 @@ export default function ExperienceSection() {
                     <p className="text-sm font-body text-white/70 leading-relaxed">
                       {event.description}
                     </p>
+
+                    {event.eduLinks && (
+                      <div className="pt-4 border-t border-white/5 flex flex-wrap gap-2 items-center">
+                        <GraduationCap size={12} className="opacity-40 text-primary" />
+                        {event.eduLinks.map(link => (
+                          <a
+                            key={link.name}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[10px] text-primary hover:text-white transition-colors font-manga tracking-widest px-2 py-1 bg-primary/10 border border-primary/20 hover:bg-primary/30"
+                          >
+                            {link.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
 
                     {event.teammates && (
                       <div className="pt-4 border-t border-white/5 flex flex-wrap gap-2 items-center">
