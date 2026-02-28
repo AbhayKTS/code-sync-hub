@@ -87,10 +87,11 @@ export default function ContactSection() {
     setStatus('submitting');
 
     try {
-      // Use your Formspree endpoint (you can get one at formspree.io for your email abhay88998@gmail.com)
-      const response = await fetch('https://formspree.io/f/xvgznoal', {
+      // Use your Formspree endpoint from environmental variables
+      const formspreeId = import.meta.env.VITE_FORMSPREE_ID || 'xvgznoal';
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(formState),
       });
 
@@ -98,9 +99,12 @@ export default function ContactSection() {
         setStatus('success');
         setFormState({ name: '', email: '', message: '' });
       } else {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Submission Error:', errorData);
         setStatus('error');
       }
     } catch (err) {
+      console.error('Contact Form Fetch Error:', err);
       setStatus('error');
     }
   };
