@@ -18,13 +18,13 @@ export default function Navigation() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl"
+      className="fixed top-0 left-0 md:top-4 md:left-1/2 md:-translate-x-1/2 z-50 w-full md:w-[95%] max-w-4xl"
     >
-      <div className="glass-card px-6 py-3 flex items-center justify-between">
+      <div className="glass-card px-4 py-2 md:px-6 md:py-3 flex items-center justify-between rounded-none md:rounded-xl border-t-0 border-x-0 md:border-t-2 md:border-x-2">
         {/* Logo */}
         <motion.a
           href="#hero"
-          className="font-manga text-lg md:text-2xl relative group flex items-center gap-1.5 md:gap-2"
+          className="font-manga text-lg md:text-2xl relative group flex items-center gap-1.5 md:gap-2 mx-auto md:mx-0"
           whileHover={{ scale: 1.02 }}
         >
           <Sword size={18} className="text-primary" />
@@ -63,14 +63,14 @@ export default function Navigation() {
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Moved to absolute to keep logo centered */}
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="md:hidden p-2 border-2 border-primary bg-background text-foreground hover:bg-primary hover:text-background transition-colors"
+          className="md:hidden p-2 absolute right-4 top-1/2 -translate-y-1/2 border-2 border-primary bg-background text-foreground hover:bg-primary hover:text-background transition-colors"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </motion.button>
       </div>
 

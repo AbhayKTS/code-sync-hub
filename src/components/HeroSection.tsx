@@ -165,8 +165,8 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 p-6 lg:p-10 font-manga text-6xl md:text-8xl lg:text-9xl text-white/5 select-none pointer-events-none tracking-tighter">
-        IMMORTAL
+      <div className="absolute top-0 right-0 p-6 lg:p-10 font-manga text-[40px] md:text-[80px] lg:text-[150px] text-white/5 select-none pointer-events-none tracking-tighter uppercase whitespace-nowrap">
+        CHAOS_IMMORTAL
       </div>
     </section>
   );

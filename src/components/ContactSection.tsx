@@ -80,16 +80,29 @@ const socialLinks = [
 
 export default function ContactSection() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormState({ name: '', email: '', message: '' });
-      alert('Message sent! Thank you for reaching out.');
-    }, 1500);
+    setStatus('submitting');
+
+    try {
+      // Use your Formspree endpoint (you can get one at formspree.io for your email abhay88998@gmail.com)
+      const response = await fetch('https://formspree.io/f/xvgznoal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -194,13 +207,13 @@ export default function ContactSection() {
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={status === 'submitting'}
                 whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(29,185,84,0.5)' }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-3 px-6 bg-primary text-background font-manga tracking-wider flex items-center justify-center gap-2 border border-primary"
-                style={{ boxShadow: '0 0 20px rgba(29,185,84,0.3)' }}
+                style={{ boxShadow: '0 0 20px rgba(29, 185, 84, 0.3)' }}
               >
-                {isSubmitting ? (
+                {status === 'submitting' ? (
                   <motion.span
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity }}
@@ -214,6 +227,17 @@ export default function ContactSection() {
                   </>
                 )}
               </motion.button>
+
+              {status === 'success' && (
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-primary text-center font-manga text-xs tracking-widest mt-4">
+                  QUEST_SUBMITTED: MESSAGE_SENT_SUCCESSFULLY
+                </motion.p>
+              )}
+              {status === 'error' && (
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-500 text-center font-manga text-xs tracking-widest mt-4">
+                  ERROR: SYSTEM_TRANSMISSION_FAILED
+                </motion.p>
+              )}
             </form>
           </motion.div>
 
