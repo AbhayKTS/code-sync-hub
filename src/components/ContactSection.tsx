@@ -88,10 +88,18 @@ export default function ContactSection() {
 
     try {
       // Use your Formspree endpoint from environmental variables
-      const formspreeId = import.meta.env.VITE_FORMSPREE_ID || 'xvgznoal';
-      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+      const formspreeId = import.meta.env.VITE_FORMSPREE_ID || 'xbdaerye';
+      const formUrl = `https://formspree.io/f/${formspreeId}`;
+
+      console.log('Sending to:', formUrl);
+      console.log('Form data:', formState);
+
+      const response = await fetch(formUrl, {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(formState),
       });
 
