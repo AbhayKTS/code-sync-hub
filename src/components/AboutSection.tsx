@@ -119,49 +119,23 @@ export default function AboutSection() {
                   </div>
                 </div>
 
-                {/* Hackathon Stats - Redesigned as Status Window */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between text-[10px] md:text-[11px] font-manga tracking-widest uppercase opacity-60">
-                    <span>HACKATHON_STATISTICS</span>
-                    <span className="text-primary hidden md:block">ENHANCED_UI</span>
+                {/* Performance Memory Image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="relative group overflow-hidden border border-primary/20 bg-black/40 mt-4"
+                >
+                  <motion.img
+                    src="/1771659636539 (1).jpg"
+                    alt="Hackathon Memory"
+                    className="w-full h-auto max-h-[600px] object-contain transition-all duration-700 grayscale group-hover:grayscale-0 md:grayscale"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-60 pointer-events-none" />
+                  <div className="absolute top-2 right-2 px-2 py-0.5 bg-primary/20 backdrop-blur-sm border border-primary/40">
+                    <span className="text-[8px] font-manga text-primary tracking-widest uppercase">STORAGE_LOG: PERFORMANCE_VERIFICATION</span>
                   </div>
-
-                  {/* Performance Memory Image */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="relative group overflow-hidden border border-primary/20 bg-black/40"
-                  >
-                    <motion.img
-                      src="/1771659636539 (1).jpg"
-                      alt="Hackathon Memory"
-                      className="w-full h-auto max-h-[400px] object-contain transition-all duration-700 grayscale group-hover:grayscale-0 md:grayscale"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-60 pointer-events-none" />
-                    <div className="absolute top-2 right-2 px-2 py-0.5 bg-primary/20 backdrop-blur-sm border border-primary/40">
-                      <span className="text-[8px] font-manga text-primary tracking-widest uppercase">STORAGE_LOG: PERFORMANCE_VERIFICATION</span>
-                    </div>
-                  </motion.div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-                    <StatDisplay label="PROJECTS" value="13" rank="S" icon={<Cpu size={12} />} />
-                    <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={12} />} />
-                    <StatDisplay label="SPECIAL" value="01" rank="A" icon={<Trophy size={12} />} />
-                  </div>
-                </div>
-
-                {/* Strong Areas */}
-                <div className="space-y-4">
-                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase">CORE_PROFICIENCIES</span>
-                  <div className="flex flex-wrap gap-3">
-                    {strongAreas.map((area) => (
-                      <SystemTag key={area.name} icon={area.icon} variant="active">
-                        {area.name}
-                      </SystemTag>
-                    ))}
-                  </div>
-                </div>
+                </motion.div>
               </div>
             </SystemPanel>
           </motion.div>
@@ -214,6 +188,31 @@ export default function AboutSection() {
                       whileInView={{ width: '92.4%' }}
                       transition={{ duration: 2, ease: "easeOut" }}
                     />
+                  </div>
+                </div>
+
+                {/* Hackathon Stats - Redesigned as Status Window */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-[10px] md:text-[11px] font-manga tracking-widest uppercase opacity-60">
+                    <span>HACKATHON_STATISTICS</span>
+                    <span className="text-primary hidden md:block">ENHANCED_UI</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+                    <StatDisplay label="PROJECTS" value="13" rank="S" icon={<Cpu size={12} />} />
+                    <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={12} />} />
+                    <StatDisplay label="SPECIAL" value="01" rank="A" icon={<Trophy size={12} />} />
+                  </div>
+                </div>
+
+                {/* Strong Areas */}
+                <div className="space-y-4">
+                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase text-secondary">CORE_PROFICIENCIES</span>
+                  <div className="flex flex-wrap gap-3">
+                    {strongAreas.map((area) => (
+                      <SystemTag key={area.name} icon={area.icon} variant="active">
+                        {area.name}
+                      </SystemTag>
+                    ))}
                   </div>
                 </div>
 
