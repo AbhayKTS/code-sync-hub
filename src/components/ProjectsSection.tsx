@@ -96,7 +96,7 @@ export default function ProjectsSection() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.03 }}
         viewport={{ once: true }}
-        className="absolute top-20 right-10 font-manga text-[150px] text-foreground leading-none pointer-events-none"
+        className="absolute top-10 md:top-20 right-4 md:right-10 font-manga text-[60px] md:text-[150px] text-foreground leading-none pointer-events-none"
       >
         TECH
       </motion.div>
@@ -110,12 +110,12 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <h2 className="font-manga text-5xl md:text-6xl text-foreground relative mt-2 tracking-wider">
+          <h2 className="font-manga text-4xl md:text-6xl text-foreground relative mt-2 tracking-wider">
             <span className="text-primary">TECHNIQUES</span>
           </h2>
-          <p className="font-body text-muted-foreground mt-4 text-lg">Featured works from my martial journey</p>
+          <p className="font-body text-muted-foreground mt-4 text-base md:text-lg">Featured works from my martial journey</p>
         </motion.div>
 
         {/* Project cards */}

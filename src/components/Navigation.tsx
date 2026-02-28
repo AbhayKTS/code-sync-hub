@@ -22,25 +22,25 @@ export default function Navigation() {
     >
       <div className="glass-card px-6 py-3 flex items-center justify-between">
         {/* Logo */}
-        <motion.a 
-          href="#hero" 
-          className="font-manga text-xl md:text-2xl relative group flex items-center gap-2"
+        <motion.a
+          href="#hero"
+          className="font-manga text-lg md:text-2xl relative group flex items-center gap-1.5 md:gap-2"
           whileHover={{ scale: 1.02 }}
         >
-          <Sword size={20} className="text-primary" />
+          <Sword size={18} className="text-primary" />
           <span className="text-foreground tracking-wider">
             ABHAY
           </span>
-          <span className="text-primary font-body text-xs ml-1">CHAOS</span>
-          
+          <span className="text-primary font-body text-[10px] md:text-xs ml-0.5 md:ml-1">CHAOS</span>
+
           {/* Accent underline */}
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
         </motion.a>
-        
+
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-0">
           {navItems.map((item, index) => (
-            <motion.li 
+            <motion.li
               key={item.label}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function Navigation() {
         >
           <ul className="space-y-0">
             {navItems.map((item, index) => (
-              <motion.li 
+              <motion.li
                 key={item.label}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

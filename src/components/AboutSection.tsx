@@ -68,20 +68,20 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-manga font-black text-foreground mb-4 tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-7xl font-manga font-black text-foreground mb-4 tracking-tighter uppercase relative z-10">
             CHARACTER <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">LEVEL</span>
           </h2>
           <div className="flex items-center justify-center gap-4">
-            <div className="h-px w-12 bg-primary/40" />
-            <span className="font-manga text-primary tracking-[0.5em] text-sm uppercase">LV. 13 RANK: S-RANK</span>
-            <div className="h-px w-12 bg-primary/40" />
+            <div className="h-px w-8 md:w-12 bg-primary/40" />
+            <span className="font-manga text-primary tracking-[0.3em] md:tracking-[0.5em] text-xs md:text-sm uppercase">LV. 13 RANK: S-RANK</span>
+            <div className="h-px w-8 md:w-12 bg-primary/40" />
           </div>
         </motion.div>
 
         <motion.div
-          className="grid lg:grid-cols-2 gap-12"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -90,11 +90,11 @@ export default function AboutSection() {
           {/* Bio Panel */}
           <motion.div variants={panelVariants}>
             <SystemPanel title="PLAYER_AUTO_BIO" subtitle="CULTIVATOR OVERVIEW" className="h-full">
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 {/* Bio */}
                 <div className="relative">
-                  <span className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary to-transparent" />
-                  <p className="text-xl text-foreground font-body leading-relaxed pl-2">
+                  <span className="absolute -left-2 md:-left-4 top-0 w-1 h-full bg-gradient-to-b from-primary to-transparent" />
+                  <p className="text-lg md:text-xl text-foreground font-body leading-relaxed pl-3 md:pl-2">
                     I'm a full-stack developer exploring <span className="text-secondary font-bold">Web3</span>, building modern apps with clean UIs and solid backends.
                     Powered by AI, I move fast — experimenting, learning, and pushing ideas into real products.
                     Inspired by <span className="text-primary font-bold">manhwa</span> and cultivation novels, I blend creativity with code to craft futuristic digital experiences.
@@ -102,33 +102,33 @@ export default function AboutSection() {
                 </div>
 
                 {/* Current Role */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-6 bg-primary/5 border border-primary/20 backdrop-blur-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="p-4 md:p-6 bg-primary/5 border border-primary/20 backdrop-blur-sm">
                     <div className="flex items-center gap-3 mb-2 opacity-60">
                       <GraduationCap size={16} className="text-primary" />
-                      <span className="text-[9px] font-manga uppercase tracking-widest">POSITION</span>
+                      <span className="text-[8px] md:text-[9px] font-manga uppercase tracking-widest">POSITION</span>
                     </div>
-                    <p className="font-manga text-lg text-white">TECH CULTIVATOR</p>
+                    <p className="font-manga text-base md:text-lg text-white">TECH CULTIVATOR</p>
                   </div>
-                  <div className="p-6 bg-secondary/5 border border-secondary/20 backdrop-blur-sm">
+                  <div className="p-4 md:p-6 bg-secondary/5 border border-secondary/20 backdrop-blur-sm">
                     <div className="flex items-center gap-3 mb-2 opacity-60">
                       <Cpu size={16} className="text-secondary" />
-                      <span className="text-[9px] font-manga uppercase tracking-widest">YEAR</span>
+                      <span className="text-[8px] md:text-[9px] font-manga uppercase tracking-widest">YEAR</span>
                     </div>
-                    <p className="font-manga text-lg text-white">PLAYER_LEVEL 02</p>
+                    <p className="font-manga text-base md:text-lg text-white">PLAYER_LEVEL 02</p>
                   </div>
                 </div>
 
                 {/* Hackathon Stats - Redesigned as Status Window */}
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between text-[11px] font-manga tracking-widest uppercase opacity-60">
+                  <div className="flex items-center justify-between text-[10px] md:text-[11px] font-manga tracking-widest uppercase opacity-60">
                     <span>HACKATHON_STATISTICS</span>
-                    <span className="text-primary">ENHANCED_UI</span>
+                    <span className="text-primary hidden md:block">ENHANCED_UI</span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <StatDisplay label="PROJECTS_BUILT" value="13" rank="S" icon={<Cpu size={14} />} />
-                    <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={14} />} />
-                    <StatDisplay label="SPECIAL_RECOGNITION" value="01" rank="A" icon={<Trophy size={14} />} />
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+                    <StatDisplay label="PROJECTS" value="13" rank="S" icon={<Cpu size={12} />} />
+                    <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={12} />} />
+                    <StatDisplay label="SPECIAL" value="01" rank="A" icon={<Trophy size={12} />} />
                   </div>
                 </div>
 

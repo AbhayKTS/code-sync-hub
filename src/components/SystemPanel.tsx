@@ -132,17 +132,17 @@ interface StatDisplayProps {
 
 export function StatDisplay({ label, value, icon, rank }: StatDisplayProps) {
   return (
-    <div className="flex flex-col items-center text-center p-3 bg-black/40 border border-primary/30">
+    <div className="flex flex-col items-center text-center p-2 md:p-3 bg-black/40 border border-primary/30">
       <div className="flex items-center gap-1.5 mb-1">
         {icon && <span className="text-primary">{icon}</span>}
-        <span className="text-foreground/60 text-[10px] font-manga tracking-wider uppercase">{label}</span>
+        <span className="text-foreground/60 text-[8px] md:text-[10px] font-manga tracking-wider uppercase truncate">{label}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-manga text-foreground text-2xl" style={{ textShadow: '0 0 8px rgba(29,185,84,0.5)' }}>
+        <span className="font-manga text-foreground text-lg md:text-2xl" style={{ textShadow: '0 0 8px rgba(29,185,84,0.5)' }}>
           {value}
         </span>
         {rank && (
-          <span className="system-tag text-[10px] px-2 py-0.5">{rank}</span>
+          <span className="system-tag text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5">{rank}</span>
         )}
       </div>
     </div>

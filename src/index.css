@@ -30,9 +30,18 @@
     --ring: 160 84% 50%;
 
     /* === Spacing Tokens === */
-    --panel-padding: 2.5rem;
+    --panel-padding: 1.25rem;
+
+    @media (min-width: 768px) {
+      --panel-padding: 2.5rem;
+    }
+
     /* Increased padding to fix text attachment */
-    --section-gap: 6rem;
+    --section-gap: 4rem;
+
+    @media (min-width: 768px) {
+      --section-gap: 6rem;
+    }
 
     /* === System Visual Effects === */
     --system-glass: rgba(10, 11, 14, 0.85);
@@ -1524,10 +1533,16 @@
 
   /* Chapter number style */
   .chapter-number {
-    @apply font-manga text-8xl;
+    @apply font-manga text-5xl md:text-8xl;
     color: transparent;
-    -webkit-text-stroke: 2px hsl(var(--primary));
-    opacity: 0.3;
+    -webkit-text-stroke: 1px hsl(var(--primary));
+    opacity: 0.2;
+  }
+
+  @media (min-width: 768px) {
+    .chapter-number {
+      -webkit-text-stroke: 2px hsl(var(--primary));
+    }
   }
 
   /* Martial arts scroll border */
