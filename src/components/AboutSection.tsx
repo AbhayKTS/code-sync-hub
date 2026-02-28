@@ -128,20 +128,19 @@ export default function AboutSection() {
 
                   {/* Performance Memory Image */}
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="relative group overflow-hidden border border-primary/20 aspect-[16/6] md:aspect-[16/5]"
+                    className="relative group overflow-hidden border border-primary/20 bg-black/40"
                   >
                     <motion.img
                       src="/1771659636539 (1).jpg"
                       alt="Hackathon Memory"
-                      className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 md:grayscale"
-                      whileHover={{ scale: 1.05 }}
+                      className="w-full h-auto max-h-[400px] object-contain transition-all duration-700 grayscale group-hover:grayscale-0 md:grayscale"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-60 pointer-events-none" />
                     <div className="absolute top-2 right-2 px-2 py-0.5 bg-primary/20 backdrop-blur-sm border border-primary/40">
-                      <span className="text-[8px] font-manga text-primary tracking-widest">PERFORMANCE_MEMORY_v1.0</span>
+                      <span className="text-[8px] font-manga text-primary tracking-widest uppercase">STORAGE_LOG: PERFORMANCE_VERIFICATION</span>
                     </div>
                   </motion.div>
 
