@@ -17,7 +17,7 @@ const pageFlipEase = [0.33, 1, 0.68, 1] as const;
 // Ink brush divider component with page-flip animation
 function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ scaleX: 0, opacity: 0 }}
       whileInView={{ scaleX: 1, opacity: 1 }}
       viewport={{ once: true, amount: 0.8 }}
@@ -26,9 +26,9 @@ function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
     >
       {/* Main divider line */}
       <div className="h-[3px] bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
-      
+
       {/* Center symbol */}
-      <motion.span 
+      <motion.span
         initial={{ scale: 0, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
@@ -37,9 +37,9 @@ function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
       >
         {symbol}
       </motion.span>
-      
+
       {/* Side decorations */}
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -48,7 +48,7 @@ function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
       >
         ◆
       </motion.span>
-      <motion.span 
+      <motion.span
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -62,12 +62,12 @@ function InkDivider({ symbol, delay = 0 }: { symbol: string; delay?: number }) {
 }
 
 // Section wrapper with page-flip animation
-function PageSection({ 
-  children, 
+function PageSection({
+  children,
   className = '',
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
+  delay = 0
+}: {
+  children: React.ReactNode;
   className?: string;
   delay?: number;
 }) {
@@ -88,26 +88,26 @@ function PageSection({
       initial={{ opacity: 0, y: 50, rotateX: -5 }}
       whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         ease: pageFlipEase,
-        delay 
+        delay
       }}
-      style={{ 
+      style={{
         perspective: '1500px',
         transformStyle: 'preserve-3d',
         y: yOffset
       }}
     >
       {/* Paper fold shadow - top */}
-      <motion.div 
+      <motion.div
         className="absolute top-0 left-0 right-0 h-24 pointer-events-none z-10"
-        style={{ 
+        style={{
           opacity: shadowOpacity,
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.03) 40%, transparent 100%)'
         }}
       />
-      
+
       {/* Page edge effects */}
       <div className="absolute top-0 bottom-0 left-0 w-2 pointer-events-none z-10"
         style={{
@@ -119,13 +119,13 @@ function PageSection({
           background: 'linear-gradient(to left, rgba(0,0,0,0.05) 0%, transparent 100%)'
         }}
       />
-      
+
       {children}
-      
+
       {/* Paper fold shadow - bottom */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none z-10"
-        style={{ 
+        style={{
           opacity: shadowOpacity,
           background: 'linear-gradient(to top, rgba(0,0,0,0.06) 0%, transparent 100%)'
         }}
@@ -139,25 +139,25 @@ function App() {
   usePageNavigation();
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden relative">
+    <div className="min-h-screen bg-background overflow-x-hidden relative selection:bg-primary/30 selection:text-foreground">
       {/* Canvas parallax background - paper scraps, ink droplets, speedlines */}
       <ParallaxBackground />
-      
+
       {/* Dark ambient glow effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/3 rounded-full blur-[100px]" />
       </div>
-      
+
       {/* Grid overlay */}
-      <div 
+      <div
         className="fixed inset-0 pointer-events-none opacity-[0.02]"
         style={{
           backgroundImage: 'linear-gradient(rgba(180,40,40,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(180,40,40,0.3) 1px, transparent 1px)',
           backgroundSize: '60px 60px'
         }}
       />
-      
+
       {/* Flowing energy strokes background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {[...Array(6)].map((_, i) => (
@@ -172,7 +172,7 @@ function App() {
           />
         ))}
       </div>
-      
+
       {/* Vertical panel lines */}
       <div className="fixed inset-0 pointer-events-none z-0 flex justify-between px-8 md:px-16">
         <div className="w-px h-full bg-primary/5" />
@@ -180,40 +180,40 @@ function App() {
         <div className="w-px h-full bg-primary/5 hidden lg:block" />
         <div className="w-px h-full bg-primary/5" />
       </div>
-      
+
       <SpeedLines />
       <Navigation />
-      
+
       <main className="panel-gutter relative z-10">
-        <PageSection>
+        <PageSection className="section-padding">
           <HeroSection />
         </PageSection>
-        
+
         <InkDivider symbol="I" />
-        
-        <PageSection delay={0.1}>
+
+        <PageSection delay={0.1} className="section-padding">
           <AboutSection />
         </PageSection>
-        
+
         <InkDivider symbol="II" delay={0.1} />
-        
-        <PageSection delay={0.1}>
+
+        <PageSection delay={0.1} className="section-padding">
           <ProjectsSection />
         </PageSection>
-        
+
         <InkDivider symbol="III" delay={0.1} />
-        
-        <PageSection delay={0.1}>
+
+        <PageSection delay={0.1} className="section-padding">
           <ExperienceSection />
         </PageSection>
-        
+
         <InkDivider symbol="IV" delay={0.1} />
-        
-        <PageSection delay={0.1}>
+
+        <PageSection delay={0.1} className="section-padding">
           <ContactSection />
         </PageSection>
       </main>
-      
+
       {/* Footer - Dark System Style */}
       <footer className="relative py-16 mt-12 border-t-2 border-primary/30 bg-black/80">
         <div className="container mx-auto px-4 relative z-10">
@@ -237,7 +237,7 @@ function App() {
           </motion.div>
         </div>
       </footer>
-      
+
       {/* Floating System Menu with navigation controls */}
       <SystemMenu />
     </div>

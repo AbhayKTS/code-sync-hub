@@ -33,8 +33,8 @@ const panelVariants = {
 };
 
 const coreStats = [
-  { label: "HACKATHONS", value: "10-11", icon: <Trophy size={16} /> },
-  { label: "WINS", value: "2", icon: <Trophy size={16} /> },
+  { label: "HACKATHONS", value: "13", icon: <Trophy size={16} /> },
+  { label: "WINS", value: "3", icon: <Trophy size={16} /> },
   { label: "SPECIAL", value: "1", icon: <Trophy size={16} /> },
 ];
 

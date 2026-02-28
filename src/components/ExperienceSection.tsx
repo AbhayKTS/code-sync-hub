@@ -54,7 +54,7 @@ const timelineEvents = [
   {
     year: '2025',
     title: 'First Hackathon Year',
-    description: 'First hackathon experience. Won 2 hackathons and received 1 special recognition. Started serious development journey.',
+    description: 'Participated in 13 hackathons. Won 3 hackathons and received 1 special recognition. Started serious development journey.',
     icon: Trophy,
     type: 'achievement',
     links: [
@@ -97,7 +97,7 @@ export default function ExperienceSection() {
       <div className="container mx-auto px-4">
         {/* Chapter Header */}
         <ChapterHeader number="CHAPTER 03" title="CULTIVATION PATH" />
-        
+
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -112,7 +112,7 @@ export default function ExperienceSection() {
         </motion.div>
 
         {/* Vertical timeline */}
-        <motion.div 
+        <motion.div
           className="relative max-w-3xl mx-auto"
           initial="hidden"
           whileInView="visible"
@@ -126,29 +126,28 @@ export default function ExperienceSection() {
             <motion.div
               key={event.year}
               variants={index % 2 === 0 ? itemLeftVariants : itemRightVariants}
-              className={`relative flex items-center mb-12 ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              }`}
+              className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
               style={{ perspective: '1000px' }}
             >
               {/* Timeline node */}
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.2 }}
                 className="absolute left-8 md:left-1/2 w-4 h-4 bg-black border-2 border-primary md:-translate-x-1/2 z-10"
                 style={{ boxShadow: '0 0 15px rgba(29,185,84,0.4)' }}
               />
 
               {/* Content card */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -4 }}
                 className={`ml-20 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}
               >
-                <div 
+                <div
                   className="p-5 relative border border-primary/40 bg-black/60"
                   style={{ boxShadow: '0 0 20px rgba(29,185,84,0.1)' }}
                 >
                   {/* Year badge */}
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0.8 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -170,7 +169,7 @@ export default function ExperienceSection() {
                   </div>
 
                   {/* Icon */}
-                  <div 
+                  <div
                     className="w-10 h-10 bg-black/80 border border-primary/50 flex items-center justify-center mb-3"
                     style={{ boxShadow: '0 0 10px rgba(29,185,84,0.2)' }}
                   >
@@ -243,7 +242,7 @@ export default function ExperienceSection() {
             transition={{ delay: 0.5, duration: 0.4, ease: pageFlipEase }}
             className="absolute left-8 md:left-1/2 bottom-0 md:-translate-x-1/2"
           >
-            <div 
+            <div
               className="w-10 h-10 bg-primary border-2 border-foreground flex items-center justify-center"
               style={{ boxShadow: '0 0 20px rgba(29,185,84,0.5)' }}
             >
@@ -260,7 +259,7 @@ export default function ExperienceSection() {
           transition={{ delay: 0.4, duration: 0.5, ease: pageFlipEase }}
           className="text-center mt-20"
         >
-          <div 
+          <div
             className="inline-block px-8 py-4 bg-black/60 border border-primary/40"
             style={{ boxShadow: '0 0 30px rgba(29,185,84,0.2)' }}
           >

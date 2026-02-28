@@ -6,16 +6,16 @@ const playSystemSound = () => {
   const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
   const oscillator = audioContext.createOscillator();
   const gainNode = audioContext.createGain();
-  
+
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
-  
+
   oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
   oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
-  
+
   gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
   gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
-  
+
   oscillator.start(audioContext.currentTime);
   oscillator.stop(audioContext.currentTime + 0.15);
 };
@@ -31,11 +31,11 @@ interface SystemPanelProps {
   glowColor?: string;
 }
 
-export function SystemPanel({ 
-  children, 
-  title, 
+export function SystemPanel({
+  children,
+  title,
   subtitle,
-  className = '', 
+  className = '',
   variant = 'default',
   showCorners = true,
   onClick,
@@ -56,17 +56,17 @@ export function SystemPanel({
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!panelRef.current) return;
-    
+
     // Play system sound
     playSystemSound();
-    
+
     // Create ink spread effect
     const rect = panelRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const newEffect = { id: effectIdRef.current++, x, y };
     setInkEffects(prev => [...prev, newEffect]);
-    
+
     // Remove effect after animation
     setTimeout(() => {
       setInkEffects(prev => prev.filter(effect => effect.id !== newEffect.id));
@@ -85,72 +85,92 @@ export function SystemPanel({
   return (
     <motion.div
       ref={panelRef}
-      className={`${baseVariants[variant]} ${className}`}
-      style={{ 
-        '--mouse-x': `${mousePos.x}%`, 
-        '--mouse-y': `${mousePos.y}%` 
+      className={`${baseVariants[variant]} ${className} group relative`}
+      style={{
+        '--mouse-x': `${mousePos.x}%`,
+        '--mouse-y': `${mousePos.y}%`
       } as React.CSSProperties}
       onMouseMove={handleMouseMove}
       onClick={handleClick}
       whileHover={{ scale: variant === 'popup' ? 1 : 1.01 }}
       whileTap={{ scale: 0.98 }}
     >
+      {/* Scan lines overlay for system feel */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03] overflow-hidden rounded-sm"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(180,255,180,0.1) 1px, transparent 1px)',
+          backgroundSize: '100% 3px',
+        }}
+      />
+
+      {/* Dynamic glow effect following mouse */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none rounded-sm"
+        style={{
+          background: `radial-gradient(circle 100px at var(--mouse-x) var(--mouse-y), ${glowColor}, transparent)`,
+        }}
+      />
+
       {/* Corner nodes */}
       {showCorners && (
         <>
-          <motion.span 
-            className="absolute top-1 left-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
-            animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
+          <motion.span
+            className="absolute -top-1 -left-1 text-[12px] z-10 leading-none"
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
+            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            ◉
+            ⌜
           </motion.span>
-          <motion.span 
-            className="absolute top-1 right-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
-            animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
+          <motion.span
+            className="absolute -top-1 -right-1 text-[12px] z-10 leading-none"
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
+            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           >
-            ◉
+            ⌝
           </motion.span>
-          <motion.span 
-            className="absolute bottom-1 left-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
-            animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
+          <motion.span
+            className="absolute -bottom-1 -left-1 text-[12px] z-10 leading-none"
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
+            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           >
-            ◉
+            ⌞
           </motion.span>
-          <motion.span 
-            className="absolute bottom-1 right-2 text-[10px] z-10"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 8px ${glowColor}` }}
-            animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.15, 1] }}
+          <motion.span
+            className="absolute -bottom-1 -right-1 text-[12px] z-10 leading-none"
+            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
+            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
           >
-            ◉
+            ⌟
           </motion.span>
         </>
       )}
 
       {/* Header */}
       {(title || subtitle) && (
-        <div className="mb-3 pb-2 border-b border-primary/30">
+        <div className="mb-4 pb-2 border-b border-primary/20 relative">
+          {/* Subtle line glow */}
+          <div className="absolute bottom-[-1px] left-0 w-full h-[1px] bg-primary/40 shadow-[0_0_8px_rgba(29,185,84,0.4)]" />
+
           {subtitle && (
-            <span className="text-[10px] text-primary/70 font-manga tracking-[0.3em] uppercase">
+            <span className="text-[9px] text-primary/60 font-manga tracking-[0.4em] uppercase block mb-1">
               {subtitle}
             </span>
           )}
           {title && (
-            <h4 className="font-manga text-foreground text-lg tracking-wider" style={{ textShadow: '0 0 10px rgba(29,185,84,0.3)' }}>
+            <h4 className="font-manga text-foreground text-xl tracking-widest uppercase" style={{ textShadow: '0 0 12px rgba(29,185,84,0.4)' }}>
               {title}
             </h4>
           )}
         </div>
       )}
 
-      {/* Content */}
-      <div className="relative z-10">
+      {/* Content wrapper with better spacing */}
+      <div className="relative z-10 font-body">
         {children}
       </div>
 
@@ -159,19 +179,20 @@ export function SystemPanel({
         {inkEffects.map(effect => (
           <motion.div
             key={effect.id}
-            className="ink-spread-effect"
+            className="ink-spread-effect absolute rounded-full pointer-events-none"
             style={{
               left: effect.x,
               top: effect.y,
-              width: 100,
-              height: 100,
-              marginLeft: -50,
-              marginTop: -50,
+              width: 120,
+              height: 120,
+              marginLeft: -60,
+              marginTop: -60,
+              background: `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`,
             }}
-            initial={{ scale: 0, opacity: 0.8 }}
-            animate={{ scale: 2, opacity: 0 }}
+            initial={{ scale: 0, opacity: 0.6 }}
+            animate={{ scale: 2.5, opacity: 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           />
         ))}
       </AnimatePresence>
@@ -262,20 +283,20 @@ export function SkillCard({ name, level = 1, maxLevel = 10, description, icon, r
     <div className="level-up-container relative">
       {/* Level Up text */}
       <span className="level-up-text">LEVEL UP!</span>
-      
+
       {/* Sparkles */}
       <span className="level-up-sparkle" style={{ left: '20%' }} />
       <span className="level-up-sparkle" style={{ left: '40%' }} />
       <span className="level-up-sparkle" style={{ left: '60%' }} />
       <span className="level-up-sparkle" style={{ left: '80%' }} />
-      
+
       <SystemPanel variant="skill" className="p-4">
         <div className="flex items-start gap-3">
           {/* Icon */}
           <div className="w-12 h-12 bg-black/50 border border-primary/40 flex items-center justify-center flex-shrink-0">
             {icon || <span className="font-manga text-primary text-xl">技</span>}
           </div>
-          
+
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -286,15 +307,15 @@ export function SkillCard({ name, level = 1, maxLevel = 10, description, icon, r
                 </span>
               )}
             </div>
-            
+
             {description && (
               <p className="text-foreground/60 text-xs font-body line-clamp-2 mb-2">{description}</p>
             )}
-            
+
             {/* Level bar */}
             <div className="flex items-center gap-2">
               <div className="flex-1 h-1.5 bg-black/50 border border-primary/30">
-                <motion.div 
+                <motion.div
                   className="h-full bg-gradient-to-r from-primary to-primary/50"
                   initial={{ width: 0 }}
                   animate={{ width: `${(level / maxLevel) * 100}%` }}

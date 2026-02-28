@@ -99,8 +99,8 @@ export default function ParallaxBackground() {
       ctx.save();
       ctx.translate(p.x, p.y - parallaxY * 0.3);
       ctx.rotate(p.rotation);
-      ctx.fillStyle = `rgba(20, 15, 10, ${p.opacity})`;
-      
+      ctx.fillStyle = `rgba(34, 197, 94, ${p.opacity * 1.5})`;
+
       // Irregular paper shape
       ctx.beginPath();
       ctx.moveTo(-p.size / 2, -p.size / 3);
@@ -109,7 +109,7 @@ export default function ParallaxBackground() {
       ctx.lineTo(-p.size / 3, p.size / 2);
       ctx.closePath();
       ctx.fill();
-      
+
       ctx.restore();
     };
 
@@ -117,13 +117,13 @@ export default function ParallaxBackground() {
     const drawInk = (ctx: CanvasRenderingContext2D, p: Particle, parallaxY: number) => {
       ctx.save();
       ctx.translate(p.x, p.y - parallaxY * 0.3);
-      
+
       // Main droplet
       ctx.beginPath();
       ctx.arc(0, 0, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(20, 15, 10, ${p.opacity})`;
+      ctx.fillStyle = `rgba(34, 197, 94, ${p.opacity * 2})`;
       ctx.fill();
-      
+
       // Small splatter dots
       if (p.size > 2) {
         for (let i = 0; i < 3; i++) {
@@ -137,11 +137,11 @@ export default function ParallaxBackground() {
             0,
             Math.PI * 2
           );
-          ctx.fillStyle = `rgba(20, 15, 10, ${p.opacity * 0.5})`;
+          ctx.fillStyle = `rgba(34, 197, 94, ${p.opacity * 0.8})`;
           ctx.fill();
         }
       }
-      
+
       ctx.restore();
     };
 
@@ -150,28 +150,28 @@ export default function ParallaxBackground() {
       ctx.save();
       ctx.translate(p.x, p.y - parallaxY * 0.3);
       ctx.rotate(p.rotation);
-      
+
       // Gradient line
       const gradient = ctx.createLinearGradient(0, 0, p.size, 0);
-      gradient.addColorStop(0, `rgba(20, 15, 10, 0)`);
-      gradient.addColorStop(0.3, `rgba(20, 15, 10, ${p.opacity})`);
-      gradient.addColorStop(0.7, `rgba(20, 15, 10, ${p.opacity})`);
-      gradient.addColorStop(1, `rgba(20, 15, 10, 0)`);
-      
+      gradient.addColorStop(0, `rgba(34, 197, 94, 0)`);
+      gradient.addColorStop(0.3, `rgba(255, 255, 255, ${p.opacity * 1.5})`);
+      gradient.addColorStop(0.7, `rgba(34, 197, 94, ${p.opacity * 2})`);
+      gradient.addColorStop(1, `rgba(34, 197, 94, 0)`);
+
       ctx.strokeStyle = gradient;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.lineTo(p.size, 0);
       ctx.stroke();
-      
+
       ctx.restore();
     };
 
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       const parallaxY = scrollRef.current;
 
       particlesRef.current.forEach((p) => {
@@ -219,7 +219,7 @@ export default function ParallaxBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ 
+      style={{
         opacity: 0.8,
         mixBlendMode: 'multiply'
       }}
