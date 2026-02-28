@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState, useRef, useCallback, ReactNode } from 'react';
 
 // System click sound (base64 encoded short beep)
@@ -39,12 +39,9 @@ export function SystemPanel({
   variant = 'default',
   showCorners = true,
   onClick,
-  glowColor = 'rgba(29, 185, 84, 0.4)'
 }: SystemPanelProps) {
-  const [inkEffects, setInkEffects] = useState<{ id: number; x: number; y: number }[]>([]);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const panelRef = useRef<HTMLDivElement>(null);
-  const effectIdRef = useRef(0);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!panelRef.current) return;
@@ -53,27 +50,6 @@ export function SystemPanel({
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setMousePos({ x, y });
   }, []);
-
-  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!panelRef.current) return;
-
-    // Play system sound
-    playSystemSound();
-
-    // Create ink spread effect
-    const rect = panelRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const newEffect = { id: effectIdRef.current++, x, y };
-    setInkEffects(prev => [...prev, newEffect]);
-
-    // Remove effect after animation
-    setTimeout(() => {
-      setInkEffects(prev => prev.filter(effect => effect.id !== newEffect.id));
-    }, 600);
-
-    onClick?.();
-  }, [onClick]);
 
   const baseVariants = {
     default: 'system-card',
@@ -85,117 +61,63 @@ export function SystemPanel({
   return (
     <motion.div
       ref={panelRef}
-      className={`${baseVariants[variant]} ${className} group relative`}
+      className={`${baseVariants[variant]} ${className} group relative overflow-hidden flex flex-col`}
       style={{
         '--mouse-x': `${mousePos.x}%`,
         '--mouse-y': `${mousePos.y}%`
       } as React.CSSProperties}
       onMouseMove={handleMouseMove}
-      onClick={handleClick}
-      whileHover={{ scale: variant === 'popup' ? 1 : 1.01 }}
-      whileTap={{ scale: 0.98 }}
+      onClick={() => {
+        playSystemSound();
+        onClick?.();
+      }}
+      whileHover={{ scale: 1.002 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
     >
-      {/* Scan lines overlay for system feel */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03] overflow-hidden rounded-sm"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(180,255,180,0.1) 1px, transparent 1px)',
-          backgroundSize: '100% 3px',
-        }}
-      />
-
-      {/* Dynamic glow effect following mouse */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none rounded-sm"
-        style={{
-          background: `radial-gradient(circle 100px at var(--mouse-x) var(--mouse-y), ${glowColor}, transparent)`,
-        }}
-      />
-
-      {/* Corner nodes */}
-      {showCorners && (
-        <>
-          <motion.span
-            className="absolute -top-1 -left-1 text-[12px] z-10 leading-none"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
-            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            ⌜
-          </motion.span>
-          <motion.span
-            className="absolute -top-1 -right-1 text-[12px] z-10 leading-none"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
-            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-          >
-            ⌝
-          </motion.span>
-          <motion.span
-            className="absolute -bottom-1 -left-1 text-[12px] z-10 leading-none"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
-            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-          >
-            ⌞
-          </motion.span>
-          <motion.span
-            className="absolute -bottom-1 -right-1 text-[12px] z-10 leading-none"
-            style={{ color: 'hsl(var(--primary))', textShadow: `0 0 10px ${glowColor}` }}
-            animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
-          >
-            ⌟
-          </motion.span>
-        </>
-      )}
-
-      {/* Header */}
+      {/* System Window Header */}
       {(title || subtitle) && (
-        <div className="mb-4 pb-2 border-b border-primary/20 relative">
-          {/* Subtle line glow */}
-          <div className="absolute bottom-[-1px] left-0 w-full h-[1px] bg-primary/40 shadow-[0_0_8px_rgba(29,185,84,0.4)]" />
-
-          {subtitle && (
-            <span className="text-[9px] text-primary/60 font-manga tracking-[0.4em] uppercase block mb-1">
-              {subtitle}
-            </span>
-          )}
-          {title && (
-            <h4 className="font-manga text-foreground text-xl tracking-widest uppercase" style={{ textShadow: '0 0 12px rgba(29,185,84,0.4)' }}>
-              {title}
-            </h4>
-          )}
+        <div className="system-header">
+          <div className="flex items-center gap-3">
+            <span className="status-pip bg-primary" />
+            <span className="font-manga tracking-[0.2em]">{title || 'SYSTEM UNIT'}</span>
+          </div>
+          <div className="flex gap-1.5 opacity-40">
+            <div className="w-2 h-0.5 bg-primary" />
+            <div className="w-2 h-0.5 bg-primary" />
+          </div>
         </div>
       )}
 
-      {/* Content wrapper with better spacing */}
-      <div className="relative z-10 font-body">
-        {children}
+      {/* Edge Glow Overlay */}
+      <div className="edge-glow opacity-40 group-hover:opacity-100 group-hover:border-primary/50 transition-all duration-500" />
+
+      {/* Scanline Effect */}
+      <div className="scanline opacity-[0.05] pointer-events-none group-hover:opacity-10 transition-opacity" />
+
+      {/* Content Area with massive padding fix */}
+      <div className="content-area relative z-10 flex-1 flex flex-col">
+        {subtitle && (
+          <div className="flex items-center gap-3 mb-6 opacity-40">
+            <div className="h-px w-8 bg-primary" />
+            <span className="text-[9px] uppercase font-manga tracking-[0.4em]">{subtitle}</span>
+          </div>
+        )}
+        <div className="flex-1">
+          {children}
+        </div>
       </div>
 
-      {/* Ink spread effects */}
-      <AnimatePresence>
-        {inkEffects.map(effect => (
-          <motion.div
-            key={effect.id}
-            className="ink-spread-effect absolute rounded-full pointer-events-none"
-            style={{
-              left: effect.x,
-              top: effect.y,
-              width: 120,
-              height: 120,
-              marginLeft: -60,
-              marginTop: -60,
-              background: `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`,
-            }}
-            initial={{ scale: 0, opacity: 0.6 }}
-            animate={{ scale: 2.5, opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-          />
-        ))}
-      </AnimatePresence>
+      {/* Corner Brackets */}
+      {showCorners && (
+        <>
+          <span className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary/20" />
+          <span className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/20" />
+          <span className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary/20" />
+          <span className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary/20" />
+        </>
+      )}
     </motion.div>
   );
 }

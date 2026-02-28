@@ -9,72 +9,56 @@ interface TechniqueCardProps {
 
 function TechniqueCard({ name, level, maxLevel = 10, delay = 0 }: TechniqueCardProps) {
   const percentage = (level / maxLevel) * 100;
-  
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4 }}
       whileHover={{ scale: 1.02, y: -2 }}
-      className="relative bg-black/70 border border-[#1DB954]/40 p-4 group"
-      style={{
-        boxShadow: '0 0 15px rgba(29,185,84,0.1), inset 0 0 20px rgba(0,0,0,0.5)'
-      }}
+      className="relative bg-primary/5 border border-primary/20 p-5 group backdrop-blur-sm"
     >
       {/* Corner accents */}
-      <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#1DB954]" />
-      <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#1DB954]" />
-      <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#1DB954]" />
-      <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#1DB954]" />
-      
+      <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40" />
+      <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40" />
+
       {/* Name and Level */}
-      <div className="flex items-center justify-between mb-3">
-        <span className="font-manga text-foreground tracking-wide text-sm">{name}</span>
-        <span 
-          className="font-manga text-[#1DB954] text-lg"
-          style={{ textShadow: '0 0 10px rgba(29,185,84,0.5)' }}
+      <div className="flex items-center justify-between mb-4">
+        <span className="font-manga text-white/80 tracking-widest text-xs uppercase">{name}</span>
+        <span
+          className="font-manga text-primary text-sm font-bold"
+          style={{ textShadow: '0 0 10px var(--primary)' }}
         >
-          LV {level}
+          LV.{level}
         </span>
       </div>
-      
+
       {/* Progress bar */}
-      <div className="h-2 bg-black/60 border border-[#1DB954]/30 overflow-hidden">
-        <motion.div 
-          className="h-full bg-gradient-to-r from-[#1DB954] to-[#2ECC71]"
+      <div className="h-1.5 bg-black/40 border border-primary/10 overflow-hidden">
+        <motion.div
+          className="h-full bg-gradient-to-r from-primary to-primary/40 shadow-[0_0_15px_var(--primary)]"
           initial={{ width: 0 }}
           whileInView={{ width: `${percentage}%` }}
           viewport={{ once: true }}
-          transition={{ delay: delay + 0.2, duration: 0.6, ease: 'easeOut' }}
-          style={{
-            boxShadow: '0 0 10px rgba(29,185,84,0.5)'
-          }}
+          transition={{ delay: delay + 0.2, duration: 1.2, ease: 'easeOut' }}
         />
       </div>
-      
-      {/* Hover glow */}
-      <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-        style={{
-          boxShadow: 'inset 0 0 20px rgba(29,185,84,0.15)'
-        }}
-      />
     </motion.div>
   );
 }
 
 export default function TechniqueCards() {
   const techniques = [
-    { name: 'JavaScript', level: 8 },
-    { name: 'React/TypeScript', level: 7 },
-    { name: 'Web3', level: 3 },
-    { name: 'Flask/Django', level: 4 },
-    { name: 'AI/ML Systems', level: 6 },
-    { name: 'Cloud Architecture', level: 5 },
-    { name: 'Java', level: 6 },
-    { name: 'Python', level: 3 },
-    { name: 'C', level: 3 },
+    { name: 'JavaScript_Core', level: 8 },
+    { name: 'React/TS_Framework', level: 7 },
+    { name: 'Web3_Protocols', level: 3 },
+    { name: 'Backend_Alchemy', level: 4 },
+    { name: 'AI/ML_Neural_Links', level: 6 },
+    { name: 'Cloud_Domain', level: 5 },
+    { name: 'Java_Imperial', level: 6 },
+    { name: 'Python_Scripts', level: 3 },
+    { name: 'C_Foundation', level: 3 },
   ];
 
   return (
@@ -82,14 +66,14 @@ export default function TechniqueCards() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
     >
       {techniques.map((tech, index) => (
-        <TechniqueCard 
+        <TechniqueCard
           key={tech.name}
           name={tech.name}
           level={tech.level}
-          delay={index * 0.08}
+          delay={index * 0.05}
         />
       ))}
     </motion.div>

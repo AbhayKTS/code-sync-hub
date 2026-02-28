@@ -131,103 +131,91 @@ export default function ProjectsSection() {
               key={project.title}
               variants={cardVariants}
               className="group relative"
-              style={{ perspective: '1000px' }}
+              style={{ perspective: '1200px' }}
             >
               <SystemPanel
                 title={project.title}
-                subtitle={project.rankLabel}
-                className="h-full"
+                subtitle={`Project_Model_0${index + 1}`}
+                className="h-full border-primary/10 hover:border-primary/40 transition-colors"
                 showCorners={true}
               >
-                {/* Rank badge - absolute positioned inside SystemPanel */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  className="absolute -top-12 -right-2 z-20"
-                >
-                  <div
-                    className={`px-3 py-1 font-manga text-sm border ${project.rank === 'S'
-                      ? 'bg-primary/20 border-primary text-primary'
-                      : project.rank === 'A'
-                        ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400'
-                        : 'bg-teal-500/20 border-teal-500 text-teal-400'
-                      }`}
-                    style={{ boxShadow: project.rank === 'S' ? '0 0 15px rgba(29,185,84,0.4)' : undefined }}
-                  >
-                    {project.rank}
-                  </div>
-                </motion.div>
-
-                {/* Status badge for building projects */}
-                {project.status && (
-                  <div className="absolute -top-12 left-0 z-20">
-                    <span className="px-2 py-1 text-[10px] font-manga tracking-wider bg-yellow-500/20 border border-yellow-500/50 text-yellow-400">
-                      {project.status.toUpperCase()}
+                {/* Status Bar - Fix for overlaps */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex gap-2">
+                    <span className={`px-2 py-0.5 text-[9px] font-manga border ${project.rank === 'S' ? 'border-primary bg-primary/20 text-primary' : 'border-secondary bg-secondary/20 text-secondary'
+                      }`}>
+                      {project.rankLabel}
                     </span>
+                    {project.status && (
+                      <span className="px-2 py-0.5 text-[9px] font-manga border border-yellow-500/50 bg-yellow-500/10 text-yellow-500 animate-pulse">
+                        {project.status.toUpperCase()}
+                      </span>
+                    )}
                   </div>
-                )}
+                  <div className="text-[10px] font-manga opacity-20 tracking-widest">
+                    ID: {project.title.substring(0, 3).toUpperCase()}_{2026}
+                  </div>
+                </div>
 
-                {/* Card Content */}
-                <div className="relative pt-2">
-                  {/* Icon Area */}
-                  <div className="mb-4 flex items-center justify-between">
+                {/* Card Content Area - Fixed Padding via SystemPanel content-area */}
+                <div className="relative space-y-6">
+                  {/* Icon Area with Glow */}
+                  <div className="flex items-center gap-4">
                     <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="w-12 h-12 bg-black/40 border border-primary/30 flex items-center justify-center"
-                      style={{ boxShadow: '0 0 15px rgba(29,185,84,0.1)' }}
+                      whileHover={{ scale: 1.1, rotate: 8 }}
+                      className="w-14 h-14 bg-card border border-primary/20 flex items-center justify-center relative overflow-hidden"
                     >
-                      <project.icon size={24} className="text-primary" />
+                      <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+                      <project.icon size={28} className="text-primary relative z-10" />
                     </motion.div>
-
-                    <div className="font-manga text-3xl text-foreground/5 select-none">
-                      0{index + 1}
-                    </div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent" />
                   </div>
 
-                  <p className="font-body text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed min-h-[4.5rem]">
+                  <p className="font-body text-foreground/70 text-base leading-relaxed line-clamp-3 min-h-[4.5rem]">
                     {project.description}
                   </p>
 
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Tech cards */}
+                  <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 text-[10px] font-body bg-primary/5 border border-primary/20 text-primary/80 uppercase tracking-wider"
+                        className="px-2 py-1 text-[9px] font-manga bg-primary/5 border border-primary/10 text-primary/60 uppercase tracking-widest hover:border-primary/40 hover:text-primary transition-all"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-4 border-t border-primary/10 pt-4">
-                    {project.github && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ x: 2, color: '#1DB954' }}
-                        className="flex items-center gap-2 text-xs font-manga text-foreground/60 hover:text-primary transition-colors tracking-widest"
-                      >
-                        <Github size={14} />
-                        CODE
-                      </motion.a>
-                    )}
-                    {project.live && (
-                      <motion.a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ x: 2, color: '#1DB954' }}
-                        className="flex items-center gap-2 text-xs font-manga text-foreground/60 hover:text-primary transition-colors tracking-widest"
-                      >
-                        <ExternalLink size={14} />
-                        LIVE
-                      </motion.a>
-                    )}
+                  {/* Links Row */}
+                  <div className="pt-6 border-t border-white/5 flex items-center justify-between">
+                    <div className="flex gap-4">
+                      {project.github && (
+                        <motion.a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ y: -2, color: 'var(--primary)' }}
+                          className="flex items-center gap-2 text-[10px] font-manga text-foreground/40 tracking-[0.2em]"
+                        >
+                          <Github size={14} />
+                          SOURCE
+                        </motion.a>
+                      )}
+                      {project.live && (
+                        <motion.a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ y: -2, color: 'var(--secondary)' }}
+                          className="flex items-center gap-2 text-[10px] font-manga text-foreground/40 tracking-[0.2em]"
+                        >
+                          <ExternalLink size={14} />
+                          DEPLOY
+                        </motion.a>
+                      )}
+                    </div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary group-hover:shadow-[0_0_10px_var(--primary)] transition-all" />
                   </div>
                 </div>
               </SystemPanel>

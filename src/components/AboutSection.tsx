@@ -32,12 +32,6 @@ const panelVariants = {
   },
 };
 
-const coreStats = [
-  { label: "HACKATHONS", value: "13", icon: <Trophy size={16} /> },
-  { label: "WINS", value: "3", icon: <Trophy size={16} /> },
-  { label: "SPECIAL", value: "1", icon: <Trophy size={16} /> },
-];
-
 const techStack = [
   "HTML", "CSS", "JavaScript", "TypeScript", "React", "Web3", "AI/ML", "Flask", "Django"
 ];
@@ -58,31 +52,36 @@ const strongAreas = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 px-4 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-ink-black rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary rounded-full blur-3xl" />
+    <section id="about" className="py-24 px-4 relative overflow-hidden bg-background/50">
+      {/* Background HUD elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-5">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/10 blur-[100px] rounded-full -translate-x-1/2 translate-y-1/2" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Chapter Header */}
         <ChapterHeader number="CHAPTER 01" title="CHARACTER PROFILE" />
-        
+
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: pageFlipEase }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-foreground mb-4 tracking-wider">
-            ABOUT <span className="text-primary">ME</span>
+          <h2 className="text-5xl md:text-7xl font-manga font-black text-foreground mb-4 tracking-tighter uppercase">
+            CHARACTER <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">LEVEL</span>
           </h2>
-          <div className="w-32 h-1 bg-primary mx-auto" />
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-12 bg-primary/40" />
+            <span className="font-manga text-primary tracking-[0.5em] text-sm uppercase">LV. 13 RANK: S-RANK</span>
+            <div className="h-px w-12 bg-primary/40" />
+          </div>
         </motion.div>
 
-        <motion.div 
-          className="grid lg:grid-cols-2 gap-8"
+        <motion.div
+          className="grid lg:grid-cols-2 gap-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -90,54 +89,53 @@ export default function AboutSection() {
         >
           {/* Bio Panel */}
           <motion.div variants={panelVariants}>
-            <SystemPanel title="CULTIVATOR INFO" className="h-full">
-              <div className="space-y-6">
+            <SystemPanel title="PLAYER_AUTO_BIO" subtitle="CULTIVATOR OVERVIEW" className="h-full">
+              <div className="space-y-10">
                 {/* Bio */}
-                <div className="content-box p-4">
-                  <p className="font-crimson text-lg text-foreground/90 leading-relaxed">
-                    I'm a full-stack developer exploring Web3, building modern apps with clean UIs and solid backends. 
-                    Powered by AI, I move fast — experimenting, learning, and pushing ideas into real products. 
-                    Inspired by manhwa and cultivation novels, I blend creativity with code to craft futuristic digital experiences.
+                <div className="relative">
+                  <span className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary to-transparent" />
+                  <p className="text-xl text-foreground font-body leading-relaxed pl-2">
+                    I'm a full-stack developer exploring <span className="text-secondary font-bold">Web3</span>, building modern apps with clean UIs and solid backends.
+                    Powered by AI, I move fast — experimenting, learning, and pushing ideas into real products.
+                    Inspired by <span className="text-primary font-bold">manhwa</span> and cultivation novels, I blend creativity with code to craft futuristic digital experiences.
                   </p>
                 </div>
 
                 {/* Current Role */}
-                <div className="p-4 bg-black/40 border border-primary/30">
-                  <div className="flex items-center gap-2 mb-2">
-                    <GraduationCap size={18} className="text-primary" />
-                    <span className="font-manga text-sm text-primary tracking-wider">CURRENT STATUS</span>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-6 bg-primary/5 border border-primary/20 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2 opacity-60">
+                      <GraduationCap size={16} className="text-primary" />
+                      <span className="text-[9px] font-manga uppercase tracking-widest">POSITION</span>
+                    </div>
+                    <p className="font-manga text-lg text-white">TECH CULTIVATOR</p>
                   </div>
-                  <p className="font-crimson text-foreground/80">
-                    Full-stack Developer • Web3 Learner
-                  </p>
-                  <p className="font-crimson text-foreground/60 text-sm mt-1">
-                    B.Tech CSE (AI/ML) • 2nd Year • GLA University
-                  </p>
+                  <div className="p-6 bg-secondary/5 border border-secondary/20 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2 opacity-60">
+                      <Cpu size={16} className="text-secondary" />
+                      <span className="text-[9px] font-manga uppercase tracking-widest">YEAR</span>
+                    </div>
+                    <p className="font-manga text-lg text-white">PLAYER_LEVEL 02</p>
+                  </div>
                 </div>
 
-                {/* Hackathon Stats */}
-                <div>
-                  <span className="font-manga text-sm text-primary tracking-wider block mb-3">HACKATHON STATS</span>
-                  <div className="grid grid-cols-3 gap-2">
-                    {coreStats.map((stat, index) => (
-                      <motion.div
-                        key={stat.label}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 * index, duration: 0.4, ease: pageFlipEase }}
-                      >
-                        <StatDisplay label={stat.label} value={stat.value} icon={stat.icon} />
-                      </motion.div>
-                    ))}
+                {/* Hackathon Stats - Redesigned as Status Window */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-[11px] font-manga tracking-widest uppercase opacity-60">
+                    <span>HACKATHON_STATISTICS</span>
+                    <span className="text-primary">ENHANCED_UI</span>
                   </div>
-                  <p className="text-xs text-muted-foreground text-center mt-2">First hackathon was in 2025</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <StatDisplay label="PROJECTS_BUILT" value="13" rank="S" icon={<Cpu size={14} />} />
+                    <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={14} />} />
+                    <StatDisplay label="SPECIAL_RECOGNITION" value="01" rank="A" icon={<Trophy size={14} />} />
+                  </div>
                 </div>
 
                 {/* Strong Areas */}
-                <div className="space-y-2">
-                  <span className="font-manga text-sm text-primary tracking-wider">STRONG AREAS</span>
-                  <div className="flex flex-wrap gap-2">
+                <div className="space-y-4">
+                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase">CORE_PROFICIENCIES</span>
+                  <div className="flex flex-wrap gap-3">
                     {strongAreas.map((area) => (
                       <SystemTag key={area.name} icon={area.icon} variant="active">
                         {area.name}
@@ -151,20 +149,20 @@ export default function AboutSection() {
 
           {/* Tech Stack Panel */}
           <motion.div variants={panelVariants} className="relative">
-            <SystemPanel title="TECH ARSENAL" className="h-full">
-              <div className="space-y-6">
+            <SystemPanel title="SKILL_INVENTORY" subtitle="ARSENAL_MODULE_v2" className="h-full">
+              <div className="space-y-10">
                 {/* Tech Stack Tags */}
-                <div>
-                  <span className="font-manga text-sm text-primary/70 tracking-wider block mb-3">LANGUAGES & FRAMEWORKS</span>
+                <div className="space-y-4">
+                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase text-secondary">ACTIVE_TECH_CARDS</span>
                   <div className="flex flex-wrap gap-2">
                     {techStack.map((tech, index) => (
                       <motion.span
                         key={tech}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.05 * index }}
-                        className="px-3 py-1.5 bg-black/50 border border-primary/40 text-foreground text-sm font-body hover:bg-primary/20 hover:border-primary transition-all cursor-default"
+                        className="px-4 py-2 bg-muted/30 border border-white/5 text-foreground/80 text-xs font-body hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all cursor-default backdrop-blur-md"
                       >
                         {tech}
                       </motion.span>
@@ -173,8 +171,8 @@ export default function AboutSection() {
                 </div>
 
                 {/* Tools */}
-                <div>
-                  <span className="font-manga text-sm text-primary/70 tracking-wider block mb-3">TOOLS</span>
+                <div className="space-y-4">
+                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase text-secondary">ESSENTIAL_GEAR</span>
                   <div className="flex flex-wrap gap-2">
                     {tools.map((tool) => (
                       <SystemTag key={tool.name} icon={tool.icon}>
@@ -184,13 +182,30 @@ export default function AboutSection() {
                   </div>
                 </div>
 
+                {/* Level Progress Indicator */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between font-manga text-[10px] opacity-60">
+                    <span>OVERALL_EXP</span>
+                    <span>92.4%</span>
+                  </div>
+                  <div className="system-progress h-2">
+                    <motion.div
+                      className="system-progress-fill"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '92.4%' }}
+                      transition={{ duration: 2, ease: "easeOut" }}
+                    />
+                  </div>
+                </div>
+
                 {/* Quote */}
-                <div className="content-box border-l-4 border-primary p-4 mt-4">
-                  <p className="font-crimson italic text-foreground/70">
-                    "The code that flows from my fingers is not mere logic — it is the crystallization 
+                <div className="relative p-8 mt-6 overflow-hidden">
+                  <div className="absolute inset-0 bg-primary/5 border border-primary/10 -skew-x-6" />
+                  <p className="relative z-10 font-manga text-sm text-foreground/80 italic leading-relaxed">
+                    "The code that flows from my fingers is not mere logic — it is the crystallization
                     of countless experiments in the realm of silicon and light."
                   </p>
-                  <p className="text-right text-primary font-cinzel text-sm mt-2">— Chaos_Immortal</p>
+                  <p className="relative z-10 text-right text-primary font-manga text-[10px] mt-4 tracking-widest">— Chaos_Immortal</p>
                 </div>
               </div>
             </SystemPanel>
@@ -202,10 +217,10 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.5, ease: pageFlipEase }}
-          className="mt-12"
+          transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
+          className="mt-16"
         >
-          <SystemPanel title="MURIM TECHNIQUE LEVELS" subtitle="MARTIAL ARTS PROFICIENCY">
+          <SystemPanel title="MARTIAL_ARTS_MODULE" subtitle="MURIM_TECHNIQUES" showCorners={false}>
             <TechniqueCards />
           </SystemPanel>
         </motion.div>

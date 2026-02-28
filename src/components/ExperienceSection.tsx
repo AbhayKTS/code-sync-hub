@@ -1,64 +1,26 @@
 import { motion } from 'framer-motion';
-import { Code, GraduationCap, Rocket, Trophy, Users } from 'lucide-react';
+import { Code, GraduationCap, Rocket, Trophy, Users, CheckCircle2, Circle } from 'lucide-react';
 import ChapterHeader from './ChapterHeader';
-
-// Page-flip easing for manhwa aesthetic
-const pageFlipEase = [0.33, 1, 0.68, 1] as const;
-
-// Timeline item variants
-const timelineVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemLeftVariants = {
-  hidden: { opacity: 0, x: -50, rotateY: 10 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    rotateY: 0,
-    transition: {
-      duration: 0.5,
-      ease: pageFlipEase,
-    },
-  },
-};
-
-const itemRightVariants = {
-  hidden: { opacity: 0, x: 50, rotateY: -10 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    rotateY: 0,
-    transition: {
-      duration: 0.5,
-      ease: pageFlipEase,
-    },
-  },
-};
+import { SystemPanel } from './SystemPanel';
 
 const timelineEvents = [
   {
     year: '2026',
-    title: 'Building CollegeVerse',
-    description: 'No wins yet, building CollegeVerse and expanding AI/Web3 skills. The journey continues...',
+    title: 'COLLEGE_VERSE_SYSTEM',
+    description: 'Current active quest. Building a futuristic student ecosystem with AI/Web3. The journey towards reaching peak efficiency continues.',
     icon: Rocket,
-    type: 'current',
+    status: 'ACTIVE',
+    rank: 'S',
   },
   {
     year: '2025',
-    title: 'First Hackathon Year',
-    description: 'Participated in 13 hackathons. Won 3 hackathons and received 1 special recognition. Started serious development journey.',
+    title: 'HACKATHON_TRIALS',
+    description: 'Survived the 13 trials of the code-realm. Secured 3 primary victories and 1 special recognition. Experience points harvested.',
     icon: Trophy,
-    type: 'achievement',
+    status: 'CLEARED',
+    rank: 'SS',
     links: [
-      { label: 'Quick Greet Generator', url: 'https://github.com/AbhayKTS/quick-greet-generator' },
+      { label: 'Greet Gen', url: 'https://github.com/AbhayKTS/quick-greet-generator' },
     ],
     teammates: [
       { name: 'ansh-codr', url: 'https://github.com/ansh-codr' },
@@ -67,206 +29,113 @@ const timelineEvents = [
   },
   {
     year: '2024',
-    title: 'Started Programming',
-    description: 'Began exploring the world of code. First steps into the cultivation of digital arts.',
+    title: 'AWAKENING_PROTOCOLS',
+    description: 'Began exploring the world of code. First steps into the cultivation of digital arts. Basic logic circuits established.',
     icon: Code,
-    type: 'milestone',
+    status: 'CLEARED',
+    rank: 'D',
   },
   {
-    year: 'Education',
-    title: 'Academic Journey',
-    description: 'APS Nagrota (Pre-primary) → KV Nagrota (1-10) → KV Baad Mathura (11-12) → GLA University (B.Tech CSE AI/ML)',
+    year: 'EDU',
+    title: 'KNOWLEDGE_ABSORPTION',
+    description: 'APS Nagrota → KV Nagrota → KV Baad Mathura → GLA University (Current Level: B.Tech CSE AI/ML).',
     icon: GraduationCap,
-    type: 'education',
+    status: 'CLEARED',
+    rank: 'A',
   },
 ];
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-20 relative overflow-hidden">
-      {/* Background decorative text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.02 }}
-        viewport={{ once: true }}
-        className="absolute top-10 left-10 font-manga text-[120px] text-foreground leading-none pointer-events-none"
-      >
-        PATH
-      </motion.div>
+    <section id="experience" className="py-24 px-4 relative overflow-hidden bg-background">
+      {/* Background HUD elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-5">
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/20 blur-[100px] rounded-full -translate-x-1/2" />
+      </div>
 
-      <div className="container mx-auto px-4">
-        {/* Chapter Header */}
-        <ChapterHeader number="CHAPTER 03" title="CULTIVATION PATH" />
+      <div className="max-w-4xl mx-auto relative z-10">
+        <ChapterHeader number="CHAPTER 03" title="QUEST_ARCHIVES" />
 
-        {/* Title */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="font-manga text-5xl md:text-6xl text-foreground relative mt-2 tracking-wider">
-            <span className="text-primary">JOURNEY</span>
+          <h2 className="text-5xl md:text-7xl font-manga font-black text-foreground mb-4 tracking-tighter uppercase">
+            PATH <span className="text-primary font-outline text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">PROGRESS</span>
           </h2>
-          <p className="font-body text-muted-foreground mt-4 text-lg">The cultivation path...</p>
+          <div className="inline-flex items-center gap-4 text-xs font-manga tracking-[0.4em] opacity-40">
+            <span className="w-12 h-px bg-white/20" />
+            <span>HISTORICAL_LOGS</span>
+            <span className="w-12 h-px bg-white/20" />
+          </div>
         </motion.div>
 
-        {/* Vertical timeline */}
-        <motion.div
-          className="relative max-w-3xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={timelineVariants}
-        >
-          {/* Central timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 bg-primary/30" />
+        <div className="relative space-y-12">
+          {/* Timeline central line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/20 to-transparent md:-translate-x-1/2" />
 
           {timelineEvents.map((event, index) => (
             <motion.div
-              key={event.year}
-              variants={index % 2 === 0 ? itemLeftVariants : itemRightVariants}
-              className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              key={event.title}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              className={`relative flex flex-col md:flex-row items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
-              style={{ perspective: '1000px' }}
             >
-              {/* Timeline node */}
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                className="absolute left-8 md:left-1/2 w-4 h-4 bg-black border-2 border-primary md:-translate-x-1/2 z-10"
-                style={{ boxShadow: '0 0 15px rgba(29,185,84,0.4)' }}
-              />
+              {/* Timeline Indicator */}
+              <div className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary md:-translate-x-1/2 z-20 shadow-[0_0_10px_var(--primary)]" />
 
-              {/* Content card */}
-              <motion.div
-                whileHover={{ y: -4 }}
-                className={`ml-20 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}
-              >
-                <div
-                  className="p-5 relative border border-primary/40 bg-black/60"
-                  style={{ boxShadow: '0 0 20px rgba(29,185,84,0.1)' }}
+              <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} pl-16 md:pl-0`}>
+                <SystemPanel
+                  title={event.title}
+                  subtitle={`${event.year} // RANK_${event.rank}`}
+                  className="w-full"
                 >
-                  {/* Year badge */}
-                  <motion.div
-                    initial={{ scale: 0.8 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.15 }}
-                    className={`absolute -top-3 ${index % 2 === 0 ? 'right-4' : 'left-4'} px-3 py-1 bg-primary text-background font-manga text-sm`}
-                    style={{ boxShadow: '0 0 10px rgba(29,185,84,0.4)' }}
-                  >
-                    {event.year}
-                  </motion.div>
-
-                  {/* Type indicator */}
-                  <div className="absolute top-3 right-3">
-                    {event.type === 'current' && (
-                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse inline-block" />
-                    )}
-                    {event.type === 'achievement' && (
-                      <Trophy size={14} className="text-yellow-500" />
-                    )}
-                  </div>
-
-                  {/* Icon */}
-                  <div
-                    className="w-10 h-10 bg-black/80 border border-primary/50 flex items-center justify-center mb-3"
-                    style={{ boxShadow: '0 0 10px rgba(29,185,84,0.2)' }}
-                  >
-                    <event.icon size={20} className="text-primary" />
-                  </div>
-
-                  <h3 className="font-manga text-lg text-foreground mb-2 tracking-wide">
-                    {event.title}
-                  </h3>
-                  <p className="font-body text-muted-foreground leading-relaxed text-sm">
-                    {event.description}
-                  </p>
-
-                  {/* Links */}
-                  {event.links && (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {event.links.map((link) => (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-primary hover:underline font-body"
-                        >
-                          {link.label} →
-                        </a>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Teammates */}
-                  {event.teammates && (
-                    <div className="mt-3 pt-3 border-t border-primary/20">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Users size={12} className="text-primary/60" />
-                        <span className="text-[10px] text-primary/60 font-manga tracking-wider">TEAMMATES</span>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center">
+                        <event.icon size={20} className="text-primary" />
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {event.teammates.map((mate) => (
-                          <a
-                            key={mate.url}
-                            href={mate.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-foreground/70 hover:text-primary transition-colors"
-                          >
-                            @{mate.name}
-                          </a>
+                      <div className={`flex items-center gap-2 px-3 py-1 text-[10px] font-manga border ${event.status === 'CLEARED' ? 'border-primary/50 text-primary' : 'border-yellow-500/50 text-yellow-500 animate-pulse'
+                        }`}>
+                        {event.status === 'CLEARED' ? <CheckCircle2 size={12} /> : <Circle size={12} />}
+                        {event.status}
+                      </div>
+                    </div>
+
+                    <p className="text-sm font-body text-white/70 leading-relaxed">
+                      {event.description}
+                    </p>
+
+                    {event.teammates && (
+                      <div className="pt-4 border-t border-white/5 flex flex-wrap gap-2 items-center">
+                        <Users size={12} className="opacity-40" />
+                        {event.teammates.map(mate => (
+                          <a key={mate.name} href={mate.url} className="text-[10px] text-primary hover:underline">@{mate.name}</a>
                         ))}
                       </div>
-                    </div>
-                  )}
-
-                  {/* Corner decorations */}
-                  <span className="absolute top-1 left-1 w-3 h-3 border-t border-l border-primary/40" />
-                  <span className="absolute bottom-1 right-1 w-3 h-3 border-b border-r border-primary/40" />
-                </div>
-              </motion.div>
-
-              {/* Spacer */}
-              <div className="hidden md:block md:w-5/12" />
+                    )}
+                  </div>
+                </SystemPanel>
+              </div>
             </motion.div>
           ))}
+        </div>
 
-          {/* End marker */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.4, ease: pageFlipEase }}
-            className="absolute left-8 md:left-1/2 bottom-0 md:-translate-x-1/2"
-          >
-            <div
-              className="w-10 h-10 bg-primary border-2 border-foreground flex items-center justify-center"
-              style={{ boxShadow: '0 0 20px rgba(29,185,84,0.5)' }}
-            >
-              <span className="font-manga text-background text-lg">→</span>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* To be continued */}
+        {/* Ending Marker */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.5, ease: pageFlipEase }}
-          className="text-center mt-20"
+          className="mt-20 flex flex-col items-center gap-4 text-center"
         >
-          <div
-            className="inline-block px-8 py-4 bg-black/60 border border-primary/40"
-            style={{ boxShadow: '0 0 30px rgba(29,185,84,0.2)' }}
-          >
-            <p className="font-manga text-xl md:text-2xl text-foreground tracking-widest">
-              TO BE CONTINUED...
-            </p>
+          <div className="w-12 h-12 border-2 border-white/10 flex items-center justify-center font-manga text-xl text-primary/40">
+            ???
           </div>
+          <p className="font-manga text-sm tracking-[0.5em] opacity-40 uppercase italic">To_Be_Continued_Protocols</p>
         </motion.div>
       </div>
     </section>
