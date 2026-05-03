@@ -78,7 +78,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="relative w-full max-w-md mx-auto perspective-1000 mb-20 lg:mb-0"
+          className="relative w-full max-w-md mx-auto lg:ml-auto lg:mr-0 lg:translate-x-[320px] perspective-1000 mb-20 lg:mb-0"
         >
           <SystemPanel
             title="PLAYER_STATUS"

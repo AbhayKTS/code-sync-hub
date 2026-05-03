@@ -50,15 +50,15 @@ function TechniqueCard({ name, level, maxLevel = 10, delay = 0 }: TechniqueCardP
 
 export default function TechniqueCards() {
   const techniques = [
-    { name: 'JavaScript_Core', level: 8 },
-    { name: 'React/TS_Framework', level: 7 },
-    { name: 'Web3_Protocols', level: 3 },
-    { name: 'Backend_Alchemy', level: 4 },
-    { name: 'AI/ML_Neural_Links', level: 6 },
-    { name: 'Cloud_Domain', level: 5 },
-    { name: 'Java_Imperial', level: 6 },
-    { name: 'Python_Scripts', level: 3 },
-    { name: 'C_Foundation', level: 3 },
+    { name: 'JavaScript_Core', level: 9 },
+    { name: 'React/Next_Framework', level: 8 },
+    { name: 'Node/Backend_Alchemy', level: 7 },
+    { name: 'Python_Scripts', level: 8 },
+    { name: 'Java_Imperial', level: 7 },
+    { name: 'Web3/Solidity_Logic', level: 6 },
+    { name: 'Cloud_Domain', level: 7 },
+    { name: 'Database_Systems', level: 8 },
+    { name: 'C_Foundation', level: 5 },
   ];
 
   return (

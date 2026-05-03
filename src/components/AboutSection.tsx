@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { SystemPanel, StatDisplay, SystemTag } from "./SystemPanel";
 import ChapterHeader from './ChapterHeader';
 import TechniqueCards from './TechniqueCards';
-import { Trophy, Code, GraduationCap, Cpu, Database, Cloud, Bot } from 'lucide-react';
+import { Trophy, Code, GraduationCap, Cpu, Database, Cloud, Bot, Zap } from 'lucide-react';
 
 // Page-flip easing
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -32,16 +32,32 @@ const panelVariants = {
   },
 };
 
-const techStack = [
-  "HTML", "CSS", "JavaScript", "TypeScript", "React", "Web3", "AI/ML", "Flask", "Django"
-];
-
-const tools = [
-  { name: "VS Code", icon: <Code size={14} /> },
-  { name: "Git", icon: <Code size={14} /> },
-  { name: "Firebase", icon: <Database size={14} /> },
-  { name: "Supabase", icon: <Database size={14} /> },
-  { name: "ChatGPT", icon: <Bot size={14} /> },
+const skillCategories = [
+  {
+    title: "LANGUAGES",
+    skills: ["JavaScript", "Python", "Java", "SQL", "C"],
+    icon: <Code size={14} />
+  },
+  {
+    title: "FRONTEND",
+    skills: ["React", "Next.js", "Tailwind CSS"],
+    icon: <Cpu size={14} />
+  },
+  {
+    title: "BACKEND",
+    skills: ["Node.js", "FastAPI", "REST APIs", "Flask", "Django"],
+    icon: <Database size={14} />
+  },
+  {
+    title: "CLOUD & DEVOPS",
+    skills: ["Firebase", "GCP", "Azure", "Netlify", "Render", "Vercel", "IPFS"],
+    icon: <Cloud size={14} />
+  },
+  {
+    title: "WEB3 & BLOCKCHAIN",
+    skills: ["Solidity", "MetaMask", "Smart Contracts", "Polygon"],
+    icon: <Zap size={14} />
+  }
 ];
 
 const strongAreas = [
@@ -144,35 +160,30 @@ export default function AboutSection() {
           <motion.div variants={panelVariants} className="relative">
             <SystemPanel title="SKILL_INVENTORY" subtitle="ARSENAL_MODULE_v2" className="h-full">
               <div className="space-y-10">
-                {/* Tech Stack Tags */}
-                <div className="space-y-4">
-                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase text-secondary">ACTIVE_TECH_CARDS</span>
-                  <div className="flex flex-wrap gap-2">
-                    {techStack.map((tech, index) => (
-                      <motion.span
-                        key={tech}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.05 * index }}
-                        className="px-4 py-2 bg-muted/30 border border-white/5 text-foreground/80 text-xs font-body hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all cursor-default backdrop-blur-md"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tools */}
-                <div className="space-y-4">
-                  <span className="text-[10px] font-manga tracking-widest opacity-40 uppercase text-secondary">ESSENTIAL_GEAR</span>
-                  <div className="flex flex-wrap gap-2">
-                    {tools.map((tool) => (
-                      <SystemTag key={tool.name} icon={tool.icon}>
-                        {tool.name}
-                      </SystemTag>
-                    ))}
-                  </div>
+                {/* Categorized Skills */}
+                <div className="space-y-8">
+                  {skillCategories.map((category, catIndex) => (
+                    <div key={category.title} className="space-y-3">
+                      <div className="flex items-center gap-2 opacity-60">
+                        {category.icon}
+                        <span className="text-[10px] font-manga tracking-widest uppercase text-secondary">{category.title}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill, index) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: (catIndex * 0.1) + (index * 0.05) }}
+                            className="px-3 py-1.5 bg-muted/30 border border-white/5 text-foreground/80 text-[11px] font-body hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all cursor-default backdrop-blur-md"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Level Progress Indicator */}
@@ -195,12 +206,12 @@ export default function AboutSection() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between text-[10px] md:text-[11px] font-manga tracking-widest uppercase opacity-60">
                     <span>HACKATHON_STATISTICS</span>
-                    <span className="text-primary hidden md:block">ENHANCED_UI</span>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-                    <StatDisplay label="PROJECTS" value="13" rank="S" icon={<Cpu size={12} />} />
-                    <StatDisplay label="VICTORIES" value="03" rank="SSS" icon={<Trophy size={12} />} />
-                    <StatDisplay label="SPECIAL" value="01" rank="A" icon={<Trophy size={12} />} />
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
+                    <StatDisplay label="PARTICIPATION" value="15" rank="A" icon={<Cpu size={12} />} />
+                    <StatDisplay label="VICTORIES" value="04" rank="SSS" icon={<Trophy size={12} />} />
+                    <StatDisplay label="SPECIAL" value="01" rank="SS" icon={<Trophy size={12} />} />
+                    <StatDisplay label="FINALIST" value="09" rank="S" icon={<Trophy size={12} />} />
                   </div>
                 </div>
 

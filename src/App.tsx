@@ -7,9 +7,10 @@ import Navigation from '@/components/Navigation';
 import SpeedLines from '@/components/SpeedLines';
 import ParallaxBackground from '@/components/ParallaxBackground';
 import SystemMenu from '@/components/SystemMenu';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { usePageNavigation } from '@/hooks/usePageNavigation';
+import ProjectsPage from '@/components/ProjectsPage';
 
 // Custom page-flip easing
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -135,111 +136,137 @@ function PageSection({
 }
 
 function App() {
+  const [isProjectsView, setIsProjectsView] = useState(false);
+  const [initialProject, setInitialProject] = useState<string | null>(null);
   // Enable keyboard (A/D, arrows) and swipe navigation between sections
   usePageNavigation();
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden relative selection:bg-primary/30 selection:text-foreground">
-      {/* Canvas parallax background - paper scraps, ink droplets, speedlines */}
-      <ParallaxBackground />
-
-      {/* Dark ambient glow effects */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/3 rounded-full blur-[100px]" />
-      </div>
-
-      {/* Grid overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none opacity-[0.02]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(180,40,40,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(180,40,40,0.3) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
-        }}
-      />
-
-      {/* Flowing energy strokes background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-px opacity-20"
-            style={{
-              left: `${15 + i * 15}%`,
-              height: '100%',
-              background: `linear-gradient(to bottom, transparent, hsl(var(--primary) / 0.3), transparent)`,
+      <AnimatePresence mode="wait">
+        {isProjectsView ? (
+          <ProjectsPage
+            key="projects-page"
+            initialProject={initialProject}
+            onBack={() => {
+              setIsProjectsView(false);
+              setInitialProject(null);
             }}
           />
-        ))}
-      </div>
-
-      {/* Vertical panel lines */}
-      <div className="fixed inset-0 pointer-events-none z-0 flex justify-between px-8 md:px-16">
-        <div className="w-px h-full bg-primary/5" />
-        <div className="w-px h-full bg-primary/5 hidden md:block" />
-        <div className="w-px h-full bg-primary/5 hidden lg:block" />
-        <div className="w-px h-full bg-primary/5" />
-      </div>
-
-      <SpeedLines />
-      <Navigation />
-
-      <main className="panel-gutter relative z-10">
-        <PageSection className="section-padding">
-          <HeroSection />
-        </PageSection>
-
-        <InkDivider symbol="I" />
-
-        <PageSection delay={0.1} className="section-padding">
-          <AboutSection />
-        </PageSection>
-
-        <InkDivider symbol="II" delay={0.1} />
-
-        <PageSection delay={0.1} className="section-padding">
-          <ProjectsSection />
-        </PageSection>
-
-        <InkDivider symbol="III" delay={0.1} />
-
-        <PageSection delay={0.1} className="section-padding">
-          <ExperienceSection />
-        </PageSection>
-
-        <InkDivider symbol="IV" delay={0.1} />
-
-        <PageSection delay={0.1} className="section-padding">
-          <ContactSection />
-        </PageSection>
-      </main>
-
-      {/* Footer - Dark System Style */}
-      <footer className="relative py-16 mt-12 border-t-2 border-primary/30 bg-black/80">
-        <div className="container mx-auto px-4 relative z-10">
+        ) : (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
+            key="home-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <p className="font-manga text-2xl text-primary mb-3 tracking-widest" style={{ textShadow: '0 0 15px rgba(29,185,84,0.5)' }}>
-              — THE END —
-            </p>
-            <p className="font-body text-sm text-muted-foreground tracking-wide">
-              © 2025 Abhay Kumar — Chaos_Immortal — The System Walker
-            </p>
-            <div className="flex justify-center gap-4 mt-6 text-primary/60">
-              <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}>◆</motion.span>
-              <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}>◇</motion.span>
-              <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}>◆</motion.span>
-            </div>
-          </motion.div>
-        </div>
-      </footer>
+            {/* Canvas parallax background - paper scraps, ink droplets, speedlines */}
+            <ParallaxBackground />
 
-      {/* Floating System Menu with navigation controls */}
-      <SystemMenu />
+            {/* Dark ambient glow effects */}
+            <div className="fixed inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
+              <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/3 rounded-full blur-[100px]" />
+            </div>
+
+            {/* Grid overlay */}
+            <div
+              className="fixed inset-0 pointer-events-none opacity-[0.02]"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(180,40,40,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(180,40,40,0.3) 1px, transparent 1px)',
+                backgroundSize: '60px 60px'
+              }}
+            />
+
+            {/* Flowing energy strokes background */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-px opacity-20"
+                  style={{
+                    left: `${15 + i * 15}%`,
+                    height: '100%',
+                    background: `linear-gradient(to bottom, transparent, hsl(var(--primary) / 0.3), transparent)`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Vertical panel lines */}
+            <div className="fixed inset-0 pointer-events-none z-0 flex justify-between px-8 md:px-16">
+              <div className="w-px h-full bg-primary/5" />
+              <div className="w-px h-full bg-primary/5 hidden md:block" />
+              <div className="w-px h-full bg-primary/5 hidden lg:block" />
+              <div className="w-px h-full bg-primary/5" />
+            </div>
+
+            <SpeedLines />
+            <Navigation />
+
+            <main className="panel-gutter relative z-10">
+              <PageSection className="section-padding">
+                <HeroSection />
+              </PageSection>
+
+              <InkDivider symbol="I" />
+
+              <PageSection delay={0.1} className="section-padding">
+                <AboutSection />
+              </PageSection>
+
+              <InkDivider symbol="II" delay={0.1} />
+
+              <PageSection delay={0.1} className="section-padding">
+                <ProjectsSection onViewAll={() => setIsProjectsView(true)} />
+              </PageSection>
+
+              <InkDivider symbol="III" delay={0.1} />
+
+              <PageSection delay={0.1} className="section-padding">
+                <ExperienceSection onViewProject={(title) => {
+                  setInitialProject(title);
+                  setIsProjectsView(true);
+                }} />
+              </PageSection>
+
+              <InkDivider symbol="IV" delay={0.1} />
+
+              <PageSection delay={0.1} className="section-padding">
+                <ContactSection />
+              </PageSection>
+            </main>
+
+            {/* Footer - Dark System Style */}
+            <footer className="relative py-16 mt-12 border-t-2 border-primary/30 bg-black/80">
+              <div className="container mx-auto px-4 relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <p className="font-manga text-2xl text-primary mb-3 tracking-widest" style={{ textShadow: '0 0 15px rgba(29,185,84,0.5)' }}>
+                    — THE END —
+                  </p>
+                  <p className="font-body text-sm text-muted-foreground tracking-wide">
+                    © 2025 Abhay Kumar — Chaos_Immortal — The System Walker
+                  </p>
+                  <div className="flex justify-center gap-4 mt-6 text-primary/60">
+                    <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}>◆</motion.span>
+                    <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}>◇</motion.span>
+                    <motion.span className="text-xl" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}>◆</motion.span>
+                  </div>
+                </motion.div>
+              </div>
+            </footer>
+
+            {/* Floating System Menu with navigation controls */}
+            <SystemMenu />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Rocket, Globe, Shield, TrendingUp } from 'lucide-react';
+import { Github, ExternalLink, Rocket } from 'lucide-react';
 import ChapterHeader from './ChapterHeader';
 import { SystemPanel } from './SystemPanel';
+import { getRankColor } from '../utils/rankUtils';
 
 // Page-flip easing for manhwa aesthetic
 const pageFlipEase = [0.33, 1, 0.68, 1] as const;
@@ -37,58 +38,10 @@ const cardVariants = {
   },
 };
 
-const projects = [
-  {
-    title: 'CollegeVerse',
-    description: 'A futuristic AI-powered student ecosystem with mentorship, identity verification, 3D digital campus, and micro-internships.',
-    tech: ['React', 'AI', 'Web3', '3D'],
-    github: 'https://github.com/AbhayKTS',
-    status: 'Building',
-    icon: Globe,
-    rank: 'S',
-    rankLabel: 'S-RANK',
-  },
-  {
-    title: 'Climate Explorer',
-    description: 'A climate intelligence dashboard showing temperature trends, CO2, rainfall, and anomaly insights.',
-    tech: ['React', 'Data Viz', 'Analytics'],
-    github: 'https://github.com/AbhayKTS/data-climate-whisperer',
-    live: 'https://climate-explorer.netlify.app',
-    icon: Globe,
-    rank: 'A',
-    rankLabel: 'A-RANK',
-  },
-  {
-    title: 'FitChaos',
-    description: 'A full fitness tracking platform (web + app) with personalized workouts and analytics.',
-    tech: ['React', 'Mobile', 'Analytics'],
-    github: 'https://github.com/AbhayKTS/fresh-start',
-    icon: Rocket,
-    rank: 'A',
-    rankLabel: 'A-RANK',
-  },
-  {
-    title: 'Samurai Oracle Network',
-    description: 'A decentralized AI oracle predicting smart contract exploits before they happen.',
-    tech: ['Web3', 'AI', 'Blockchain'],
-    github: 'https://github.com/AbhayKTS/synergix',
-    live: 'https://oracleking.netlify.app',
-    icon: Shield,
-    rank: 'S',
-    rankLabel: 'S-RANK',
-  },
-  {
-    title: 'SalePred',
-    description: 'ML model predicting sales based on marketing spend for ROI optimization.',
-    tech: ['Python', 'ML', 'Analytics'],
-    github: 'https://github.com/AbhayKTS/sales_prediction',
-    icon: TrendingUp,
-    rank: 'B',
-    rankLabel: 'B-RANK',
-  },
-];
+import { projects } from '@/data/projects';
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ onViewAll }: { onViewAll?: () => void }) {
+  const featuredProjects = projects.slice(0, 3);
   return (
     <section id="projects" className="py-20 relative">
       {/* Decorative element */}
@@ -126,7 +79,7 @@ export default function ProjectsSection() {
           viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
         >
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <motion.div
               key={project.title}
               variants={cardVariants}
@@ -142,10 +95,14 @@ export default function ProjectsSection() {
                 {/* Status Bar - Fix for overlaps */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex gap-2">
-                    <span className={`px-2 py-0.5 text-[9px] font-manga border ${project.rank === 'S' ? 'border-primary bg-primary/20 text-primary' : 'border-secondary bg-secondary/20 text-secondary'
-                      }`}>
-                      {project.rankLabel}
-                    </span>
+                    {(() => {
+                      const colors = getRankColor(project.rank);
+                      return (
+                        <span className={`px-2 py-0.5 text-[9px] font-manga border transition-all duration-300 ${colors.border} ${colors.bg} ${colors.text} ${colors.glow}`}>
+                          {project.rankLabel}
+                        </span>
+                      );
+                    })()}
                     {project.status && (
                       <span className="px-2 py-0.5 text-[9px] font-manga border border-yellow-500/50 bg-yellow-500/10 text-yellow-500 animate-pulse">
                         {project.status.toUpperCase()}
@@ -159,8 +116,21 @@ export default function ProjectsSection() {
 
                 {/* Card Content Area - Fixed Padding via SystemPanel content-area */}
                 <div className="relative space-y-6">
+                  {/* Backdrop Image - Subdued for terminal aesthetic */}
+                  {project.image && (
+                    <div
+                      className="absolute -right-8 -bottom-8 w-40 h-40 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 blur-[2px] group-hover:blur-0 grayscale pointer-events-none z-0"
+                      style={{
+                        backgroundImage: `url('${project.image}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        maskImage: 'radial-gradient(circle at center, black, transparent)'
+                      }}
+                    />
+                  )}
+
                   {/* Icon Area with Glow */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 relative z-10">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 8 }}
                       className="w-14 h-14 bg-card border border-primary/20 flex items-center justify-center relative overflow-hidden"
@@ -223,7 +193,6 @@ export default function ProjectsSection() {
           ))}
         </motion.div>
 
-        {/* More projects link */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -231,16 +200,14 @@ export default function ProjectsSection() {
           transition={{ delay: 0.3, duration: 0.5, ease: pageFlipEase }}
           className="text-center mt-12"
         >
-          <motion.a
-            href="https://github.com/AbhayKTS"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={onViewAll}
             whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(29,185,84,0.4)' }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-3 px-6 py-3 bg-primary text-background font-manga tracking-wider border border-primary"
             style={{ boxShadow: '0 0 20px rgba(29,185,84,0.3)' }}
           >
-            <Github size={20} />
+            <Rocket size={20} />
             <span>View All Techniques</span>
             <motion.span
               animate={{ x: [0, 4, 0] }}
@@ -248,7 +215,7 @@ export default function ProjectsSection() {
             >
               →
             </motion.span>
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

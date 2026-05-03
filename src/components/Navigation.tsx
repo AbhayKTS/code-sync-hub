@@ -20,11 +20,11 @@ export default function Navigation() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-0 left-0 md:top-4 md:left-1/2 md:-translate-x-1/2 z-50 w-full md:w-[95%] max-w-4xl"
     >
-      <div className="glass-card px-4 py-2 md:px-6 md:py-3 flex items-center justify-between rounded-none md:rounded-xl border-t-0 border-x-0 md:border-t-2 md:border-x-2">
+      <div className="glass-card px-4 py-2 md:px-6 md:py-3 flex items-center justify-center md:gap-16 rounded-none md:rounded-xl border-t-0 border-x-0 md:border-t-2 md:border-x-2">
         {/* Logo */}
         <motion.a
           href="#hero"
-          className="font-manga text-lg md:text-2xl relative group flex items-center gap-1.5 md:gap-2 mx-auto md:mx-0"
+          className="font-manga text-lg md:text-xl relative group flex items-center gap-1.5 md:gap-2"
           whileHover={{ scale: 1.02 }}
         >
           <Sword size={18} className="text-primary" />
@@ -53,7 +53,7 @@ export default function Navigation() {
               )}
               <a
                 href={item.href}
-                className="relative px-4 py-2 font-body text-sm uppercase tracking-widest text-foreground hover:text-primary transition-all group flex flex-col items-center"
+                className="relative px-2 py-2 font-body text-sm uppercase tracking-wider text-foreground hover:text-primary transition-all group flex flex-col items-center"
               >
                 <span>{item.label}</span>
                 {/* Ink underline effect */}

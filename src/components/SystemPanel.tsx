@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useRef, useCallback, ReactNode } from 'react';
+import { getRankColor } from '../utils/rankUtils';
 
 // System click sound (base64 encoded short beep)
 const playSystemSound = () => {
@@ -131,18 +132,22 @@ interface StatDisplayProps {
 }
 
 export function StatDisplay({ label, value, icon, rank }: StatDisplayProps) {
+  const colors = rank ? getRankColor(rank) : null;
+
   return (
-    <div className="flex flex-col items-center text-center p-2 md:p-3 bg-black/40 border border-primary/30">
+    <div className={`flex flex-col items-center text-center p-2 md:p-3 bg-black/40 border transition-all duration-300 ${colors ? colors.border : 'border-primary/30'}`}>
       <div className="flex items-center gap-1.5 mb-1">
-        {icon && <span className="text-primary">{icon}</span>}
+        {icon && <span className={colors ? colors.text : 'text-primary'}>{icon}</span>}
         <span className="text-foreground/60 text-[8px] md:text-[10px] font-manga tracking-wider uppercase truncate">{label}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-manga text-foreground text-lg md:text-2xl" style={{ textShadow: '0 0 8px rgba(29,185,84,0.5)' }}>
+        <span className="font-manga text-foreground text-lg md:text-2xl" style={{ textShadow: colors ? `0 0 8px ${colors.glow.match(/rgba\(.*?\)/)?.[0] || 'rgba(var(--primary), 0.5)'}` : '0 0 8px rgba(29,185,84,0.5)' }}>
           {value}
         </span>
-        {rank && (
-          <span className="system-tag text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5">{rank}</span>
+        {rank && colors && (
+          <span className={`text-[8px] md:text-[10px] px-1.5 md:px-2 py-0.5 border ${colors.border} ${colors.bg} ${colors.text} ${colors.glow}`}>
+            {rank}
+          </span>
         )}
       </div>
     </div>

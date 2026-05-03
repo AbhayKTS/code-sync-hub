@@ -6,16 +6,33 @@ import { SystemPanel } from './SystemPanel';
 const timelineEvents = [
   {
     year: '2026',
-    title: 'COLLEGE_VERSE_SYSTEM',
+    title: 'ALMADOX CENTRAL',
     description: 'Current active quest. Building a futuristic student ecosystem with AI/Web3. The journey towards reaching peak efficiency continues.',
     icon: Rocket,
     status: 'ACTIVE',
     rank: 'S',
   },
   {
+    year: 'APRIL 2026',
+    title: 'VISIONX_VICTORY',
+    description: 'WON VisionX hackathon (4th major win) with ShadowMesh Honeypot system. Advanced deceptive defense protocols successfully deployed.',
+    icon: Trophy,
+    status: 'CLEARED',
+    rank: 'SSS',
+    projectLink: 'ShadowMesh'
+  },
+  {
+    year: 'FEB 2026',
+    title: 'INNOVATHON_VICTORY',
+    description: 'Survived 13 hackathons. Secured 3 wins and 1 special recognition. WON Innovathon 1.0 (SIIEDC, University of Jammu) with ALMADOX.',
+    icon: Trophy,
+    status: 'CLEARED',
+    rank: 'SSS',
+  },
+  {
     year: '2025',
     title: 'HACKATHON_TRIALS',
-    description: 'Survived the 13 trials of the code-realm. Secured 3 primary victories and 1 special recognition. Experience points harvested.',
+    description: 'Survived 11 trials of the code-realm. Secured 2 primary victories and 1 special recognition. Experience points harvested.',
     icon: Trophy,
     status: 'CLEARED',
     rank: 'SS',
@@ -50,7 +67,7 @@ const timelineEvents = [
   },
 ];
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ onViewProject }: { onViewProject?: (title: string) => void }) {
   return (
     <section id="experience" className="py-24 px-4 relative overflow-hidden bg-background">
       {/* Background HUD elements */}
@@ -114,6 +131,16 @@ export default function ExperienceSection() {
                     <p className="text-sm font-body text-white/70 leading-relaxed">
                       {event.description}
                     </p>
+
+                    {event.projectLink && onViewProject && (
+                      <button
+                        onClick={() => onViewProject(event.projectLink!)}
+                        className="flex items-center gap-2 text-[10px] text-primary hover:text-white transition-colors font-manga tracking-widest px-3 py-1.5 bg-primary/10 border border-primary/20 hover:bg-primary/30 group"
+                      >
+                        <span>VIEW_{event.projectLink.toUpperCase()}_LOGS</span>
+                        <Rocket size={10} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </button>
+                    )}
 
                     {event.eduLinks && (
                       <div className="pt-4 border-t border-white/5 flex flex-wrap gap-2 items-center">
